@@ -1,0 +1,23 @@
+.DS_Store
+
+# Backup files
+*#
+*.
+*.elc
+*~
+.#*
+
+# Packages
+elpa/
+var/
+
+# Temporary files
+ac-comphist.dat
+auto-save-last/
+eshell/
+games/
+idlwave/
+ido.last
+projectile-bookmarks.eld
+tramp
+url
