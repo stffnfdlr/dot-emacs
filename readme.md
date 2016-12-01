@@ -1,16 +1,27 @@
-# dotemacs
+# .emacs
 
 This configuration uses `use-pacakge` to automatically install packages on load.
 
+Sections are devided into pages delimited by the formfeed character `^L` (`C-q C-l`).
+
+## Requirements
+* Emacs 24.x
+* Git
+
 ## Install
 
-Install [GNU Emacs'](https://www.gnu.org/software/emacs/) latest stable from [brew](http://brew.sh/) for Mac OS X.
+Install [GNU Emacs'](https://www.gnu.org/software/emacs/) latest stable from [brew](http://brew.sh/) or apt-get.
 
+On OS X:
 ```bash
 $ brew install emacs --cocoa
 ```
+On Ubuntu:
+```bash
+$ sudo apt-get install git emacs
+```
 
-Clone this repo into your home directory as the directory `~/.emacs.d`.
+Afterwards clone this repo into your home directory as the directory `~/.emacs.d`.
 
 ```bash
 $ git clone https://github.com/comkee/dot-emacs.git ~/.emacs.d

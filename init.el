@@ -1,4 +1,3 @@
-
 ;; Initialize package 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -45,7 +44,6 @@
 (setq-default indent-tabs-mode nil)
 ;; Set default tab char's display width to 4 spaces
 (setq-default tab-width 4)
-
 
 ;;  Highlight Parentheses
 (define-globalized-minor-mode global-highlight-parentheses-mode
@@ -53,7 +51,6 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
-
 
 ;;; Hideshow
 (load-library "hideshow")
@@ -65,18 +62,16 @@
 
 ;; Tramp
 (setq tramp-default-method "ssh")
-
 
-;;;
+;;; Auto complete
 (use-package auto-complete
              :ensure t
              :pin melpa-stable
              :config
              (add-to-list 'ac-dictionary-directories "elpa/auto-complete-1.5.1/dict")
              (ac-config-default))
-
 
-;;; 
+;;; Auto-complete Cider
 (use-package ac-cider
              :ensure t
              :pin melpa-stable
@@ -88,32 +83,27 @@
                '(progn
                   (add-to-list 'ac-modes 'cider-mode)
                   (add-to-list 'ac-modes 'cider-repl-mode))))
-
 
-;;; Cider
+;;; Clojure Cider
 (use-package cider
              :ensure t
              :pin melpa-stable)
-
 
-;;;
+;;; Expand Region
 (use-package expand-region
              :ensure t
              :pin melpa-stable
              :bind ("C-=" . er/expand-region))
-
 
-;;;
+;;; Helm
 (use-package helm
              :ensure t
              :pin melpa-stable)
-
 
 ;;;
 (use-package highlight-parentheses
              :ensure t
              :pin melpa-stable)
-
 
 ;;; 
 (use-package ido-ubiquitous
@@ -123,20 +113,17 @@
              ;; enable C-x C-f history
              (ido-mode t)
              (ido-ubiquitous t))
-
 
 ;;; JSON
 (use-package json-mode
              :ensure t
              :pin melpa-stable)
-
 
 ;;; Magit
 (use-package magit
              :ensure t
              :pin melpa-stable
              :bind ("C-x g" . magit-status))
-
 
 ;;; Markdown mode
 (use-package markdown-mode
@@ -146,19 +133,16 @@
              (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
              (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
              (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
-
 
-;;;
+;;; Olivetti
 (use-package olivetti
              :ensure t
              :pin melpa-stable)
-
 
 ;;;
 (use-package org
              :ensure t
              :pin melpa-stable)
-
 
 ;;;
 (use-package org-ac
@@ -166,7 +150,6 @@
              :pin melpa-stable
              :config
              (org-ac/config-default))
-
 
 ;;;
 (use-package paredit
@@ -174,7 +157,6 @@
              :pin melpa-stable
              :config
              (add-hook 'prog-mode-hook #'enable-paredit-mode))
-
 
 ;;; Processing
 (use-package processing-mode
@@ -194,15 +176,13 @@
              (setq ac-user-dictionary (append processing-functions
                                               processing-builtins
                                               processing-constants)))
-
 
-;;; 
+;;; Projectile
 (use-package projectile
              :ensure t
              :pin melpa-stable
              :config
              (projectile-global-mode))
-
 
 ;;; Parentheses coloring
 (use-package rainbow-delimiters
@@ -210,13 +190,11 @@
              :pin melpa-stable
              :config
              (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-
 
 ;;; SMEX M-x history
 (use-package smex
              :ensure t
              :pin melpa-stable)
-
 
 ;;; Transpose frame
 (use-package transpose-frame
@@ -224,7 +202,6 @@
              :pin melpa
              :bind (("C-," . rotate-frame-anticlockwise)
                     ("C-." . rotate-frame-clockwise)))
-
 
 ;;; Web mode
 (use-package web-mode
@@ -243,7 +220,6 @@
              (setq web-mode-code-indent-offset 2)
              (setq web-mode-markup-indent-offset 2)
              (setq web-mode-enable-current-element-highlight t))
-
 
 ;; Customize interface to safe config in separate file
 (setq custom-file "~/.emacs.d/custom.el")
