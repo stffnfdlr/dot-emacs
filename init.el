@@ -45,21 +45,6 @@
 ;; Set default tab char's display width to 4 spaces
 (setq-default tab-width 4)
 
-;;  Highlight Parentheses
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
-
-;;; Hideshow
-(load-library "hideshow")
-(global-set-key (kbd "C-+") 'hs-toggle-hiding)
-(global-set-key (kbd "C-x <C-up>") 'hs-hide-block)
-(global-set-key (kbd "C-x <C-down>") 'hs-show-block)
-(add-hook 'prog-mode-hook 'hs-minor-mode)
-
-
 ;; Tramp
 (setq tramp-default-method "ssh")
 
@@ -220,6 +205,20 @@
              (setq web-mode-code-indent-offset 2)
              (setq web-mode-markup-indent-offset 2)
              (setq web-mode-enable-current-element-highlight t))
+
+;;  Highlight Parentheses
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+(global-highlight-parentheses-mode t)
+
+;;; Hideshow
+(load-library "hideshow")
+(global-set-key (kbd "C-+") 'hs-toggle-hiding)
+(global-set-key (kbd "C-x <C-up>") 'hs-hide-block)
+(global-set-key (kbd "C-x <C-down>") 'hs-show-block)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; Customize interface to safe config in separate file
 (setq custom-file "~/.emacs.d/custom.el")
