@@ -1,3 +1,9 @@
+;; Path to the directory where this file is located
+(setq dotfile-directory (file-name-directory (or load-file-name buffer-file-name)))
+
+;; Load the very secret tokens which shall never make it into the repository
+(load-file (concat dotfile-directory "secrets.el"))
+
 ;; Initialize package 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -20,7 +26,7 @@
 ;; Eigengrau theme taken from Jack Rusher's dotemacs config:
 ;; https://github.com/jackrusher/dotemacs/blob/master/eigengrau
 ;; Theme is then loaded with customize.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/eigengrau/")
+(add-to-list 'custom-theme-load-path (concat dotfile-directory "/themes/eigengrau"))
 
 ;; turn off splash screen messages
 (setq inhibit-startup-echo-area-message t
@@ -221,5 +227,5 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; Customize interface to safe config in separate file
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (concat dotfile-directory "custom.el"))
 (load custom-file)
