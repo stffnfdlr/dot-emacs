@@ -11,6 +11,9 @@
 elpa/
 var/
 
+# Secrets
+secrets.el
+
 # Temporary files
 ac-comphist.dat
 auto-save-last/
