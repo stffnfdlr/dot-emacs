@@ -133,7 +133,10 @@
 ;;;
 (use-package org
              :ensure t
-             :pin melpa-stable)
+             :pin melpa-stable
+             :init
+             ;; Enable syntax highlighting in #+BEGIN_SRC sections
+             (setq org-src-fontify-natively t))
 
 ;;;
 (use-package org-ac
@@ -156,7 +159,7 @@
 
              :init
              (setq processing-location "/usr/local/bin/processing-java")
-             (setq processing-application-dir "/Applications/Processing\ 311.app")
+             (setq processing-application-dir "/Applications/Processing.app")
              (setq processing-sketchbook-dir "~/Development/processing")
              (add-to-list 'ac-modes 'processing-mode)
 
@@ -175,12 +178,33 @@
              :config
              (projectile-global-mode))
 
+;;; Python
+(use-package python
+             :ensure t
+             :config
+             (setenv "PYTHONIOENCODING" "utf-8")
+             (setenv "LANG" "en_US.UTF-8"))
+
 ;;; Parentheses coloring
 (use-package rainbow-delimiters
              :ensure t
              :pin melpa-stable
              :config
              (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package rcirc
+  :ensure t
+  :pin melpa-stable
+  :init
+  (rcirc-track-minor-mode 1)
+  :config
+  (setq rcirc-default-nick secrets-irc-freenode-user)
+  (setq rcirc-notify-timeout 15)
+  (setq rcirc-omit-responses '("PART" "QUIT"))
+  (setq rcirc-authinfo `(("freenode" nickserv ,secrets-irc-freenode-user ,secrets-irc-freenode-pass)))
+  (setq rcirc-server-alist '(("irc.freenode.net"
+                              :port 6667
+                              :channels ("#emacs")))))
 
 ;;; SMEX M-x history
 (use-package smex
