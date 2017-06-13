@@ -16,7 +16,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (auto-complete-config web-mode transpose-frame smex rainbow-delimiters racket-mode projectile processing-mode paredit org-ac org olivetti markdown-mode magit json-mode ido-ubiquitous highlight-parentheses helm expand-region draft-mode ac-cider)))
+    (csv-mode auto-complete-config web-mode transpose-frame smex rainbow-delimiters racket-mode projectile processing-mode paredit org-ac org olivetti markdown-mode magit json-mode ido-ubiquitous highlight-parentheses helm expand-region draft-mode ac-cider)))
  '(scroll-bar-mode nil)
  '(send-mail-function (quote mailclient-send-it))
  '(tool-bar-mode nil))

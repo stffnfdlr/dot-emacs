@@ -58,8 +58,17 @@
 (use-package auto-complete
              :ensure t
              :pin melpa-stable
+             :diminish auto-complete-mode
              :config
-             (add-to-list 'ac-dictionary-directories "elpa/auto-complete-1.5.1/dict")
+             (progn
+               (global-auto-complete-mode)
+               (add-to-list 'ac-sources 'ac-source-abbrev)
+               (add-to-list 'ac-sources 'ac-source-dictionary)
+               (add-to-list 'ac-sources 'ac-source-filename)
+               (add-to-list 'ac-sources 'ac-source-imenu)
+               (add-to-list 'ac-sources 'ac-source-semantic)
+               (add-to-list 'ac-sources 'ac-source-words-in-buffer)
+               (add-to-list 'ac-sources 'ac-source-yasnippet))
              (ac-config-default))
 
 ;;; Auto-complete Cider
