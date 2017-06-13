@@ -89,6 +89,23 @@
              :ensure t
              :pin melpa-stable)
 
+;;; CSV
+(use-package csv-mode
+             :ensure t
+             :mode "\\.csv\\'")
+
+(use-package dired
+             :init
+             ;; 'a' reuses the current buffer, 'RET' opens a new one
+             (put 'dired-find-alternate-file 'disabled nil)
+             ;; '^' reuses the current buffer
+             (add-hook 'dired-mode-hook
+                       (lambda ()
+                         (define-key dired-mode-map (kbd "^")
+                           (lambda ()
+                             (interactive)
+                             (find-alternate-file ".."))))))
+
 ;;; Expand Region
 (use-package expand-region
              :ensure t
