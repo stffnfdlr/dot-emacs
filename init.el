@@ -201,6 +201,14 @@
              :config
              (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+;;; Rainbow mode - Sets background color to strings
+;;; that match color names, e.g. #0000ff red rgb(100,20,0)
+(use-package rainbow-mode
+             :ensure t
+             :pin gnu
+             :config
+             (add-hook 'prog-mode-hook 'rainbow-mode))
+
 (use-package rcirc
   :ensure t
   :pin melpa-stable
