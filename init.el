@@ -218,6 +218,11 @@
              :config
              (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+;;; Regex builder, comes with emacs
+(use-package re-builder
+             :config
+             (setq reb-re-syntax 'string))
+
 ;;; Rainbow mode - Sets background color to strings
 ;;; that match color names, e.g. #0000ff red rgb(100,20,0)
 (use-package rainbow-mode
