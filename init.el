@@ -112,6 +112,17 @@
              :pin melpa-stable
              :bind ("C-=" . er/expand-region))
 
+;;; Fill column indicator
+;;; To mark column 80 with vertical grey line.
+(use-package fill-column-indicator
+             :ensure t
+             :pin melpa-stable
+             :config
+             (setq fci-rule-column 80)
+             (setq fci-rule-width 2)
+             (setq fci-rule-color "#2e2e2e")
+             (add-hook 'prog-mode-hook 'fci-mode))
+
 ;;; Helm
 (use-package helm
              :ensure t
