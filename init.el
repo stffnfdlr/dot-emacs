@@ -265,6 +265,14 @@
              (setq web-mode-markup-indent-offset 2)
              (setq web-mode-enable-current-element-highlight t))
 
+;;; Multi Cursor
+(use-package multiple-cursors
+             :ensure t
+             :pin melpa-stable
+             :bind (("C->" . mc/mark-next-like-this)
+                    ("C-<" . mc/mark-previous-like-this)
+                    ("C-c C-<" . mc/mark-all-like-this)))
+
 ;;  Highlight Parentheses
 (define-globalized-minor-mode global-highlight-parentheses-mode
   highlight-parentheses-mode
