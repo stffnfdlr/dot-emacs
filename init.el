@@ -49,6 +49,8 @@
 (setq-default indent-tabs-mode nil)
 ;; Set default tab char's display width to 4 spaces
 (setq-default tab-width 4)
+
+(add-to-list 'exec-path "/usr/local/bin")
 
 ;; Tramp
 (setq tramp-default-method "ssh")
