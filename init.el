@@ -121,15 +121,6 @@
              :ensure t
              :pin melpa-stable)
 
-;;; 
-(use-package ido-ubiquitous
-             :ensure t
-             :pin melpa-stable
-             :config
-             ;; enable C-x C-f history
-             (ido-mode t)
-             (ido-ubiquitous t))
-
 ;;; JSON
 (use-package json-mode
              :ensure t
@@ -280,6 +271,11 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
+
+;;; IDO (Interactively DO things)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;;; Hideshow
 (load-library "hideshow")
