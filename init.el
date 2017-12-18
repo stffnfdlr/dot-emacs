@@ -238,18 +238,18 @@
              (add-hook 'prog-mode-hook 'rainbow-mode))
 
 (use-package rcirc
-  :ensure t
-  :pin melpa-stable
-  :init
-  (rcirc-track-minor-mode 1)
-  :config
-  (setq rcirc-default-nick secrets-irc-freenode-user)
-  (setq rcirc-notify-timeout 15)
-  (setq rcirc-omit-responses '("PART" "QUIT"))
-  (setq rcirc-authinfo `(("freenode" nickserv ,secrets-irc-freenode-user ,secrets-irc-freenode-pass)))
-  (setq rcirc-server-alist '(("irc.freenode.net"
-                              :port 6667
-                              :channels ("#emacs")))))
+             :ensure t
+             :pin melpa-stable
+             :init
+             (rcirc-track-minor-mode 1)
+             :config
+             (setq rcirc-default-nick secrets-irc-freenode-user)
+             (setq rcirc-notify-timeout 15)
+             (setq rcirc-omit-responses '("PART" "QUIT"))
+             (setq rcirc-authinfo `(("freenode" nickserv ,secrets-irc-freenode-user ,secrets-irc-freenode-pass)))
+             (setq rcirc-server-alist '(("irc.freenode.net"
+                                         :port 6667
+                                         :channels ("#emacs")))))
 
 ;;; SMEX M-x history
 (use-package smex
