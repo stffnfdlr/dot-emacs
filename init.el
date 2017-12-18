@@ -289,6 +289,13 @@
                     ("C-<" . mc/mark-previous-like-this)
                     ("C-c C-<" . mc/mark-all-like-this)))
 
+;;; Visual regexp with interactive visual feedback
+(use-package visual-regexp
+             :ensure t
+             :pin melpa-stable
+             :bind (("C-c r" . vr/replace)
+                    ("C-c q" . vr/query-replace)))
+
 ;;  Highlight Parentheses
 (define-globalized-minor-mode global-highlight-parentheses-mode
   highlight-parentheses-mode
