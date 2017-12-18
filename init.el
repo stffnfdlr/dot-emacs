@@ -63,22 +63,28 @@
 ;; Tramp
 (setq tramp-default-method "ssh")
 
-;;; Auto complete
-(use-package auto-complete
+;;; Auto complete with company mode
+(use-package company
              :ensure t
              :pin melpa-stable
-             :diminish auto-complete-mode
              :config
-             (progn
-               (global-auto-complete-mode)
-               (add-to-list 'ac-sources 'ac-source-abbrev)
-               (add-to-list 'ac-sources 'ac-source-dictionary)
-               (add-to-list 'ac-sources 'ac-source-filename)
-               (add-to-list 'ac-sources 'ac-source-imenu)
-               (add-to-list 'ac-sources 'ac-source-semantic)
-               (add-to-list 'ac-sources 'ac-source-words-in-buffer)
-               (add-to-list 'ac-sources 'ac-source-yasnippet))
-             (ac-config-default))
+             (global-company-mode)
+             (setq company-tooltip-limit 10)
+             (setq company-idle-delay 0.3)
+             (setq company-echo-delay 0)
+             (setq company-minimum-prefix-length 2)
+             (setq company-require-match nil)
+             (setq company-selection-wrap-around t)
+             (setq company-tooltip-align-annotations t)
+             (setq company-tooltip-flip-when-above t)
+             (require 'color)
+             (let ((bg (face-attribute 'default :background)))
+               (custom-set-faces
+                `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+                `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+                `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+                `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+                `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
 ;;; Auto-complete Cider
 (use-package ac-cider
