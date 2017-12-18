@@ -13,6 +13,7 @@ var/
 
 # Secrets
 secrets.el
+custom.el
 
 # Temporary files
 ac-comphist.dat
