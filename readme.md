@@ -36,9 +36,10 @@ Afterwards clone this repo into your home directory as the directory `~/.emacs.d
 ```bash
 $ git clone https://github.com/comkee/dot-emacs.git ~/.emacs.d
 ```
-Rename `secrets.template.el` to `secrets.el`.
+Rename `secrets.template.el` to `secrets.el` and do the same with `custom.template.el`.
 ```bash
 $ mv secrets.template.el secrets.el
+$ mv custom.template.el custom.el
 ```
 And update its content.
 
