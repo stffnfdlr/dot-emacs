@@ -4,6 +4,17 @@
 ;; Load the very secret tokens which shall never make it into the repository
 (load-file (concat dotfile-directory "secrets.el"))
 
+;; Turn off splash screen messages
+(setq inhibit-startup-echo-area-message t
+      inhibit-startup-screen t)
+
+;; No window chrome!
+(custom-set-variables
+ '(column-number-mode t)
+ '(menu-bar-mode nil)
+ '(scroll-bar-mode nil)
+ '(tool-bar-mode nil))
+
 ;; Initialize package 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -23,13 +34,10 @@
   (package-refresh-contents))
 
 ;; Eigengrau theme taken from Jack Rusher's dotemacs config:
-;; https://github.com/jackrusher/dotemacs/blob/master/eigengrau
+;; https://github.com/jackrusher/dotemacs/
 ;; Theme is then loaded with customize.
-(add-to-list 'custom-theme-load-path (concat dotfile-directory "/themes/eigengrau"))
-
-;; turn off splash screen messages
-(setq inhibit-startup-echo-area-message t
-      inhibit-startup-screen t)
+(add-to-list 'load-path (concat dotfile-directory "eigengrau/"))
+(require 'eigengrau-theme)
 
 ;;; utf-8 all the time
 (setq locale-coding-system 'utf-8)

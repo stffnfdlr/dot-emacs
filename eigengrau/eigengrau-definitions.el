@@ -212,7 +212,7 @@ the \"Gen RGB\" column in eigengrau-definitions.el to improve them further."
                       (error ((t (,@fmt-bold ,@fg-red)))) ; Error
                       (escape-glyph-face ((t (,@fg-red))))
                       (fringe ((t (,@fg-base01 ,@bg-base02))))
-                      (linum ((t (,@fg-base01 ,@bg-base03))))
+                      (linum ((t (,@fg-base01 ,@bg-base02))))
                       (header-line ((t (,@fg-base0 ,@bg-base02 ,@fmt-revbb)))) ; Pmenu
                       (highlight ((t (,@bg-base02))))
                       (hl-line ((t (:underline ,opt-under ,@bg-base02)))) ; CursorLine
@@ -490,6 +490,7 @@ the \"Gen RGB\" column in eigengrau-definitions.el to improve them further."
                        ((t (,@fmt-none ,@fg-blue))))
                       (gnus-summary-selected ; indicator
                        ((t (,@fmt-none ,@fg-base03 ,@bg-yellow))))
+                      (markdown-code-face ((t (:background nil))))
                       ;; Message
                       (message-mml ((t (,@fg-blue))))
                       (message-cited-text ((t (,@fg-base2))))
