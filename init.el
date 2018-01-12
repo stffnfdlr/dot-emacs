@@ -167,8 +167,16 @@
              :ensure t
              :pin melpa-stable
              :init
-             ;; Enable syntax highlighting in #+BEGIN_SRC sections
-             (setq org-src-fontify-natively t))
+             ;; Enable syntax highlighting in #+BEGIN_SRC sections.
+             (setq org-src-fontify-natively t)
+             ;; Add log/notebook entries into :LOGBOOK: drawer.
+             (setq org-log-into-drawer t)
+             ;; Indent text lines that are not headlines are prefixed with
+             ;; spaces to vertically align with the headline text.
+             (setq org-indent-mode t)
+             :bind
+             (("C-c a" . org-agenda)
+              ("C-c c" . org-capture)))
 
 ;;;
 (use-package org-ac
