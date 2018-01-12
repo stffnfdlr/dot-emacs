@@ -60,6 +60,11 @@
 
 (add-to-list 'exec-path "/usr/local/bin")
 
+;;; Clojure Cider
+(use-package cider
+             :ensure t
+             :pin melpa-stable)
+
 ;; Tramp
 (setq tramp-default-method "ssh")
 
@@ -77,6 +82,7 @@
              (setq company-selection-wrap-around t)
              (setq company-tooltip-align-annotations t)
              (setq company-tooltip-flip-when-above t)
+             (setq company-transformers '(company-sort-by-occurrence))
              (require 'color)
              (let ((bg (face-attribute 'default :background)))
                (custom-set-faces
@@ -98,11 +104,6 @@
                '(progn
                   (add-to-list 'ac-modes 'cider-mode)
                   (add-to-list 'ac-modes 'cider-repl-mode))))
-
-;;; Clojure Cider
-(use-package cider
-             :ensure t
-             :pin melpa-stable)
 
 ;;; CSV
 (use-package csv-mode
