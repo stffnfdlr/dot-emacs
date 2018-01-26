@@ -23,25 +23,25 @@ Sections are devided into pages delimited by the formfeed character `^L` <kbd>C-
 Install [GNU Emacs'](https://www.gnu.org/software/emacs/) latest stable from [brew](http://brew.sh/) or apt-get.
 
 On OS X:
-```bash
+```
 $ brew install emacs --with-cocoa
 ```
 On Ubuntu:
-```bash
+```
 $ sudo apt-get install git emacs
 ```
 
 Afterwards clone this repo into your home directory as the directory `~/.emacs.d`.
 
-```bash
+```
 $ git clone https://github.com/comkee/dot-emacs.git ~/.emacs.d
 ```
 Rename `secrets.template.el` to `secrets.el` and do the same with `custom.template.el`.
-```bash
+```
 $ mv secrets.template.el secrets.el
 $ mv custom.template.el custom.el
 ```
-And update its content.
+And update their content.
 
 Next, run Emacs and all packages will be required.
 
