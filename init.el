@@ -144,11 +144,12 @@
              :pin melpa-stable)
 
 ;;; JSX, react style JS
-(use-package jsx-mode
+(use-package rjsx-mode
              :ensure t
              :pin melpa-stable
              :init
-             (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode)))
+             (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+             (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode)))
 
 ;;; Magit
 (use-package magit
