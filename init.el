@@ -19,6 +19,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
@@ -276,7 +277,7 @@
 ;;; Transpose frame
 (use-package transpose-frame
              :ensure t
-             :pin melpa-stable
+             :pin melpa
              :bind (("C-," . rotate-frame-anticlockwise)
                     ("C-." . rotate-frame-clockwise)))
 
