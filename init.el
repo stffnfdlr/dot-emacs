@@ -281,7 +281,7 @@
 ;;; Transpose frame
 (use-package transpose-frame
              :ensure t
-             :pin melpa-stable
+             :pin melpa
              :bind (("C-," . rotate-frame-anticlockwise)
                     ("C-." . rotate-frame-clockwise)))
 
