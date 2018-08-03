@@ -19,9 +19,13 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
 (package-initialize)
+
+(setq package-archive-priorities
+      '(("melpa-stable" . 50)
+        ("gnu" . 10)
+        ("melpa-unstable" . 0)))
 
 ;; bootstrap use-package (http://www.lunaryorn.com/)
 (unless (package-installed-p 'use-package)
@@ -277,7 +281,7 @@
 ;;; Transpose frame
 (use-package transpose-frame
              :ensure t
-             :pin melpa
+             :pin melpa-stable
              :bind (("C-," . rotate-frame-anticlockwise)
                     ("C-." . rotate-frame-clockwise)))
 
@@ -306,6 +310,13 @@
              :bind (("C->" . mc/mark-next-like-this)
                     ("C-<" . mc/mark-previous-like-this)
                     ("C-c C-<" . mc/mark-all-like-this)))
+
+;;; Yet another snippet manager
+(use-package yasnippet
+  :ensure t
+  :pin melpa-stable
+  :config
+  (yas-global-mode 1))
 
 ;;; Visual regexp with interactive visual feedback
 (use-package visual-regexp
