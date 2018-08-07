@@ -171,6 +171,13 @@
              (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
              (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 
+;;; Nov.el epub reader
+(use-package nov
+             :ensure t
+             :pin melpa-stable
+             :init
+             (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
 ;;; Olivetti
 (use-package olivetti
              :ensure t
