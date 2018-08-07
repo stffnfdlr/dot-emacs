@@ -278,13 +278,6 @@
              :ensure t
              :pin melpa-stable)
 
-;;; Transpose frame
-(use-package transpose-frame
-             :ensure t
-             :pin melpa-stable
-             :bind (("C-," . rotate-frame-anticlockwise)
-                    ("C-." . rotate-frame-clockwise)))
-
 ;;; Web mode
 (use-package web-mode
              :ensure t
