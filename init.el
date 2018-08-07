@@ -333,9 +333,15 @@
 (global-highlight-parentheses-mode t)
 
 ;;; IDO (Interactively DO things)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+(use-package ido
+             :ensure t
+             :pin melpa-stable
+             :init
+             (progn
+               (ido-mode)
+               (ido-everywhere))
+             :config
+             (setq ido-enable-flex-matching t))
 
 ;;; Hideshow
 (load-library "hideshow")
