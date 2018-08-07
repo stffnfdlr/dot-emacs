@@ -18,10 +18,12 @@ custom.el
 # Temporary files
 ac-comphist.dat
 auto-save-last/
-eshell/
-games/
-idlwave/
+bookmarks
+eshell
+games
+idlwave
 ido.last
+nov-places
 projectile-bookmarks.eld
 tramp
 url
