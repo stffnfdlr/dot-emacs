@@ -4,6 +4,10 @@
 ;; Load the very secret tokens which shall never make it into the repository
 (load-file (concat dotfile-directory "secrets.el"))
 
+;; Enable systems clipboard manager interactions
+(setq x-select-enable-clipboard t
+      x-select-enable-primary t)
+
 ;; Turn off splash screen messages
 (setq inhibit-startup-echo-area-message t
       inhibit-startup-screen t)
