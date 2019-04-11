@@ -42,6 +42,11 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; Make sure shell path is same as in system shell
+;; FIXME: Add condition which checks if package is installed
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; Eigengrau theme taken from Jack Rusher's dotemacs config:
 ;; https://github.com/jackrusher/dotemacs/
 ;; Theme is then loaded with customize.
@@ -70,6 +75,11 @@
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 (add-to-list 'exec-path "/usr/local/bin")
+
+;; ensure environment variables inside Emacs look the same as in the user's shell
+(use-package exec-path-from-shell
+             :ensure t
+             :pin melpa-stable)
 
 ;;; Clojure Cider
 (use-package cider
