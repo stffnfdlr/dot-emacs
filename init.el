@@ -66,6 +66,8 @@
 (setq-default indent-tabs-mode nil)
 ;; Set default tab char's display width to 4 spaces
 (setq-default tab-width 4)
+;; Visual wordwrap in every text-mode
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 (add-to-list 'exec-path "/usr/local/bin")
 
