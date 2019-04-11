@@ -131,6 +131,11 @@
                              (interactive)
                              (find-alternate-file ".."))))))
 
+;; Docker major mode
+(use-package docker
+             :ensure t
+             :bind ("C-c d" . docker))
+
 ;;; Expand Region
 (use-package expand-region
              :ensure t
