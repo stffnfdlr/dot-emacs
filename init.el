@@ -92,26 +92,15 @@
 ;;; Auto complete with company mode
 (use-package company
              :ensure t
-             :pin melpa-stable
+             :defer t
              :config
-             (global-company-mode)
              (setq company-tooltip-limit 10)
              (setq company-idle-delay 0.3)
              (setq company-echo-delay 0)
              (setq company-minimum-prefix-length 2)
-             (setq company-require-match nil)
-             (setq company-selection-wrap-around t)
-             (setq company-tooltip-align-annotations t)
              (setq company-tooltip-flip-when-above t)
              (setq company-transformers '(company-sort-by-occurrence))
-             (require 'color)
-             (let ((bg (face-attribute 'default :background)))
-               (custom-set-faces
-                `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
-                `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
-                `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-                `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-                `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
+             :init (global-company-mode))
 
 ;;; Auto-complete Cider
 (use-package ac-cider
