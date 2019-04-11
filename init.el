@@ -201,9 +201,15 @@
              (setq org-src-fontify-natively t)
              ;; Add log/notebook entries into :LOGBOOK: drawer.
              (setq org-log-into-drawer t)
+             :config
+             (setq org-agenda-files '("~/Dropbox (Personal)/org/agenda.org"))
              ;; Indent text lines that are not headlines are prefixed with
              ;; spaces to vertically align with the headline text.
              (setq org-indent-mode t)
+             (setq org-indent-indentation-per-level 1)
+             ;; Remove clutter form agenda view
+             (setq org-agenda-skip-scheduled-if-done t)
+             (setq org-agenda-skip-deadline-if-done t)
              :bind
              (("C-c a" . org-agenda)
               ("C-c c" . org-capture)))
