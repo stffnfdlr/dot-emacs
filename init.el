@@ -364,7 +364,6 @@
 (global-set-key (kbd "C-+") 'hs-toggle-hiding)
 (global-set-key (kbd "C-x <C-up>") 'hs-hide-block)
 (global-set-key (kbd "C-x <C-down>") 'hs-show-block)
-(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; Customize interface to safe config in separate file
 (setq custom-file (concat dotfile-directory "custom.el"))
