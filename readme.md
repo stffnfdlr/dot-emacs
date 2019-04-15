@@ -24,7 +24,7 @@ Install [GNU Emacs'](https://www.gnu.org/software/emacs/) latest stable from [br
 
 On OS X:
 ```
-$ brew install emacs --with-cocoa
+$ brew cask install emacs
 ```
 On Ubuntu:
 ```
