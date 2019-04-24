@@ -313,6 +313,7 @@
              (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
              (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
              (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+             (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
              :config
              (setq web-mode-css-indent-offset 2)
              (setq web-mode-code-indent-offset 2)
