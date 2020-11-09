@@ -1,15 +1,17 @@
 # .emacs
 
-This configuration uses `use-pacakge` to automatically install packages on load.
+This is Steffen's [emacs](https://www.gnu.org/software/emacs/) configuration. Its written in [org-mode](https://orgmode.org/)'s literate programming style and uses `use-pacakge` to automatically install, load, and configure packages.
 
-Sections are devided into pages delimited by the formfeed character `^L` <kbd>C-q C-l</kbd>. To navigate between sections use <kbd>C-x [</kbd> and <kbd>C-x ]</kbd>.
+Sections are devided into bullet points.
 
 ## Structure
 
-* init.el has all of it
-* /elpa for pacakges from melpa
-* /lisp for manually installed packages
-* custom.el for settings maintained by emacs'
+* `init.el` for startup.
+* `config.org` list all packages and their configuration.
+* `config.el` auto generated and read-in by emacs.
+* `elpa/` for pacakges from melpa.
+* `lisp/` for manually installed packages.
+* `custom.el` for settings maintained by emacs'.
 
 ## Setup
 
@@ -45,7 +47,27 @@ And update their content.
 
 Next, run Emacs and all packages will be required.
 
-## Thanks 
+## Emacs as Daemon on OSX
+
+### Add Binaries
+Cocoa `vi /usr/local/bin/emacsc`
+
+```
+#!/bin/sh
+set -e
+/Applications/Emacs.app/Contents/MacOS/Emacs "$@"
+```
+
+Terminal `vi /usr/local/bin/emacst`
+```
+#!/bin/sh
+set -e
+/Applications/Emacs.app/Contents/MacOS/Emacs -nw "$@"
+```
+
+`sudo chmod a+rx emacst`
+
+## Thanks
 
 [Jack Rusher](https://github.com/jackrusher)!
 
