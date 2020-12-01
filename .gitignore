@@ -16,6 +16,7 @@ secrets.el
 custom.el
 
 # Temporary files
+config.el
 ac-comphist.dat
 auto-save-last/
 bookmarks
