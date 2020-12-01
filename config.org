@@ -300,6 +300,28 @@ Apply theme without any prompts.
     ("C-s" . swiper)
     ("C-c C-r" . ivy-resume))
 #+END_SRC
+* CSV
+
+[csv-mode](https://elpa.gnu.org/packages/csv-mode.html)
+
+| Binding | Description                          |
+|---------+--------------------------------------|
+| C-c C-a | Aligns column width to maximum width |
+| C-c C-u | Undoes alignment, to source          |
+
+#+BEGIN_SRC emacs-lisp
+  (use-package csv-mode
+    :ensure t
+    :pin gnu
+    :init
+    (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
+#+END_SRC
+* Ledger
+#+BEGIN_SRC emacs-lisp
+  (use-package ledger-mode
+    :ensure t
+    :pin melpa-stable)
+#+END_SRC
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
