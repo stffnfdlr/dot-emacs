@@ -314,6 +314,7 @@ Apply theme without any prompts.
     :ensure t
     :pin gnu
     :init
+    (setq csv-separators '("," ";" "\t"))
     (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
 #+END_SRC
 * Ledger
