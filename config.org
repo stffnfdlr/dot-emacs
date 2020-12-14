@@ -318,10 +318,21 @@ Apply theme without any prompts.
     (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
 #+END_SRC
 * Ledger
+
+| Binding     | Description                                      |
+|-------------+--------------------------------------------------|
+| M-n         | Next entry                                       |
+| M-p         | Previous entry                                   |
+| C-c C-s     | Sort all of the transactions in a region by date |
+| C-c C-r     | Star reconciliation                              |
+| C-c C-o C-r | Run report                                       |
+
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
     :ensure t
-    :pin melpa-stable)
+    :pin melpa-stable
+    :init
+    (setq ledger-reconcile-default-commodity "€"))
 #+END_SRC
 * Magit
 #+BEGIN_SRC emacs-lisp
