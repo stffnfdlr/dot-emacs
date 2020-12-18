@@ -300,7 +300,7 @@ Apply theme without any prompts.
     ("C-s" . swiper)
     ("C-c C-r" . ivy-resume))
 #+END_SRC
-* CSV
+* Csv
 
 [csv-mode](https://elpa.gnu.org/packages/csv-mode.html)
 
@@ -315,7 +315,7 @@ Apply theme without any prompts.
     :pin gnu
     :init
     (setq csv-separators '("," ";" "\t"))
-    (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
+    (add-to-list 'auto-mode-alist '("\\.[CcTt][Ss][Vv]\\'" . csv-mode)))
 #+END_SRC
 * Ledger
 
