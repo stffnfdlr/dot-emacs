@@ -403,6 +403,7 @@ Org files for capturing.
 
 #+BEGIN_SRC emacs-lisp
   (setq todo-file (expand-file-name "gtd.org" org-directory))
+  (setq media-file (expand-file-name "media.org" org-directory))
   (setq memex-file (expand-file-name "memex.org" org-directory))
   (setq quote-file (expand-file-name "quote.org" org-directory))
 #+END_SRC
