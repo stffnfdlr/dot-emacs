@@ -458,10 +458,10 @@ Changing todo states will invoke the option to take notes and track timestamps d
              (file+headline todo-file "Inbox")
              "* TODO %^{Title}\n%?\n:PROPERTIES:\n- File: [[%F][%f]]\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
             ("r" "Toread article" entry
-             (file+headline todo-file "READING")
+             (file+headline media-file "Reading")
              "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
             ("b" "Toread book" entry
-             (file+headline todo-file "READING")
+             (file+headline media-file "Reading")
              "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:AUTHOR: %^{Author}\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
             ("m" "Memex" entry
              (file memex-file)
