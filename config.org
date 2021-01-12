@@ -381,6 +381,7 @@ Apply theme without any prompts.
   (autoload 'notmuch "notmuch" "notmuch mail" t)
 #+END_SRC
 * Olivetti
+Minor mode for a nice writing environment that keeps the text in the middle of the window.
 #+BEGIN_SRC emacs-lisp
   (use-package olivetti
     :ensure t
@@ -388,10 +389,22 @@ Apply theme without any prompts.
 #+END_SRC
 * org-mode
 
-| Binding | Description                                 |
-|---------+---------------------------------------------|
-| `C-c c` | Open capture menue to select template.      |
-| `C-c '` | Open babel block in separate pop-up buffer. |
+General keybindings
+
+| Binding       | Description                                 |
+|---------------+---------------------------------------------|
+| `C-c c`       | Open capture menue to select template.      |
+| `C-c '`       | Open babel block in separate pop-up buffer. |
+| `C-c C-x C-i` | Clock-in on selected task                   |
+| `C-c C-x C-o` | Clock-out of selected task                  |
+
+Agenda view, bindings used especially in this context.
+
+| Binding       | Description            |
+|---------------+------------------------|
+| `C-u C-c C-s` | Unschedule agenda item |
+| `C-u C-c C-d` | Undealine agenda item  |
+| `r`           | Refresh agenda view    |
 
 Define base directory for all org files.
 
@@ -413,6 +426,18 @@ Org mode's [[https://orgmode.org/manual/Capture-templates.html][caputre template
 Changing todo states will invoke the option to take notes and track timestamps depending on [[https://orgmode.org/org.html#Tracking-TODO-state-changes-1][configuration]] using `@` and `!` in keyword definitions.
 
 #+BEGIN_SRC emacs-lisp
+  ;; Agenda view
+  (setq
+   org-agenda-inhibit-startup nil
+   org-agenda-show-future-repeats nil
+   org-agenda-prefer-last-repeat nil
+   org-agenda-start-on-weekday nil
+   org-agenda-skip-deadline-if-done t
+   org-agenda-skip-scheduled-if-done t
+   org-agenda-block-separator "")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
   (use-package org
     :ensure t
     :pin org
@@ -427,6 +452,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-agenda-files '("~/Dropbox (Personal)/org/gtd.org"
                         "~/Dropbox (Personal)/org/gcal.org")
      calendar-week-start-day 1
+     org-completion-use-ido t
      ;; Indent text lines that are not headlines are prefixed with
      ;; spaces to vertically align with the headline text.
      org-startup-indented t
