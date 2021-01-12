@@ -215,6 +215,14 @@ Apply theme without any prompts.
   (load-theme 'eigengrau t)
 #+END_SRC
 
+* Avy
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+    :pin melpa-stable
+    :bind
+    ("C-:" . avy-goto-char))
+#+END_SRC
 * Cider
 #+BEGIN_SRC emacs-lisp
   (use-package cider
@@ -239,6 +247,35 @@ Apply theme without any prompts.
     :init (global-company-mode))
 #+END_SRC
 
+* Counsel
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :ensure t
+    :pin melpa-stable
+    :bind
+    ("M-x" . counsel-M-x)
+    ("C-x C-f" . counsel-find-file)
+    ("C-c g" . counsel-git)
+    ("C-x l" . counsel-locate)
+    :config
+    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+#+END_SRC
+* Csv
+
+[csv-mode](https://elpa.gnu.org/packages/csv-mode.html)
+#+BEGIN_SRC emacs-lisp
+  (use-package csv-mode
+    :ensure t
+    :pin gnu
+    :init
+    (setq csv-separators '("," ";" "\t"))
+    (add-to-list 'auto-mode-alist '("\\.[CcTt][Ss][Vv]\\'" . csv-mode)))
+#+END_SRC
+** Keys
+| Binding   | Description                          |
+|-----------+--------------------------------------|
+| `C-c C-a` | Aligns column width to maximum width |
+| `C-c C-u` | Undoes alignment, to source          |
 * Docker
 #+BEGIN_SRC emacs-lisp
   (use-package docker
@@ -266,14 +303,6 @@ Apply theme without any prompts.
 |-----------+-------------|
 | `C-=`     | expand      |
 | `C-- C-=` | retract     |
-* Avy
-#+BEGIN_SRC emacs-lisp
-  (use-package avy
-    :ensure t
-    :pin melpa-stable
-    :bind
-    ("C-:" . avy-goto-char))
-#+END_SRC
 * Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
@@ -291,44 +320,6 @@ Apply theme without any prompts.
     (:map ivy-minibuffer-map
           ("<return>" . ivy-alt-done)))
 #+END_SRC
-* Counsel
-#+BEGIN_SRC emacs-lisp
-  (use-package counsel
-    :ensure t
-    :pin melpa-stable
-    :bind
-    ("M-x" . counsel-M-x)
-    ("C-x C-f" . counsel-find-file)
-    ("C-c g" . counsel-git)
-    ("C-x l" . counsel-locate)
-    :config
-    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
-#+END_SRC
-* Swiper
-#+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :ensure t
-    :pin melpa-stable
-    :bind
-    ("C-s" . swiper)
-    ("C-c C-r" . ivy-resume))
-#+END_SRC
-* Csv
-
-[csv-mode](https://elpa.gnu.org/packages/csv-mode.html)
-#+BEGIN_SRC emacs-lisp
-  (use-package csv-mode
-    :ensure t
-    :pin gnu
-    :init
-    (setq csv-separators '("," ";" "\t"))
-    (add-to-list 'auto-mode-alist '("\\.[CcTt][Ss][Vv]\\'" . csv-mode)))
-#+END_SRC
-** Keys
-| Binding   | Description                          |
-|-----------+--------------------------------------|
-| `C-c C-a` | Aligns column width to maximum width |
-| `C-c C-u` | Undoes alignment, to source          |
 * Ledger
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
@@ -586,6 +577,15 @@ Sets background color to strings that match color names, e.g. #0000ff red rgb(10
   (use-package svelte-mode
     :ensure t
     :pin melpa)
+#+END_SRC
+* Swiper
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t
+    :pin melpa-stable
+    :bind
+    ("C-s" . swiper)
+    ("C-c C-r" . ivy-resume))
 #+END_SRC
 * Writing
 ** Single space after periods
