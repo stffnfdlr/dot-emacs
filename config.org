@@ -174,7 +174,23 @@ Make the cursor the full width of the character it is under – e.g. the full wi
     (put 'ns-print-buffer 'disabled t)
     (put 'suspend-frame 'disabled t))
 #+END_SRC
+* Rcirc
 
+#+BEGIN_SRC  emacs-lisp
+  ;; Change user info
+  (setq rcirc-default-nick secrets-irc-freenode-user)
+  (setq rcirc-default-user-name secrets-irc-freenode-user)
+  (setq rcirc-default-full-name secrets-irc-freenode-user)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (setq rcirc-authinfo `(("freenode" nickserv ,secrets-irc-freenode-user ,secrets-irc-freenode-pass)))
+  (setq rcirc-server-alist
+        '(("irc.freenode.net"
+           :port 6697
+           :encryption tls
+           :channels ("#emacs"))))
+#+END_SRC
 * Navigating buffers
 Switch to next window with `M-o` instead of `C-x o`.
 #+BEGIN_SRC emacs-lisp
