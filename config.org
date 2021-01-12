@@ -223,7 +223,6 @@ Apply theme without any prompts.
     :config
     (setq nrepl-use-ssh-fallback-for-remote-hosts t))
 #+END_SRC
-
 * Company
 #+BEGIN_SRC emacs-lisp
   (use-package company
@@ -263,8 +262,10 @@ Apply theme without any prompts.
     :bind ("C-=" . er/expand-region))
 #+END_SRC
 ** Keys
-- expand `C-=`
-- retract `C-- C-=`
+| Binding   | Description |
+|-----------+-------------|
+| `C-=`     | expand      |
+| `C-- C-=` | retract     |
 * Avy
 #+BEGIN_SRC emacs-lisp
   (use-package avy
@@ -315,12 +316,6 @@ Apply theme without any prompts.
 * Csv
 
 [csv-mode](https://elpa.gnu.org/packages/csv-mode.html)
-
-| Binding | Description                          |
-|---------+--------------------------------------|
-| C-c C-a | Aligns column width to maximum width |
-| C-c C-u | Undoes alignment, to source          |
-
 #+BEGIN_SRC emacs-lisp
   (use-package csv-mode
     :ensure t
@@ -329,16 +324,12 @@ Apply theme without any prompts.
     (setq csv-separators '("," ";" "\t"))
     (add-to-list 'auto-mode-alist '("\\.[CcTt][Ss][Vv]\\'" . csv-mode)))
 #+END_SRC
+** Keys
+| Binding   | Description                          |
+|-----------+--------------------------------------|
+| `C-c C-a` | Aligns column width to maximum width |
+| `C-c C-u` | Undoes alignment, to source          |
 * Ledger
-
-| Binding     | Description                                      |
-|-------------+--------------------------------------------------|
-| M-n         | Next entry                                       |
-| M-p         | Previous entry                                   |
-| C-c C-s     | Sort all of the transactions in a region by date |
-| C-c C-r     | Star reconciliation                              |
-| C-c C-o C-r | Run report                                       |
-
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
     :ensure t
@@ -346,6 +337,14 @@ Apply theme without any prompts.
     :init
     (setq ledger-reconcile-default-commodity "€"))
 #+END_SRC
+** Keys
+| Binding       | Description                                      |
+|---------------+--------------------------------------------------|
+| `M-n`         | Next entry                                       |
+| `M-p`         | Previous entry                                   |
+| `C-c C-s`     | Sort all of the transactions in a region by date |
+| `C-c C-r`     | Star reconciliation                              |
+| `C-c C-o C-r` | Run report                                       |
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
@@ -353,7 +352,6 @@ Apply theme without any prompts.
     :pin melpa-stable
     :bind ("C-x g" . magit-status))
 #+END_SRC
-
 * Markdown mode
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
@@ -364,15 +362,7 @@ Apply theme without any prompts.
     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 #+END_SRC
-
 * Notmuch
-| Binding | Description                                                           |
-|---------+-----------------------------------------------------------------------|
-| C-c m   | Open notmuch globally                                                 |
-| q       | Kill the current Notmuch buffer and return you to the previous buffer |
-| m       | New message.                                                          |
-| s       | Search interface                                                      |
-|         |                                                                       |
 #+BEGIN_SRC emacs-lisp
   (use-package notmuch
     :ensure t
@@ -392,6 +382,13 @@ Apply theme without any prompts.
 #+BEGIN_SRC emacs-lisp
   (autoload 'notmuch "notmuch" "notmuch mail" t)
 #+END_SRC
+** Keys
+| Binding | Description                                                           |
+|---------+-----------------------------------------------------------------------|
+| `C-c m` | Open notmuch globally                                                 |
+| `q`     | Kill the current Notmuch buffer and return you to the previous buffer |
+| `m`     | New message.                                                          |
+| `s`     | Search interface                                                      |
 * Olivetti
 Minor mode for a nice writing environment that keeps the text in the middle of the window.
 #+BEGIN_SRC emacs-lisp
