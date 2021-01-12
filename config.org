@@ -396,7 +396,7 @@ Minor mode for a nice writing environment that keeps the text in the middle of t
     :ensure t
     :pin melpa-stable)
 #+END_SRC
-* org-mode
+* Org
 
 General keybindings
 
