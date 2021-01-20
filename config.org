@@ -220,13 +220,14 @@ Apply theme without any prompts.
     :ensure t
     :defer t
     :config
-    (setq company-tooltip-limit 10)
-    (setq company-idle-delay 0.3)
-    (setq company-echo-delay 0)
-    (setq company-minimum-prefix-length 1)
-    (setq company-require-match nil)
-    (setq company-tooltip-flip-when-above t)
-    (setq company-transformers '(company-sort-by-occurrence))
+    (setq
+     company-tooltip-limit 10
+     company-idle-delay 0.3
+     company-echo-delay 0
+     company-minimum-prefix-length 1
+     company-require-match nil
+     company-tooltip-flip-when-above t
+     company-transformers '(company-sort-by-occurrence))
     :init (global-company-mode))
 #+END_SRC
 
@@ -293,12 +294,13 @@ Apply theme without any prompts.
     :pin melpa-stable
     :config
     (ivy-mode 1)
-    (setq ivy-count-format " %d/%d ")
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-use-selectable-prompt t)
-    (setq enable-recursive-minibuffers t)
-    (setq projectile-completion-system 'ivy)
-    (setq magit-completing-read-function 'ivy-completing-read)
+    (setq
+     ivy-count-format " %d/%d "
+     ivy-use-virtual-buffers t
+     ivy-use-selectable-prompt t
+     enable-recursive-minibuffers t
+     projectile-completion-system 'ivy
+     magit-completing-read-function 'ivy-completing-read)
     :bind
     (:map ivy-minibuffer-map
           ("<return>" . ivy-alt-done)))
@@ -398,10 +400,11 @@ Define base directory for all org files.
 Org files for capturing.
 
 #+BEGIN_SRC emacs-lisp
-  (setq todo-file (expand-file-name "gtd.org" org-directory))
-  (setq media-file (expand-file-name "media.org" org-directory))
-  (setq memex-file (expand-file-name "memex.org" org-directory))
-  (setq quote-file (expand-file-name "quote.org" org-directory))
+  (setq
+   todo-file (expand-file-name "gtd.org" org-directory)
+   media-file (expand-file-name "media.org" org-directory)
+   memex-file (expand-file-name "memex.org" org-directory)
+   quote-file (expand-file-name "quote.org" org-directory))
 #+END_SRC
 
 Org mode's [[https://orgmode.org/manual/Capture-templates.html][caputre templates]] will be automatically filled with a set of [[https://orgmode.org/manual/Template-expansion.html][expansions]].
@@ -544,9 +547,9 @@ Sets background color to strings that match color names, e.g. #0000ff red rgb(10
 Set IRC user info based on definitions in _secrets.el_.
 #+BEGIN_SRC  emacs-lisp
   (setq
-  rcirc-default-nick secrets-irc-freenode-user
-  rcirc-default-user-name secrets-irc-freenode-user
-  rcirc-default-full-name secrets-irc-freenode-user)
+   rcirc-default-nick secrets-irc-freenode-user
+   rcirc-default-user-name secrets-irc-freenode-user
+   rcirc-default-full-name secrets-irc-freenode-user)
 #+END_SRC
 Minimal configuration. Set freenode as default server, define nickserv auth, and join `irc.freenode.net` on startup.
 #+BEGIN_SRC emacs-lisp
