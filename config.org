@@ -373,24 +373,6 @@ Minor mode for a nice writing environment that keeps the text in the middle of t
     :pin melpa-stable)
 #+END_SRC
 * Org
-
-General keybindings
-
-| Binding       | Description                                 |
-|---------------+---------------------------------------------|
-| `C-c c`       | Open capture menue to select template.      |
-| `C-c '`       | Open babel block in separate pop-up buffer. |
-| `C-c C-x C-i` | Clock-in on selected task                   |
-| `C-c C-x C-o` | Clock-out of selected task                  |
-
-Agenda view, bindings used especially in this context.
-
-| Binding       | Description            |
-|---------------+------------------------|
-| `C-u C-c C-s` | Unschedule agenda item |
-| `C-u C-c C-d` | Undealine agenda item  |
-| `r`           | Refresh agenda view    |
-
 Define base directory for all org files.
 
 #+BEGIN_SRC emacs-lisp
@@ -492,6 +474,19 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (("C-c a" . org-agenda)
      ("C-c c" . org-capture)))
 #+END_SRC
+** Keys
+
+| Binding       | Description                                 |
+|---------------+---------------------------------------------|
+| `C-c c`       | Open capture menue to select template.      |
+| `C-c '`       | Open babel block in separate pop-up buffer. |
+| `C-c C-x C-i` | Clock-in on selected task                   |
+| `C-c C-x C-o` | Clock-out of selected task                  |
+| `C-u C-c C-s` | Unschedule agenda item                      |
+| `C-u C-c C-d` | Undealine agenda item                       |
+| `r`           | Refresh agenda view                         |
+
+** Snippets
 
 To render todays time tracking stats recorded using clock-in and clock-out.
 
