@@ -418,7 +418,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-export-coding-system 'utf-8
      org-default-notes-file todo-file
      org-agenda-files '("~/Dropbox (Personal)/org/gtd.org"
-                        "~/Dropbox (Personal)/org/gcal.org")
+                        "~/Dropbox (Personal)/org/gcal-nand.org")
      calendar-week-start-day 1
      org-completion-use-ido t
      ;; Indent text lines that are not headlines are prefixed with
@@ -437,13 +437,10 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-list-allow-alphabetical t
      ;; Don’t ask every time when executing a code block.
      org-confirm-babel-evaluate nil
-     ;; Remove clutter form agenda view
-     org-agenda-skip-scheduled-if-done t
-     org-agenda-skip-deadline-if-done t
      org-src-tab-acts-natively t)
     ;; Sync Google Calendar
-    ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-    ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+    ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
+    ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-fetch) ))
     (setq org-capture-templates
           '(("t" "Todo" entry
              (file+headline todo-file "Inbox")
@@ -493,6 +490,20 @@ To render todays time tracking stats recorded using clock-in and clock-out.
 #+BEGIN_SRC org
   ,#+BEGIN: clocktable :scope file :maxlevel 2 :block today
   ,#+END:
+#+END_SRC
+
+* Org Google Calendar
+Integrate Google calendar with org-mode.
+#+BEGIN_SRC emacs-lisp
+  (use-package org-gcal
+    :after (org)
+    :ensure t
+    :pin melpa
+    :config
+    (setq
+     org-gcal-client-id secrets-org-gcal-client-id
+     org-gcal-client-secret secrets-org-gcal-client-secret
+     org-gcal-file-alist secrets-org-gcal-file-alist))
 #+END_SRC
 * Paredit
 #+BEGIN_SRC emacs-lisp
