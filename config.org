@@ -439,7 +439,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-confirm-babel-evaluate nil
      org-src-tab-acts-natively t)
     ;; Sync Google Calendar
-    ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
+    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
     ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-fetch) ))
     (setq org-capture-templates
           '(("t" "Todo" entry
