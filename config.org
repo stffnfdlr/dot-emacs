@@ -529,6 +529,19 @@ To render todays time tracking stats recorded using clock-in and clock-out.
   ,#+END:
 #+END_SRC
 
+* Org Babel
+#+BEGIN_SRC emacs-lisp
+  (use-package org-babel
+    :after (org)
+    :ensure nil
+    :config
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (js . t)
+       (python . t)
+       (sh . t))))
+#+END_SRC
 * Org Google Calendar
 Integrate Google calendar with org-mode.
 #+BEGIN_SRC emacs-lisp
