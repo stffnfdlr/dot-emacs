@@ -179,6 +179,43 @@ Switch to next window with `M-o` instead of `C-x o`.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-o") 'other-window)
 #+END_SRC
+* EasyPG encryption
+#+BEGIN_SRC emacs-lisp
+  (use-package epa-file
+    :ensure nil
+    :config
+    (setq
+     epa-file-enable t
+     epa-file-encrypt-to email-address
+     epa-file-select-keys nil
+     epa-file-cache-passphrase-for-symmetric-encryption t
+     epa-pinentry-mode 'loopback
+     epg-gpg-program "gpg"
+     epg-debug t)
+    :custom
+    (epa-file-select-keys 'silent))
+#+END_SRC
+
+Defining `epa-pinentry-mode 'loopback` enables the passphrase entering through minibuffer as pointed out by [[https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html][colinxy]].
+
+To encrypt any file with a public key associated for a receiver address, add the following line to the beginning of the file.
+
+#+BEGIN_SRC txt
+;; -*- epa-file-encrypt-to: ("me@domain.com") -*-
+#+END_SRC
+
+In case of an `.org` file use.
+
+#+BEGIN_SRC txt
+# -*- mode:org; epa-file-encrypt-to: ("me@domain.com") -*-
+#+END_SRC
+
+The passphrase will be cached depending on the configuration in `~/.gnupg/gpg-agent.conf`.
+
+#+BEGIN_SRC txt
+default-cache-ttl 600
+max-cache-ttl 7200
+#+END_SRC
 * Fonts
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
