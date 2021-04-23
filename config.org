@@ -551,6 +551,53 @@ Integrate Google calendar with org-mode.
      org-gcal-client-secret secrets-org-gcal-client-secret
      org-gcal-file-alist secrets-org-gcal-file-alist))
 #+END_SRC
+* Org-roam
+An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
+#+BEGIN_SRC emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :pin melpa-stable
+    :hook
+    (after-init . org-roam-mode)
+    :config
+    (setq
+     org-roam-directory "~/Dropbox (Personal)/org/roam/"
+     org-roam-db-location "~/Dropbox (Personal)/org/roam/roam.sqlite")
+    (setq org-roam-capture-templates
+          '(("d" "default" plain (function org-roam--capture-get-point)
+             "%?"
+             :file-name "memex/${slug}"
+             :head "#+TITLE: ${title}\n#+ROAM_KEY: memex.${slug}\n#+ROAM_ALIAS: \n\n"
+             :unnarrowed t)
+            ("f" "fleet" plain (function org-roam--capture-get-point)
+             "%?"
+             :file-name "fleets/%<%Y%m%d%H%M%S>-${slug}"
+             :head "#+TITLE: ${title}\n\n"
+             :unnarrowed t)
+            ("m" "media" plain (function org-roam--capture-get-point)
+             "%?"
+             :file-name "memex/${slug}"
+             :head "#+TITLE: ${title}\n#+ROAM_KEY: media.${slug} \n#+ROAM_ALIAS: \n\n#+AUTHOR: \n#+DATE: \n#+TAGS: \n#+URL: \n\n"
+             :unnarrowed t)
+            ("n" "note" plain (function org-roam--capture-get-point)
+             "%?"
+             :file-name "notes/%<%Y%m%d%H%M%S>-${slug}"
+             :head "#+TITLE: ${title}\n#+ROAM_KEY: note.${slug}\n#+ROAM_ALIAS:\n\n#+AUTHOR: Steffen Fiedler\n#+DATE: %U\n\n"
+             :unnarrowed t)
+            )
+          )
+    :bind
+    (:map org-roam-mode-map
+          (("C-c n l" . org-roam)
+           ("C-c n f" . org-roam-find-file)
+           ;; No server for rendering set up yet
+           ;;("C-c n g" . org-roam-graph)
+           )
+          :map org-mode-map
+          (("C-c n i" . org-roam-insert))
+          (("C-c n I" . org-roam-insert-immediate))))
+#+END_SRC
+
 * Paredit
 #+BEGIN_SRC emacs-lisp
   (use-package paredit
