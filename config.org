@@ -538,6 +538,20 @@ To render todays time tracking stats recorded using clock-in and clock-out.
      (python . t)
      (shell . t)))
 #+END_SRC
+* Org Crypt
+To encrypt sensitive sections in `.org` document I use `org-crypt`. Tag any head line with `:crypt:` and its content will be encrypted when saving the document.
+
+To decrypt the section content place the cursor inside and execute `M-x org-decrypt-entry`.
+#+BEGIN_SRC emacs-lisp
+  (use-package org-crypt
+    :after (org)
+    :ensure nil
+    :config
+    (org-crypt-use-before-save-magic)
+    (setq
+     org-crypt-key nil
+     org-tags-exclude-from-inheritance (quote ("crypt"))))
+#+END_SRC
 * Org Google Calendar
 Integrate Google calendar with org-mode.
 #+BEGIN_SRC emacs-lisp
