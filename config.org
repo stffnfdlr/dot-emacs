@@ -563,7 +563,7 @@ Integrate Google calendar with org-mode.
 * Python
 #+BEGIN_SRC emacs-lisp
   (use-package python
-    :ensure t
+    :ensure nil
     :config
     (setq python-shell-interpreter "python3")
     (setenv "PYTHONIOENCODING" "utf-8")
