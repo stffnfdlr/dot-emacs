@@ -646,11 +646,20 @@ An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge man
 * Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
+    :diminish projectile-mode
     :ensure t
     :pin melpa-stable
     :config
-    (projectile-global-mode))
+    (projectile-global-mode)
+    :bind-keymap
+    (("C-c p" . projectile-command-map)))
 #+END_SRC
+
+** Keys
+
+| Binding   | Description            |
+|-----------+------------------------|
+| `C-c p p` | Jump to/select project |
 
 * Python
 #+BEGIN_SRC emacs-lisp
