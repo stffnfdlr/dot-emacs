@@ -10,8 +10,8 @@
 
 ;;; Set up package
 (require 'package)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")))
 (package-initialize)
 
 ;;; Bootstrap use-package
