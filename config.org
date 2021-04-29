@@ -650,6 +650,13 @@ An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge man
           (("C-c n I" . org-roam-insert-immediate))))
 #+END_SRC
 
+** Keys
+| Binding   | Description                      |
+|-----------+----------------------------------|
+| `C-c n f` | Find existing or create new note |
+| `C-c n i` | Insert reference                 |
+| `C-c n l` | Toggle roam sidebar buffer       |
+
 * Paredit
 #+BEGIN_SRC emacs-lisp
   (use-package paredit
