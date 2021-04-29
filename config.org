@@ -526,6 +526,12 @@ Changing todo states will invoke the option to take notes and track timestamps d
             (sequence "WAITING(w@)" "SOMEDAY(s!)" "|")
             (sequence "|" "CANCELLED(c@)"))
           )
+    :config
+    (setq
+     org-display-inline-images t
+     org-redisplay-inline-images t
+     org-startup-with-inline-images "inlineimages")
+    (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
     :bind
     (("C-c a" . org-agenda)
      ("C-c c" . org-capture)))
