@@ -536,6 +536,14 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (("C-c a" . org-agenda)
      ("C-c c" . org-capture)))
 #+END_SRC
+
+Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` block. The following fix is taken from an issue [disussion](https://github.com/syl20bnr/spacemacs/issues/11798#issuecomment-456754071).
+
+#+BEGIN_SRC emacs-lisp
+  (when (version<= "9.2" (org-version))
+    (require 'org-tempo))
+#+END_SRC
+
 ** Keys
 
 | Binding       | Description                                 |
@@ -547,6 +555,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
 | `C-u C-c C-s` | Unschedule agenda item                      |
 | `C-u C-c C-d` | Undealine agenda item                       |
 | `r`           | Refresh agenda view                         |
+| `C-c C-,`     | Add structural block #+BEGIN_... #+END_...  |
 
 ** Snippets
 
