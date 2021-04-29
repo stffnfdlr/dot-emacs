@@ -537,7 +537,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      ("C-c c" . org-capture)))
 #+END_SRC
 
-Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` block. The following fix is taken from an issue [disussion](https://github.com/syl20bnr/spacemacs/issues/11798#issuecomment-456754071).
+Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://orgmode.org/manual/Structure-Templates.html#FOOT148). The following fix is taken from an issue [disussion](https://github.com/syl20bnr/spacemacs/issues/11798#issuecomment-456754071).
 
 #+BEGIN_SRC emacs-lisp
   (when (version<= "9.2" (org-version))
@@ -757,6 +757,18 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     ("C-s" . swiper)
     ("C-c C-r" . ivy-resume))
 #+END_SRC
+* Which key
+[Which key](https://github.com/justbur/emacs-which-key) displays the key bindings following the currently entered incomplete command in a popup.
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :pin melpa-stable
+    :defer 0
+    :diminish which-key-mode
+    :config
+    (which-key-mode)
+    (setq which-key-idle-delay 1))
+#+end_src
 * Writing
 ** Single space after periods
 #+BEGIN_SRC emacs-lisp
