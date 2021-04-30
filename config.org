@@ -463,7 +463,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
 #+BEGIN_SRC emacs-lisp
   ;; Agenda view
   (setq
-   org-agenda-inhibit-startup nil
+   org-agenda-inhibit-startup t
    org-agenda-show-future-repeats nil
    org-agenda-prefer-last-repeat nil
    org-agenda-start-on-weekday nil
