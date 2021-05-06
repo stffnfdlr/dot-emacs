@@ -562,6 +562,7 @@ Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://or
 | `C-c C-x C-o` | Clock-out of selected task                  |
 | `C-u C-c C-s` | Unschedule agenda item                      |
 | `C-u C-c C-d` | Undealine agenda item                       |
+| `C-c C-x C-w` | Delete subtree and its contents             |
 | `r`           | Refresh agenda view                         |
 | `C-c C-,`     | Add structural block #+BEGIN_... #+END_...  |
 
@@ -611,6 +612,28 @@ Integrate Google calendar with org-mode.
      org-gcal-client-secret secrets-org-gcal-client-secret
      org-gcal-file-alist secrets-org-gcal-file-alist))
 #+END_SRC
+* Org-pomodoro 🍅
+
+Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]] when using org-agenda.
+
+#+begin_src emacs-lisp
+          (use-package org-pomodoro
+            :after (org)
+            :ensure t
+            :pin melpa-stable
+            :config
+            (setq
+             org-pomodoro-length 25
+             org-pomodoro-short-break-length 5))
+#+end_src
+
+In `Org-Agenda`, `P` on any entry will clock-in and start a `org-pomodoro` session.
+
+#+begin_src emacs-lisp
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (local-set-key (kbd "P") 'org-pomodoro)))
+#+end_src
 * Org-roam
 An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
 #+BEGIN_SRC emacs-lisp
