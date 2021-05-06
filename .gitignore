@@ -7,8 +7,12 @@
 *~
 .#*
 
-# Packages
+# Packages and subfolders
 elpa/
+emojis/
+org-gcal/
+persist/
+request/
 var/
 
 # Secrets
@@ -16,6 +20,7 @@ secrets.el
 custom.el
 
 # Temporary files
+.org-*
 config.el
 ac-comphist.dat
 auto-save-last/
@@ -26,6 +31,7 @@ idlwave
 ido.last
 network-security.data
 nov-places
+org-roam.db
 projectile-bookmarks.eld
 recentf
 tramp
