@@ -129,6 +129,11 @@ No negative speaker feedback.
 #+BEGIN_SRC emacs-lisp
   (setq visible-bell t)
 #+END_SRC
+** Default browser
+Stay in emacs when opening URLs and use eww as standard browser.
+#+begin_src emacs-lisp
+(setq browse-url-browser-function 'eww-browse-url)
+#+end_src
 ** Adaptive cursor width
 Make the cursor the full width of the character it is under – e.g. the full width of a TAB character (from [[http://pragmaticemacs.com/emacs/adaptive-cursor-width/][pragmatic emacs]]).
 #+BEGIN_SRC emacs-lisp
