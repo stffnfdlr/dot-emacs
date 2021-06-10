@@ -619,18 +619,17 @@ Integrate Google calendar with org-mode.
      org-gcal-file-alist secrets-org-gcal-file-alist))
 #+END_SRC
 * Org-pomodoro 🍅
-
 Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]] when using org-agenda.
 
 #+begin_src emacs-lisp
-          (use-package org-pomodoro
-            :after (org)
-            :ensure t
-            :pin melpa-stable
-            :config
-            (setq
-             org-pomodoro-length 25
-             org-pomodoro-short-break-length 5))
+  (use-package org-pomodoro
+    :after (org)
+    :ensure t
+    :pin melpa-stable
+    :config
+    (setq
+     org-pomodoro-length 25
+     org-pomodoro-short-break-length 5))
 #+end_src
 
 In `Org-Agenda`, `P` on any entry will clock-in and start a `org-pomodoro` session.
