@@ -337,6 +337,22 @@ Can't miss that one for sure.
 |-----------+-------------|
 | `C-=`     | expand      |
 | `C-- C-=` | retract     |
+* Gnuplot
+Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] blocks.
+#+begin_src emacs-lisp
+  (use-package gnuplot
+    :ensure t
+    :pin melpa-stable
+    :config
+    (setq gnuplot-progam "/usr/local/bin/gnuplot"))
+#+end_src
+
+| Binding   | Description    |
+|-----------+----------------|
+| `C-C C-c` | Compile buffer |
+| `C-c C-b` | Run buffer     |
+| `C-c C-r` | Run region     |
+
 * Indium
 [[https://github.com/NicolasPetton/Indium/][Indium]] is a JavaScript environment for Emacs that connects to Chromium or nodejs to provide a REPL, scratch-buffer, stepping debugger.
 #+BEGIN_SRC emacs-lisp
