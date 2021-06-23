@@ -225,9 +225,15 @@ max-cache-ttl 7200
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
     (set-frame-font "Menlo 14")
-                                          ; Use Spotlight to search with M-x locate
+    ;; Use Spotlight to search with M-x locate
     (setq locate-command "mdfind"))
 #+END_SRC
+
+Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
+
+#+begin_src emacs-lisp
+  (setq shr-use-fonts nil)
+#+end_src
 * Theme
 ** Eigengrau
 A fork of [[https://github.com/sjrmanning/noctilux-theme][Noctilux]] theme, taken from [[https://github.com/jackrusher/dotemacs/][Jack Rusher's dotemacs]].
