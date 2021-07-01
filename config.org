@@ -457,6 +457,7 @@ For a simple project setup follow this [[https://github.com/NicolasPetton/Indium
 |---------+-----------------------------------------------------------------------|
 | `C-c m` | Open notmuch globally                                                 |
 | `q`     | Kill the current Notmuch buffer and return you to the previous buffer |
+| `=`     | Refresh buffer (eg. to display newly indexed emails)                  |
 | `m`     | New message.                                                          |
 | `s`     | Search interface                                                      |
 * Olivetti
@@ -815,6 +816,22 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     ("C-s" . swiper)
     ("C-c C-r" . ivy-resume))
 #+END_SRC
+* Web mode
+Prefere `web-mode` over `js-mode`.
+#+begin_src emacs-lisp
+  (use-package web-mode
+    :ensure t
+    :pin melpa-stable
+    :mode
+    (".jsx?$"
+     ".html$")
+    :config
+    (setq
+     web-mode-markup-indent-offset 2
+     web-mode-css-indent-offset 2
+     web-mode-code-indent-offset 2
+     web-mode-enable-current-element-highlight t))
+#+end_src
 * Which key
 [Which key](https://github.com/justbur/emacs-which-key) displays the key bindings following the currently entered incomplete command in a popup.
 #+begin_src emacs-lisp
