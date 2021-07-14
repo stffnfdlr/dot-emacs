@@ -11,7 +11,6 @@ Sections are devided into bullet points.
 * `config.el` auto generated and read-in by emacs.
 * `elpa/` for pacakges from melpa.
 * `lisp/` for manually installed packages.
-* `custom.el` for settings maintained by emacs'.
 
 ## Setup
 
@@ -38,10 +37,9 @@ Afterwards clone this repo into your home directory as the directory `~/.emacs.d
 ```
 $ git clone https://github.com/comkee/dot-emacs.git ~/.emacs.d
 ```
-Rename `secrets.template.el` to `secrets.el` and do the same with `custom.template.el`.
+Rename `secrets.template.el` to `secrets.el`.
 ```
 $ mv secrets.template.el secrets.el
-$ mv custom.template.el custom.el
 ```
 And update their content.
 

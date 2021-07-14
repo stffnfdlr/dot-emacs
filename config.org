@@ -888,9 +888,3 @@ When saving delete all trailing whitespaces.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 #+END_SRC
-* Customize
-#+BEGIN_SRC emacs-lisp
-  ;; Customize interface to safe config in separate file
-  (setq custom-file (concat user-emacs-directory "custom.el"))
-  (load custom-file)
-#+END_SRC
