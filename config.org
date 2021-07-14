@@ -235,17 +235,22 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
   (setq shr-use-fonts nil)
 #+end_src
 * Theme
-** Eigengrau
-A fork of [[https://github.com/sjrmanning/noctilux-theme][Noctilux]] theme, taken from [[https://github.com/jackrusher/dotemacs/][Jack Rusher's dotemacs]].
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path (concat user-emacs-directory "eigengrau/"))
-  (require 'eigengrau-theme)
-#+END_SRC
-Apply theme without any prompts.
-#+BEGIN_SRC emacs-lisp
-  (load-theme 'eigengrau t)
-#+END_SRC
-
+** Modus
+#+begin_src emacs-lisp
+  (use-package modus-themes
+    :ensure nil
+    :init
+    ;; All customizations go here
+    (setq modus-themes-no-mixed-fonts t
+          modus-themes-org-blocks 'gray-background
+          modus-themes-mode-line 'borderless
+          modus-themes-syntax 'green-strings
+          modus-themes-paren-match '(bold intense))
+    ;; Load the theme files before enabling a theme (else you get an error).
+    (modus-themes-load-themes)
+    ;; Load theme of choice
+    (modus-themes-load-operandi))
+#+end_src
 * Avy
 #+BEGIN_SRC emacs-lisp
   (use-package avy
