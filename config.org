@@ -237,19 +237,20 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
 * Theme
 ** Modus
 #+begin_src emacs-lisp
-  (use-package modus-themes
-    :ensure nil
-    :init
-    ;; All customizations go here
-    (setq modus-themes-no-mixed-fonts t
-          modus-themes-org-blocks 'gray-background
-          modus-themes-mode-line 'borderless
-          modus-themes-syntax 'green-strings
-          modus-themes-paren-match '(bold intense))
-    ;; Load the theme files before enabling a theme (else you get an error).
-    (modus-themes-load-themes)
-    ;; Load theme of choice
-    (modus-themes-load-operandi))
+    (use-package modus-themes
+      :ensure nil
+      :init
+      ;; All customizations go here
+      (setq modus-themes-no-mixed-fonts t
+            modus-themes-org-blocks 'gray-background
+            modus-themes-mode-line 'borderless
+            modus-themes-syntax 'green-strings
+            modus-themes-paren-match '(bold intense))
+      ;; Load the theme files before enabling a theme (else you get an error).
+      (modus-themes-load-themes)
+      ;; Load theme of choice
+      (modus-themes-load-operandi)
+      :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 * Avy
 #+BEGIN_SRC emacs-lisp
