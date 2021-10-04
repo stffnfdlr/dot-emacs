@@ -574,10 +574,10 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (setq org-capture-templates
           '(("t" "Todo" entry
              (file+headline todo-file "Inbox")
-             "* TODO %^{Title}\n%?\n:LOGBOOK:\n- Added: %U\n:END:")
+             "* TODO %^{Title}\n:LOGBOOK:\n- Added: %U\n:END:\n%?")
             ("f" "Todo from file" entry
              (file+headline todo-file "Inbox")
-             "* TODO %^{Title}\n%?\n:PROPERTIES:\n- File: [[%F][%f]]\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
+             "* TODO %^{Title}\n:PROPERTIES:\n- File: [[%F][%f]]\n:END:\n:LOGBOOK:\n- Added: %U\n:END:\n%?")
             ("r" "Toread article" entry
              (file+headline media-file "Reading")
              "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
@@ -626,6 +626,7 @@ Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://or
 | `C-u C-c C-s` | Unschedule agenda item                      |
 | `C-u C-c C-d` | Undealine agenda item                       |
 | `C-c C-x C-w` | Delete subtree and its contents             |
+| `C-c C-x C-y` | Yank subtree and its contents               |
 | `r`           | Refresh agenda view                         |
 | `C-c C-,`     | Add structural block #+BEGIN_... #+END_...  |
 
