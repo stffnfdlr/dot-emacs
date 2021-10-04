@@ -327,6 +327,7 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
     :pin melpa-stable
     :config
     (setq
+     url-queue-timeout 10
      elfeed-use-curl t
      elfeed-curl-max-connections 10
      elfeed-show-trucate-long-urls t)
@@ -348,6 +349,10 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
 | Bindings | Description              |
 |----------+--------------------------|
 | `G`      | fetch feeds from servers |
+| `b`      | open in browser          |
+| `r`      | mark as read             |
+| `u`      | mark as unread           |
+| `y`      | copy url to clipboard    |
 
 * Emojify
 Can't miss that one for sure.
