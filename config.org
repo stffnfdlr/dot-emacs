@@ -694,27 +694,23 @@ Integrate Google calendar with org-mode.
      org-gcal-client-secret secrets-org-gcal-client-secret
      org-gcal-file-alist secrets-org-gcal-file-alist))
 #+END_SRC
-* Org-pomodoro 🍅
-Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]] when using org-agenda.
 
+* Pomm 🍅
+Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]].
 #+begin_src emacs-lisp
-  (use-package org-pomodoro
-    :after (org)
+  (use-package pomm
     :ensure t
-    :pin melpa-stable
     :config
     (setq
-     org-pomodoro-length 25
-     org-pomodoro-short-break-length 5))
+     pomm-mode-line-mode t)
+    :bind
+    ("C-x p" . pomm))
 #+end_src
 
-In `Org-Agenda`, `P` on any entry will clock-in and start a `org-pomodoro` session.
+| Binding | Description           |
+|---------+-----------------------|
+| `C-x p` | Open transient buffer |
 
-#+begin_src emacs-lisp
-  (add-hook 'org-agenda-mode-hook
-            (lambda ()
-              (local-set-key (kbd "P") 'org-pomodoro)))
-#+end_src
 * Org-roam
 An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
 #+BEGIN_SRC emacs-lisp
