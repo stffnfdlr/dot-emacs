@@ -661,6 +661,7 @@ Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://or
 | `C-c C-x C-y` | Yank subtree and its contents               |
 | `r`           | Refresh agenda view                         |
 | `C-c C-,`     | Add structural block #+BEGIN_... #+END_...  |
+| `C-c o`       | Follow link at cursor position              |
 
 ** Snippets
 
@@ -729,7 +730,15 @@ Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomod
     :ensure t
     :config
     (setq
-     pomm-mode-line-mode t)
+     pomm-mode-line-mode t
+     pomm-audio-enabled t
+     pomm-audio-player-executable "/usr/bin/afplay"
+     pomm-audio-files (mapcar
+                       (lambda (x)
+                         (if (eq (nth 0 x) 'tick)
+                             '(tick . nil)
+                           x))
+                       pomm-audio-files))
     :bind
     ("C-x p" . pomm))
 #+end_src
