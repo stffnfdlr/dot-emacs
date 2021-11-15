@@ -253,6 +253,9 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
       :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 * Avy
+
+Package for jumping to visible text using a char-based decision tree.
+
 #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
@@ -260,6 +263,10 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
     :bind
     ("C-:" . avy-goto-char))
 #+END_SRC
+** Keys
+| Binding | Description       |
+|---------+-------------------|
+| `C-:`   | Jump to character |
 * Cider
 #+BEGIN_SRC emacs-lisp
   (use-package cider
