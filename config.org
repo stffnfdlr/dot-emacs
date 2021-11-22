@@ -241,7 +241,7 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
       :ensure nil
       :init
       ;; All customizations go here
-      (setq modus-themes-no-mixed-fonts t
+      (setq modus-themes-mixed-fonts nil
             modus-themes-org-blocks 'gray-background
             modus-themes-mode-line 'borderless
             modus-themes-syntax 'green-strings
