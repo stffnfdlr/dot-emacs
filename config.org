@@ -898,7 +898,7 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     :ensure t
     :pin melpa-stable
     :bind
-    ("C-s" . swiper)
+    ("\C-s" . swiper)
     ("C-c C-r" . ivy-resume))
 #+END_SRC
 * Web mode
