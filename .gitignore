@@ -15,6 +15,7 @@ history
 org-gcal/
 persist/
 request/
+transient/
 var/
 
 # Secrets
