@@ -9,6 +9,7 @@
 
 # Packages and subfolders
 elpa/
+elfeed*
 emojis/
 org-gcal/
 persist/
