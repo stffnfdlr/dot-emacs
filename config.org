@@ -107,7 +107,9 @@ Make indentation commands use space only, never tab characters
 #+END_SRC
 Set default tab char's display width to 4 spaces.
 #+BEGIN_SRC emacs-lisp
-  (setq-default tab-width 4)
+  (setq-default
+   tab-width 2
+   js-indent-level 2)
 #+END_SRC
 
 ** 'y' or 'n' short handles will do
