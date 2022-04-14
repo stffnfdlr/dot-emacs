@@ -846,16 +846,7 @@ An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge man
     :ensure t
     :pin melpa-stable
     :config
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-#+END_SRC
-* Rainbow mode
-Sets background color to strings that match color names, e.g. #0000ff red rgb(100,20,0).
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-mode
-    :ensure t
-    :pin gnu
-    :config
-    (add-hook 'prog-mode-hook 'rainbow-mode))
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 * Rcirc
 Set IRC user info based on definitions in _secrets.el_.
