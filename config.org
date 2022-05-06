@@ -461,7 +461,7 @@ For a simple project setup follow this [[https://github.com/NicolasPetton/Indium
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
     :ensure t
-    :pin melpa-stable
+    :pin melpa
     :init
     (setq ledger-reconcile-default-commodity "€"))
 #+END_SRC
