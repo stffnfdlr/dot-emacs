@@ -247,7 +247,7 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
 ** Modus
 #+begin_src emacs-lisp
   (use-package modus-themes
-    :ensure t
+    :ensure nil
     :init
     ;; All customizations go here
     (setq modus-themes-mixed-fonts nil
