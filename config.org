@@ -393,8 +393,9 @@ Can't miss that one for sure.
   (use-package expand-region
     :ensure t
     :pin melpa-stable
-    :bind ("C-=" . er/expand-region))
+    :bind ("C-=" . 'er/expand-region))
 #+END_SRC
+
 ** Keys
 | Binding   | Description |
 |-----------+-------------|
