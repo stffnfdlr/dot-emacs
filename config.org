@@ -12,12 +12,13 @@
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (setq package-enable-at-startup nil)
-  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+  (setq package-archives '(("elpa-gnu" . "http://elpa.gnu.org/packages/")
+                           ("elpa-nongnu" . "https://elpa.nongnu.org/nongnu/")
                            ("melpa-stable" . "http://stable.melpa.org/packages/")
                            ("melpa" . "http://melpa.org/packages/")))
 
   (setq package-archive-priorities '(("melpa-stable" . 50)
-                                     ("gnu" . 10)
+                                     ("elpa-gnu" . 10)
                                      ("marmalade" . 10)
                                      ("melpa" . 0)))
   (unless package--initialized (package-initialize t))
@@ -321,7 +322,7 @@ Package for jumping to visible text using a char-based decision tree.
 #+BEGIN_SRC emacs-lisp
   (use-package csv-mode
     :ensure t
-    :pin gnu
+    :pin elpa-gnu
     :init
     (setq csv-separators '("," ";" "\t"))
     (add-to-list 'auto-mode-alist '("\\.[CcTt][Ss][Vv]\\'" . csv-mode)))
@@ -581,7 +582,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
 #+BEGIN_SRC emacs-lisp
   (use-package org
     :ensure t
-    :pin gnu
+    :pin elpa-gnu
     :init
     (setq
      ;; Enable syntax highlighting in #+BEGIN_SRC sections.
