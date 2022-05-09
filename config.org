@@ -691,7 +691,6 @@ To render todays time tracking stats recorded using clock-in and clock-out.
    '((dot . t)
      (emacs-lisp . t)
      (gnuplot . t)
-     (http . t)
      (ledger . t)
      (js . t)
      (python . t)
