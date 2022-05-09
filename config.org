@@ -925,6 +925,13 @@ Prefere `web-mode` over `js-mode`.
     (setq which-key-idle-delay 1))
 #+end_src
 * Writing
+** Special characters
+| Binding   | Descirption |
+|-----------+-------------|
+| C-x 8 " o | ö           |
+| C-x 8 " u | ü           |
+| C-x 8 " U | Ü           |
+| C-x 8 " s | ß           |
 ** Single space after periods
 #+BEGIN_SRC emacs-lisp
   (setq sentence-end-double-space nil)
