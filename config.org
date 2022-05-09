@@ -684,6 +684,19 @@ To render todays time tracking stats recorded using clock-in and clock-out.
   ,#+END:
 #+END_SRC
 
+* Org Contributions
+
+Package of org extensions, including a list of org-babel languages.
+
+#+begin_src emacs-lisp
+  (use-package org-contrib
+    :after (org)
+    :ensure t
+    :pin elpa-nongnu)
+#+end_src
+
+#+RESULTS:
+
 * Org Babel
 #+BEGIN_SRC emacs-lisp
   (org-babel-do-load-languages
