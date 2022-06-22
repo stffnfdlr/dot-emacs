@@ -735,6 +735,7 @@ To decrypt the section content place the cursor inside and execute `M-x org-decr
 Integrate Google calendar with org-mode.
 #+BEGIN_SRC emacs-lisp
   (use-package org-gcal
+    :disabled
     :after (org)
     :ensure t
     :pin melpa
