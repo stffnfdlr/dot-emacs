@@ -418,28 +418,6 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 | `C-c C-b` | Run buffer     |
 | `C-c C-r` | Run region     |
 
-* Indium
-[[https://github.com/NicolasPetton/Indium/][Indium]] is a JavaScript environment for Emacs that connects to Chromium or nodejs to provide a REPL, scratch-buffer, stepping debugger.
-#+BEGIN_SRC emacs-lisp
-  (use-package indium
-    :ensure t
-    :pin melpa)
-#+END_SRC
-
-For a simple project setup follow this [[https://github.com/NicolasPetton/Indium/issues/249#issuecomment-664365115][github comment]].
-
-- `M-x indium-launch` starts a JavaScript process (Chrome or nodejs).
-- `M-x indium-connect` to a running runtime.
-- `M-x indium-eval-buffer` evals the entire buffer.
-- `M-x indium-eval-region` evals current region.
-
-** Keys
-| Binding   | Description                       |
-|-----------+-----------------------------------|
-| `C-x C-e` | evals expression preceding cursor |
-| `C-M-x`   | evals innermost function          |
-| `C-c M-i` | inspect result of the evaluation  |
-
 * Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
