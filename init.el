@@ -28,3 +28,19 @@
 
 ;;; Load config
 (org-babel-load-file (concat user-emacs-directory "config.org"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-indent-offset 2)
+ '(js-indent-level 2 t)
+ '(package-selected-packages
+   '(typescript-mode lsp-mode cider centered-cursor-mode citar pomm ess ob-http ol-notmuch vertico which-key web-mode use-package svelte-mode smex restclient rainbow-mode rainbow-delimiters projectile paredit org-super-agenda org-roam org-pomodoro org-gcal olivetti notmuch modus-themes markdown-mode magit ledger-mode indium helm gnuplot expand-region exec-path-from-shell emojify elfeed-org docker csv-mode counsel avy))
+ '(sgml-basic-offset 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

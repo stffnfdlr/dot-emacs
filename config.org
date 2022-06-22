@@ -333,9 +333,13 @@ Package for jumping to visible text using a char-based decision tree.
 | `C-c C-a` | Aligns column width to maximum width |
 | `C-c C-u` | Undoes alignment, to source          |
 * Docker
+
+[docker.el](https://github.com/Silex/docker.el) supports docker containers, images, volumes, networks and docker-compose.
+
 #+BEGIN_SRC emacs-lisp
   (use-package docker
     :ensure t
+    :pin melpa
     :bind ("C-c d" . docker))
 #+END_SRC
 * Elfeed
