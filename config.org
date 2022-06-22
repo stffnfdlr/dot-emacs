@@ -876,7 +876,9 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
 #+BEGIN_SRC emacs-lisp
   (use-package svelte-mode
     :ensure t
-    :pin melpa)
+    :pin melpa
+    :mode "\\.svelte\\'"
+    :hook (svelte-mode . lsp-deferred))
 #+END_SRC
 * Swiper
 #+BEGIN_SRC emacs-lisp
