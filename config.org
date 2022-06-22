@@ -452,6 +452,18 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 | `C-c C-s`     | Sort all of the transactions in a region by date |
 | `C-c C-r`     | Star reconciliation                              |
 | `C-c C-o C-r` | Run report                                       |
+* Language server (LSP)
+
+[[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] as interface to local language servers.
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :pin melpa
+    :commands (lsp lsp-deferred)
+    :config
+    (lsp-enable-which-key-integration t))
+#+end_src
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
@@ -672,8 +684,6 @@ Package of org extensions, including a list of org-babel languages.
     :ensure t
     :pin elpa-nongnu)
 #+end_src
-
-#+RESULTS:
 
 * Org Babel
 #+BEGIN_SRC emacs-lisp
