@@ -436,6 +436,16 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
     (:map ivy-minibuffer-map
           ("<return>" . ivy-alt-done)))
 #+END_SRC
+
+* JavaScript
+#+begin_src emacs-lisp
+  (use-package js-mode
+    :ensure nil
+    :mode "\\.js\\'"
+    :hook (js-mode . lsp-deferred)
+    :config
+    (javascript-mode . lsp-deferred))
+#+end_src
 * Ledger
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
@@ -906,7 +916,7 @@ Prefere `web-mode` over `js-mode`.
     :ensure t
     :pin melpa-stable
     :mode
-    (".jsx?$"
+    (".css$"
      ".html$")
     :config
     (setq
