@@ -909,6 +909,16 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     ("\C-s" . swiper)
     ("C-c C-r" . ivy-resume))
 #+END_SRC
+* Typescript
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :ensure t
+    :pin melpa-stable
+    :mode "\\.ts\\'"
+    :hook (typescript-mode . lsp-deferred)
+    :config
+    (setq typescript-indet-level 2))
+#+end_src
 * Web mode
 Prefere `web-mode` over `js-mode`.
 #+begin_src emacs-lisp
