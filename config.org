@@ -708,19 +708,22 @@ Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://or
 
 ** Keys
 
-| Binding       | Description                                 |
-|---------------+---------------------------------------------|
-| `C-c c`       | Open capture menue to select template.      |
-| `C-c '`       | Open babel block in separate pop-up buffer. |
-| `C-c C-x C-i` | Clock-in on selected task                   |
-| `C-c C-x C-o` | Clock-out of selected task                  |
-| `C-u C-c C-s` | Unschedule agenda item                      |
-| `C-u C-c C-d` | Undealine agenda item                       |
-| `C-c C-x C-w` | Delete subtree and its contents             |
-| `C-c C-x C-y` | Yank subtree and its contents               |
-| `r`           | Refresh agenda view                         |
-| `C-c C-,`     | Add structural block #+BEGIN_... #+END_...  |
-| `C-c o`       | Follow link at cursor position              |
+| Binding       | Description                                    |
+|---------------+------------------------------------------------|
+| `C-c c`       | Open capture menue to select template.         |
+| `C-c '`       | Open babel block in separate pop-up buffer.    |
+| `C-c C-x C-i` | Clock-in on selected task                      |
+| `C-c C-x C-o` | Clock-out of selected task                     |
+| `C-u C-c C-s` | Unschedule agenda item                         |
+| `C-u C-c C-d` | Undealine agenda item                          |
+| `C-c C-w`     | Refile (move) subtree to new location          |
+| `C-c M-w`     | Copy and refile (move) subtree to new location |
+| `C-c C-x C-w` | Delete subtree and its contents                |
+| `C-c C-x C-y` | Yank subtree and its contents                  |
+| `r`           | Refresh agenda view                            |
+| `C-c C-,`     | Add structural block #+BEGIN_... #+END_...     |
+| `C-c o`       | Follow link at cursor position                 |
+| `C-c C-x C-a` | Archive subtree                                |
 
 ** Snippets
 
