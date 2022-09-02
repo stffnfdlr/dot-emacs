@@ -433,7 +433,7 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 
 * Flyspell
 
-Spelling on the fly in `text-mode` and `prog-mode`.
+Spell checking on the fly in `text-mode` and `prog-mode`.
 
 Flyspell requires an external spell checking tool. In our case this is [[aspell][aspell]], provided on mac via homebrew (`brew install aspell`). Note that Emacs' [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html][ispell]] is the interface to such a command line spelling utility.
 
@@ -1022,3 +1022,26 @@ When saving delete all trailing whitespaces.
     :pin melpa
     :mode ".yaml$")
 #+end_src
+
+* Writegood
+
+Write clearly, easy to read, consice with the help of [[http://bnbeckwith.com/code/writegood-mode.html][writegood-mode]]. Inspired by [[https://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/][Matt Might's]] bash scripts.
+
+Avoid common mistakes:
+- Weasel Words
+- Passive Voice
+- Duplicated Words
+
+#+begin_src emacs-lisp
+  (use-package writegood-mode
+    :ensure t
+    :pin melpa
+    :bind
+    ("C-c g" . writegood-mode)
+    ("C-c C-g g" . writegood-grade-level)
+    ("C-c C-g e" . writegood-reading-ease))
+#+end_src
+
+| Binding | Description           |
+|---------+-----------------------|
+| `C-c g` | Toggle writegood-mode |
