@@ -1003,3 +1003,10 @@ When saving delete all trailing whitespaces.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 #+END_SRC
+* Yaml
+#+begin_src emacs-lisp
+  (use-package yaml-mode
+    :ensure t
+    :pin melpa
+    :mode ".yaml$")
+#+end_src
