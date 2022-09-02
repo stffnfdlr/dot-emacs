@@ -6,6 +6,8 @@
 *.elc
 *~
 .#*
+.cache/
+backup/
 
 # Packages and subfolders
 elpa/
@@ -23,6 +25,7 @@ secrets.el
 custom.el
 
 # Temporary files
+.lsp-*
 .org-*
 config.el
 ac-comphist.dat
@@ -35,6 +38,7 @@ ido.last
 network-security.data
 nov-places
 org-roam.db
+pomm
 projectile-bookmarks.eld
 recentf
 tramp
