@@ -2,7 +2,7 @@
 
 This is Steffen's [emacs](https://www.gnu.org/software/emacs/) configuration. Its written in [org-mode](https://orgmode.org/)'s literate programming style and uses `use-pacakge` to automatically install, load, and configure packages.
 
-Sections are devided into bullet points.
+Sections are divided into bullet points.
 
 ## Structure
 
