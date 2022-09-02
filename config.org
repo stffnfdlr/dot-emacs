@@ -968,7 +968,7 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     :mode "\\.ts\\'"
     :hook (typescript-mode . lsp-deferred)
     :config
-    (setq typescript-indet-level 2))
+    (setq typescript-indent-level 2))
 #+end_src
 * Web mode
 Prefere `web-mode` over `js-mode`.
@@ -1022,9 +1022,7 @@ When saving delete all trailing whitespaces.
     :pin melpa
     :mode ".yaml$")
 #+end_src
-
 * Writegood
-
 Write clearly, easy to read, consice with the help of [[http://bnbeckwith.com/code/writegood-mode.html][writegood-mode]]. Inspired by [[https://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/][Matt Might's]] bash scripts.
 
 Avoid common mistakes:
