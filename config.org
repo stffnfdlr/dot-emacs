@@ -384,6 +384,15 @@ Can't miss that one for sure.
     :pin melpa-stable
     :hook (after-init . global-emojify-mode))
 #+end_src
+
+* Emacs Speaks Statistics (ESS)
+#+begin_src emacs-lisp
+  (use-package ess
+    :ensure t
+    :pin melpa
+    :mode "\\.R\\'"
+    :init (require 'ess-site))
+#+end_src
 * Exec-path-from-shell
 #+BEGIN_SRC emacs-lisp
   (use-package exec-path-from-shell
