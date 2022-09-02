@@ -422,6 +422,40 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 | `C-c C-b` | Run buffer     |
 | `C-c C-r` | Run region     |
 
+* Flyspell
+
+Spelling on the fly in `text-mode` and `prog-mode`.
+
+Flyspell requires an external spell checking tool. In our case this is [[aspell][aspell]], provided on mac via homebrew (`brew install aspell`). Note that Emacs' [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html][ispell]] is the interface to such a command line spelling utility.
+
+#+begin_src emacs-lisp
+  (use-package flyspell
+    :ensure nil
+    :diminish
+    :hook ((prog-mode . flyspell-prog-mode)
+           ((org-mode text-mode) . flyspell-mode))
+    :config
+    (setq
+     ispell-program-name "/usr/local/bin/aspell"
+     ispell-dictionary "en_US"
+     ispell-extra-args '("--sug-mode=ultra"
+                         "--run-together"
+                         "--run-together-limit=5"
+                         "--run-together-min=2")
+     ;; Save additions/changes silently to the user dictionary
+     ispell-silently-savep t))
+#+end_src
+
+To list all available languages.
+
+#+begin_comment
+M-: (ispell-valid-dictionary-list) RET
+#+end_comment
+
+| Binding | Description                      |
+|---------+----------------------------------|
+| `M-$`   | Check spelling for word at point |
+
 * Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
