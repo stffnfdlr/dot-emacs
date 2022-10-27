@@ -638,8 +638,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-log-into-drawer t
      org-export-coding-system 'utf-8
      org-default-notes-file todo-file
-     org-agenda-files '("~/Dropbox (Personal)/org/gtd.org"
-                        "~/Dropbox (Personal)/org/gcal-nand.org")
+     org-agenda-files '("~/Dropbox (Personal)/org/gtd.org")
      calendar-week-start-day 1
      org-completion-use-ido t
      ;; Indent text lines that are not headlines are prefixed with
@@ -660,7 +659,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-confirm-babel-evaluate nil
      org-src-tab-acts-natively t)
     ;; Sync Google Calendar
-    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
+    ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
     ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-fetch) ))
     (setq org-capture-templates
           '(("t" "Todo" entry
