@@ -256,10 +256,8 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
           modus-themes-mode-line '(borderless)
           modus-themes-org-blocks 'gray-background
           modus-themes-paren-match '(bold intense))
-    ;; Load the theme files before enabling a theme (else you get an error).
-    (modus-themes-load-themes)
     ;; Load theme of choice
-    (modus-themes-load-operandi)
+    (load-theme 'modus-operandi)
     :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
