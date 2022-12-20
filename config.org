@@ -486,10 +486,24 @@ M-: (ispell-valid-dictionary-list) RET
 #+begin_src emacs-lisp
   (use-package js-mode
     :ensure nil
-    :mode "\\.js\\'"
-    :hook (js-mode . lsp-deferred)
-    :config
-    (javascript-mode . lsp-deferred))
+    :mode "\\.js\\'")
+#+end_src
+
+* ESLint
+#+begin_src emacs-lisp
+    (use-package eslint-rc
+      :ensure t
+      :pin melpa
+      :hook
+      ((typescript-mode . eslint-rc-mode)
+       (js-mode . eslint-rc-mode)
+       (web-mode . eslint-rc-mode)
+       (svelte-mode . eslint-rc-mode))
+      :config
+      (setq
+       eslint-rc-use-node-modules-bin t
+       eslint-rc-use-eslintignore t
+       eslint-rc-use-package-json t))
 #+end_src
 * Ledger
 #+BEGIN_SRC emacs-lisp
@@ -507,17 +521,22 @@ M-: (ispell-valid-dictionary-list) RET
 | `C-c C-s`     | Sort all of the transactions in a region by date |
 | `C-c C-r`     | Star reconciliation                              |
 | `C-c C-o C-r` | Run report                                       |
-* Language server (LSP)
-
-[[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] as interface to local language servers.
+* Langauge server (Eglot)
 
 #+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :pin melpa
-    :commands (lsp lsp-deferred)
-    :config
-    (lsp-enable-which-key-integration t))
+  (use-package eglot
+     :ensure t
+     :pin melpa
+     :config
+     (add-to-list 'eglot-server-programs
+                  '((typescript-mode) "typescript-language-server" "--stdio"))
+     (add-to-list 'eglot-server-programs
+                  '(svelte-mode . ("svelteserver" "--stdio")))
+     :hook
+     ((css-mode . eglot-ensure)
+      (js-mode . eglot-ensure)
+      (python-mode .eglot-ensure)
+      (typescript-mode . eglot-ensure)))
 #+end_src
 * Magit
 #+BEGIN_SRC emacs-lisp
@@ -946,7 +965,8 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     :ensure t
     :pin melpa
     :mode "\\.svelte\\'"
-    :hook (svelte-mode . lsp-deferred))
+    :config
+    (add-hook 'svelte-mode-hook 'eglot-ensure))
 #+END_SRC
 * Swiper
 #+BEGIN_SRC emacs-lisp
@@ -963,7 +983,6 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
     :ensure t
     :pin melpa-stable
     :mode "\\.ts\\'"
-    :hook (typescript-mode . lsp-deferred)
     :config
     (setq typescript-indent-level 2))
 #+end_src
