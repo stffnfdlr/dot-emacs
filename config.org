@@ -661,7 +661,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-log-into-drawer t
      org-export-coding-system 'utf-8
      org-default-notes-file todo-file
-     org-agenda-files '("~/Dropbox (Personal)/org/gtd.org")
+     org-agenda-files (list todo-file)
      calendar-week-start-day 1
      org-completion-use-ido t
      ;; Indent text lines that are not headlines are prefixed with
@@ -673,7 +673,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      ;; Deactivate ‘^’ and ‘_’ to be used to indicate super- and subscripts
      org-use-sub-superscripts nil
      ;; Enable refiling of subtree up to 2nd level
-     org-refile-targets '((("~/Dropbox (Personal)/org/gtd.org") :maxlevel . 2))
+     org-refile-targets '((todo-file :maxlevel . 2))
      ;; Use node names instead of their path
      org-refile-use-outline-path nil
      ;; Allow `a.`, `A.`, `a)` and `A)` list style
