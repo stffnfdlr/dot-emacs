@@ -647,6 +647,12 @@ Changing todo states will invoke the option to take notes and track timestamps d
   (use-package org
     :ensure t
     :pin elpa-gnu
+    :preface
+    (defun org-copy-link-at-point ()
+      "Extract the link location at point and put it on the killring."
+      (interactive)
+      (when (org-in-regexp org-bracket-link-regexp 1)
+        (kill-new (org-link-unescape (org-match-string-no-properties 1)))))
     :init
     (setq
      ;; Enable syntax highlighting in #+BEGIN_SRC sections.
@@ -712,7 +718,8 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
     :bind
     (("C-c a" . org-agenda)
-     ("C-c c" . org-capture)))
+     ("C-c c" . org-capture)
+     ("C-c C-;" . org-copy-link-at-point)))
 #+END_SRC
 
 Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://orgmode.org/manual/Structure-Templates.html#FOOT148). The following fix is taken from an issue [disussion](https://github.com/syl20bnr/spacemacs/issues/11798#issuecomment-456754071).
