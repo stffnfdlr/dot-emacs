@@ -36,9 +36,9 @@
  '(css-indent-offset 2)
  '(js-indent-level 2 t)
  '(package-selected-packages
-   '(svelte-mode eglot eslint-rc eslint-rc-emacs writegood-mode yaml-mode typescript-mode lsp-mode cider centered-cursor-mode citar pomm ess ob-http ol-notmuch vertico which-key web-mode use-package smex restclient rainbow-mode rainbow-delimiters projectile paredit org-super-agenda org-roam org-pomodoro org-gcal olivetti notmuch modus-themes markdown-mode magit ledger-mode indium helm gnuplot expand-region exec-path-from-shell emojify elfeed-org docker csv-mode counsel avy))
+   '(svelte-mode eglot eslint-rc eslint-rc-emacs writegood-mode yaml-mode typescript-mode cider centered-cursor-mode citar pomm ess ob-http ol-notmuch vertico which-key web-mode use-package smex restclient rainbow-mode rainbow-delimiters projectile paredit org-super-agenda org-roam org-pomodoro org-gcal olivetti notmuch modus-themes markdown-mode magit ledger-mode indium helm gnuplot expand-region exec-path-from-shell emojify elfeed-org docker csv-mode counsel avy))
  '(sgml-basic-offset 2)
- '(warning-suppress-types '((lsp-mode) (lsp-mode) (lsp-mode))))
+ '(warning-suppress-types '((use-package) (lsp-mode) (lsp-mode) (lsp-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

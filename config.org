@@ -818,7 +818,18 @@ Integrate Google calendar with org-mode.
      org-gcal-client-secret secrets-org-gcal-client-secret
      org-gcal-file-alist secrets-org-gcal-file-alist))
 #+END_SRC
-
+* Org Journal
+#+begin_src emacs-lisp
+  (use-package org-journal
+    :ensure t
+    :pin melpa
+    :init
+    (setq org-journal-prefix-key "C-c j ")
+    :config
+    (setq
+     org-journal-dir (expand-file-name "journal/" org-directory)
+     org-journal-date-format "%A, %d %B %Y"))
+#+end_src
 * Pomm 🍅
 Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]].
 #+begin_src emacs-lisp
@@ -846,48 +857,48 @@ Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomod
 * Org-roam
 An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
 #+BEGIN_SRC emacs-lisp
-          (use-package org-roam
-            :ensure t
-            :after org
-            :pin melpa-stable
-            :hook
-            (after-init . org-roam-mode)
-            :init
-            (setq
-             org-roam-v2-ack t
-             org-roam-directory (expand-file-name "roam/" org-directory)
-             org-roam-db-location (expand-file-name "roam/roam.sqlite" org-directory))
-            :config
-            (setq
-             org-roam-capture-templates
-             '(("d" "default" plain "%?"
-                :if-new (file+head "memex/${slug}.org"
-                                   "#+TITLE: ${title}\n#+ROAM_KEY: memex.${slug}\n#+ROAM_ALIAS: \n\n")
-                :unnarrowed t)
-               ("f" "fleet" plain "%?"
-                :if-new (file+head "fleets/%<%Y%m%d%H%M%S>-${slug}.org"
-                                   "#+TITLE: ${title}\n\n")
-                :unnarrowed t)
-               ("m" "media" plain "%?"
-                :if-new (file+head "memex/${slug}.org"
-                                   "#+TITLE: ${title}\n#+ROAM_KEY: media.${slug} \n#+ROAM_ALIAS: \n\n#+AUTHOR: \n#+DATE: \n#+TAGS: \n#+URL: \n\n")
-                :unnarrowed t)
-               ("n" "note" plain "%?"
-                :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
-                                   "#+TITLE: ${title}\n#+ROAM_KEY: note.${slug}\n#+ROAM_ALIAS:\n\n#+AUTHOR: Steffen Fiedler\n#+DATE: %U\n\n")
-                :unnarrowed t)))
-            (org-roam-setup)
-            :bind
-            (("C-c n g" . org-roam-graph)
-             ("C-c n t" . org-roam-tag-add)
-             ("C-c n a" . org-roam-alias-add)
-             ("C-c n f" . org-roam-node-find)
-             ("C-c n l" . org-roam-buffer-toggle)
-             ("C-c n i" . org-roam-node-insert)
-             ("C-c n I" . org-roam-node-insert-immediate)
-             :map
-             ("C-M i" . completion-at-point)))
+  (use-package org-roam
+    :ensure t
+    :pin melpa-stable
+    :hook
+    (after-init . org-roam-mode)
+    :init
+    (setq
+     org-roam-v2-ack t
+     org-roam-directory (expand-file-name "roam/" org-directory)
+     org-roam-db-location (expand-file-name "roam/roam.sqlite" org-directory))
+    :config
+    (setq
+     org-roam-capture-templates
+     '(("d" "default" plain "%?"
+        :if-new (file+head "memex/${slug}.org"
+                           "#+TITLE: ${title}\n#+ROAM_KEY: memex.${slug}\n#+ROAM_ALIAS: \n\n")
+        :unnarrowed t)
+       ("f" "fleet" plain "%?"
+        :if-new (file+head "fleets/%<%Y%m%d%H%M%S>-${slug}.org"
+                           "#+TITLE: ${title}\n\n")
+        :unnarrowed t)
+       ("m" "media" plain "%?"
+        :if-new (file+head "memex/${slug}.org"
+                           "#+TITLE: ${title}\n#+ROAM_KEY: media.${slug} \n#+ROAM_ALIAS: \n\n#+AUTHOR: \n#+DATE: \n#+TAGS: \n#+URL: \n\n")
+        :unnarrowed t)
+       ("n" "note" plain "%?"
+        :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
+                           "#+TITLE: ${title}\n#+ROAM_KEY: note.${slug}\n#+ROAM_ALIAS:\n\n#+AUTHOR: Steffen Fiedler\n#+DATE: %U\n\n")
+        :unnarrowed t)))
+    (org-roam-setup)
+    :bind
+    (("C-c n g" . org-roam-graph)
+     ("C-c n t" . org-roam-tag-add)
+     ("C-c n a" . org-roam-alias-add)
+     ("C-c n f" . org-roam-node-find)
+     ("C-c n l" . org-roam-buffer-toggle)
+     ("C-c n i" . org-roam-node-insert)
+     ("C-c n I" . org-roam-node-insert-immediate)))
 #+END_SRC
+
+#+RESULTS:
+: org-roam-node-insert-immediate
 
 ** Keys
 | Binding   | Description                                  |
