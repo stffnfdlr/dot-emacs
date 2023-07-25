@@ -245,6 +245,13 @@ Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
   (setq shr-use-fonts nil)
 #+end_src
 * Theme
+
+Load custom themes from `themes/` folder.
+
+#+begin_src emacs-lisp
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+#+end_src
+
 ** Modus
 #+begin_src emacs-lisp
   (use-package modus-themes
