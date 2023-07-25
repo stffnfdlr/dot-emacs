@@ -232,12 +232,28 @@ default-cache-ttl 600
 max-cache-ttl 7200
 #+END_SRC
 * Fonts
+
+Store the [[https://berkeleygraphics.com/typefaces/berkeley-mono/][Berkeley Mono]] Typeface in size 14 as symbol to use for any typeface decisions.
+
+#+begin_src emacs-lisp
+  (setq
+   global-font "Berkeley Mono-14")
+#+end_src
+
+Set the overall font as general frame font.
+
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
-    (set-frame-font "Menlo 14")
+    (set-frame-font global-font)
     ;; Use Spotlight to search with M-x locate
     (setq locate-command "mdfind"))
 #+END_SRC
+
+And explicitly use the overall font in orgmode's blocks and tables.
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'fixed-pitch nil :font global-font)
+#+end_src
 
 Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
 
