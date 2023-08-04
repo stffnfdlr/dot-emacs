@@ -385,7 +385,7 @@ Package for jumping to visible text using a char-based decision tree.
     :config
     (elfeed-org)
     (setq elfeed-show-entry-switch 'display-buffer)
-    (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org")))
+    (setq rmh-elfeed-org-files (list (expand-file-name "elfeed.org" org-directory))))
 #+end_src
 
 ** Keys
