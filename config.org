@@ -864,6 +864,13 @@ Integrate Google calendar with org-mode.
      org-journal-dir (expand-file-name "journal/" org-directory)
      org-journal-date-format "%A, %d %B %Y"))
 #+end_src
+* ox-gfm
+Markdown exporter for org.
+#+begin_src emacs-lisp
+  (use-package ox-gfm
+    :ensure t
+    :pin melpa)
+#+end_src
 * Pomm 🍅
 Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]].
 #+begin_src emacs-lisp
