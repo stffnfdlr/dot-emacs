@@ -549,7 +549,7 @@ M-: (ispell-valid-dictionary-list) RET
 #+begin_src emacs-lisp
   (use-package eglot
      :ensure t
-     :pin melpa
+     :pin elpa-gnu
      :config
      (add-to-list 'eglot-server-programs
                   '((typescript-mode) "typescript-language-server" "--stdio"))
