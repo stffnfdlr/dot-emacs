@@ -1032,7 +1032,7 @@ Minimal configuration. Set freenode as default server, define nickserv auth, and
   (use-package typescript-mode
     :ensure t
     :pin melpa-stable
-    :mode "\\.ts\\'"
+    :mode "\\.tsx?\\'"
     :config
     (setq typescript-indent-level 2))
 #+end_src
