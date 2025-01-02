@@ -918,23 +918,6 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
-* Rcirc
-Set IRC user info based on definitions in _secrets.el_.
-#+BEGIN_SRC  emacs-lisp
-  (setq
-   rcirc-default-nick secrets-irc-freenode-user
-   rcirc-default-user-name secrets-irc-freenode-user
-   rcirc-default-full-name secrets-irc-freenode-user)
-#+END_SRC
-Minimal configuration. Set freenode as default server, define nickserv auth, and join `irc.freenode.net` on startup.
-#+BEGIN_SRC emacs-lisp
-  (setq rcirc-authinfo `(("freenode" nickserv ,secrets-irc-freenode-user ,secrets-irc-freenode-pass)))
-  (setq rcirc-server-alist
-        '(("irc.freenode.net"
-           :port 6697
-           :encryption tls
-           :channels ("#emacs"))))
-#+END_SRC
 * Restclient
 #+BEGIN_SRC emacs-lisp
   (use-package restclient
