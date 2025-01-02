@@ -606,6 +606,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      ;; Indent text lines that are not headlines are prefixed with
      ;; spaces to vertically align with the headline text.
      org-startup-indented t
+     org-startup-truncated t
      ;; Turn off manual indentation
      org-adapt-indentation nil
      org-indent-indentation-per-level 1
@@ -619,7 +620,9 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-list-allow-alphabetical t
      ;; Don’t ask every time when executing a code block.
      org-confirm-babel-evaluate nil
-     org-src-tab-acts-natively t)
+     org-src-tab-acts-natively t
+     ;; enable rendering of pretty symbols in org buffers by default
+     org-pretty-entities t)
     ;; Sync Google Calendar
     ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
     ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-fetch) ))
