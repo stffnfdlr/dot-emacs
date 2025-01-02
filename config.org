@@ -585,14 +585,7 @@ Minor mode for a nice writing environment that keeps the text in the middle of t
     :ensure t
     :pin melpa-stable)
 #+END_SRC
-* Focus
-The package [[https://github.com/larstvei/Focus][Focus]] dims surrounding text. It works with any theme and can be configured to focus in on different regions like sentences, paragraphs or code-blocks.
-#+begin_src emacs-lisp
-  (use-package focus
-    :ensure t
-    :pin melpa
-    :bind ("C-c f" . focus-mode))
-#+end_src
+
 * Org
 Define base directory for all org files.
 
