@@ -756,16 +756,12 @@ Restclient org-babel package.
 #+end_src
 
 #+begin_src emacs-lisp
-  (use-package org-journal
+  (use-package ob-typescript
+    :after (org)
     :ensure t
-    :pin melpa
-    :init
-    (setq org-journal-prefix-key "C-c j ")
-    :config
-    (setq
-     org-journal-dir (expand-file-name "journal/" org-directory)
-     org-journal-date-format "%A, %d %B %Y"))
+    :pin melpa)
 #+end_src
+
 * ox-gfm
 Markdown exporter for org.
 #+begin_src emacs-lisp
