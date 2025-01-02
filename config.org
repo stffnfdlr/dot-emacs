@@ -255,7 +255,7 @@ And explicitly use the overall font in orgmode's blocks and tables.
   (set-face-attribute 'fixed-pitch nil :font global-font)
 #+end_src
 
-Avoid goofy serif fonts when rendering web content (shr, eww, elfeed).
+Avoid goofy serif fonts when rendering web content (shr, eww).
 
 #+begin_src emacs-lisp
   (setq shr-use-fonts nil)
@@ -363,29 +363,13 @@ Package for jumping to visible text using a char-based decision tree.
     :pin melpa
     :bind ("C-c d" . docker))
 #+END_SRC
-* Elfeed
-#+begin_src emacs-lisp
-  (use-package elfeed
-    :ensure t
-    :pin melpa-stable
-    :config
-    (setq
-     url-queue-timeout 10
-     elfeed-use-curl t
-     elfeed-curl-max-connections 10
-     elfeed-show-trucate-long-urls t)
-    :bind
-    ("C-x w" . elfeed ))
-#+end_src
+
+For editing 'Dockerfile' formats.
 
 #+begin_src emacs-lisp
-  (use-package elfeed-org
+  (use-package dockerfile-mode
     :ensure t
-    :pin melpa
-    :config
-    (elfeed-org)
-    (setq elfeed-show-entry-switch 'display-buffer)
-    (setq rmh-elfeed-org-files (list (expand-file-name "elfeed.org" org-directory))))
+    :pin melpa)
 #+end_src
 
 ** Keys
