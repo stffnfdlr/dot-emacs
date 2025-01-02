@@ -738,37 +738,16 @@ Markdown exporter for org.
 #+end_src
 * Org-roam
 An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
+
 #+BEGIN_SRC emacs-lisp
   (use-package org-roam
     :ensure t
     :pin melpa-stable
-    :hook
-    (after-init . org-roam-mode)
     :init
     (setq
-     org-roam-v2-ack t
      org-roam-directory (expand-file-name "roam/" org-directory)
+     org-roam-daily-directory "daily/"
      org-roam-db-location (expand-file-name "roam/roam.sqlite" org-directory))
-    :config
-    (setq
-     org-roam-capture-templates
-     '(("d" "default" plain "%?"
-        :if-new (file+head "memex/${slug}.org"
-                           "#+TITLE: ${title}\n#+ROAM_KEY: memex.${slug}\n#+ROAM_ALIAS: \n\n")
-        :unnarrowed t)
-       ("f" "fleet" plain "%?"
-        :if-new (file+head "fleets/%<%Y%m%d%H%M%S>-${slug}.org"
-                           "#+TITLE: ${title}\n\n")
-        :unnarrowed t)
-       ("m" "media" plain "%?"
-        :if-new (file+head "memex/${slug}.org"
-                           "#+TITLE: ${title}\n#+ROAM_KEY: media.${slug} \n#+ROAM_ALIAS: \n\n#+AUTHOR: \n#+DATE: \n#+TAGS: \n#+URL: \n\n")
-        :unnarrowed t)
-       ("n" "note" plain "%?"
-        :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
-                           "#+TITLE: ${title}\n#+ROAM_KEY: note.${slug}\n#+ROAM_ALIAS:\n\n#+AUTHOR: Steffen Fiedler\n#+DATE: %U\n\n")
-        :unnarrowed t)))
-    (org-roam-setup)
     :bind
     (("C-c n g" . org-roam-graph)
      ("C-c n t" . org-roam-tag-add)
