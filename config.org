@@ -701,15 +701,16 @@ To render todays time tracking stats recorded using clock-in and clock-out.
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((dot . t)
+     (clojure . t)
      (emacs-lisp . t)
      (gnuplot . t)
+     (latex . t)
      (ledger . t)
      (js . t)
      (python . t)
-     (shell . t)))
+     (shell . t)
+     (typescript . t)))
 #+END_SRC
-
-Restclient org-babel package.
 
 #+begin_src emacs-lisp
   (use-package ob-http
