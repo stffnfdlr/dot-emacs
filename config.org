@@ -730,38 +730,6 @@ Markdown exporter for org.
     :ensure t
     :pin melpa)
 #+end_src
-* Org-roam
-An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-roam
-    :ensure t
-    :pin melpa-stable
-    :init
-    (setq
-     org-roam-directory (expand-file-name "roam/" org-directory)
-     org-roam-daily-directory "daily/"
-     org-roam-db-location (expand-file-name "roam/roam.sqlite" org-directory))
-    :bind
-    (("C-c n g" . org-roam-graph)
-     ("C-c n t" . org-roam-tag-add)
-     ("C-c n a" . org-roam-alias-add)
-     ("C-c n f" . org-roam-node-find)
-     ("C-c n l" . org-roam-buffer-toggle)
-     ("C-c n i" . org-roam-node-insert)
-     ("C-c n I" . org-roam-node-insert-immediate)))
-#+END_SRC
-
-#+RESULTS:
-: org-roam-node-insert-immediate
-
-** Keys
-| Binding   | Description                                  |
-|-----------+----------------------------------------------|
-| `C-c n f` | Find existing or create new note             |
-| `C-c n i` | Insert reference                             |
-| `C-c n l` | Toggle roam sidebar buffer                   |
-| `C-M i`   | Complete term at cursor (inside org buffers) |
 
 * Smartparens
 

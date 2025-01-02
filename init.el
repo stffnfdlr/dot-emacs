@@ -36,7 +36,7 @@
  '(css-indent-offset 2)
  '(custom-safe-themes
    '("2ade04230c5a9a82729a33be6e942441942b8532311274b4f8155edcded5b0ca" default))
- '(js-indent-level 2)
+ '(js-indent-level 2 t)
  '(package-selected-packages
    '(0blayout nix-mode dockerfile-mode writegood-mode yaml-mode which-key web-mode tide typescript-mode svelte-mode smex restclient rainbow-delimiters projectile smartparens org-roam emacsql-libsqlite3 sqlite3 pomm ox-gfm org-journal use-package org-contrib olivetti ol-notmuch ob-typescript ob-http markdown-mode magit ledger-mode gnuplot focus expand-region exec-path-from-shell eslint-rc emojify elfeed-org docker csv-mode counsel company cider avy))
  '(sgml-basic-offset 2))
