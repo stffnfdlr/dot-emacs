@@ -871,30 +871,6 @@ Markdown exporter for org.
     :ensure t
     :pin melpa)
 #+end_src
-* Pomm 🍅
-Mode to apply the [[https://francescocirillo.com/pages/pomodoro-technique][Pomodoro technique]].
-#+begin_src emacs-lisp
-  (use-package pomm
-    :ensure t
-    :config
-    (setq
-     pomm-mode-line-mode t
-     pomm-audio-enabled t
-     pomm-audio-player-executable "/usr/bin/afplay"
-     pomm-audio-files (mapcar
-                       (lambda (x)
-                         (if (eq (nth 0 x) 'tick)
-                             '(tick . nil)
-                           x))
-                       pomm-audio-files))
-    :bind
-    ("C-x p" . pomm))
-#+end_src
-
-| Binding | Description           |
-|---------+-----------------------|
-| `C-x p` | Open transient buffer |
-
 * Org-roam
 An emacs implementation of the [[https://roamresearch.com/][Roam]] knowledge management tool. For more configuration visit the [[https://www.orgroam.com/manual.html][manual]]. General information on the [[https://www.orgroam.com/][official project page]] or [[https://github.com/org-roam/org-roam/][repository]].
 #+BEGIN_SRC emacs-lisp
