@@ -237,7 +237,7 @@ Store the [[https://berkeleygraphics.com/typefaces/berkeley-mono/][Berkeley Mono
 
 #+begin_src emacs-lisp
   (setq
-   global-font "Berkeley Mono-14")
+   global-font "Berkeley Mono-16")
 #+end_src
 
 Set the overall font as general frame font.
