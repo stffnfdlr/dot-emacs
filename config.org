@@ -40,15 +40,6 @@ Define base directory for all org files.
   (when (not package-archive-contents)
     (package-refresh-contents))
 #+END_SRC
-** Package update
-Keep installed packages updated and remove old versions.
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package auto-package-update
-  ;;   :config
-  ;;   (setq auto-package-update-delete-old-versions t)
-  ;;   (setq auto-package-update-hide-results t)
-  ;;   (auto-package-update-maybe))
-#+END_SRC
 * Sane defaults
 ** Hide warnings
 *** Package cl is deprecated
@@ -140,7 +131,7 @@ No negative speaker feedback.
 ** Default browser
 Stay in emacs when opening URLs and use eww as standard browser.
 #+begin_src emacs-lisp
-(setq browse-url-browser-function 'eww-browse-url)
+  (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 ** Adaptive cursor width
 Make the cursor the full width of the character it is under – e.g. the full width of a TAB character (from [[http://pragmaticemacs.com/emacs/adaptive-cursor-width/][pragmatic emacs]]).
@@ -149,11 +140,11 @@ Make the cursor the full width of the character it is under – e.g. the full wi
 #+END_SRC
 ** Highlight matching pairs of parentheses
 #+begin_src emacs-lisp
-(show-paren-mode 1)
+  (show-paren-mode 1)
 #+end_src
 Disable the default delay.
 #+begin_src emacs-lisp
-(setq show-paren-delay 0)
+  (setq show-paren-delay 0)
 #+end_src
 * Mac defaults
 #+BEGIN_SRC emacs-lisp
@@ -285,8 +276,11 @@ Load custom themes from `themes/` folder.
           modus-themes-mode-line '(borderless)
           modus-themes-org-blocks 'gray-background
           modus-themes-paren-match '(bold intense))
+    (setq modus-themes-vivendi-color-overrides
+          '((bg-main . "#111212")
+            (fg-main . "#c2c2c2")))
     ;; Load theme of choice
-    (load-theme 'modus-operandi)
+    (load-theme 'modus-vivendi)
     :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -479,7 +473,6 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 #+begin_src emacs-lisp
   (use-package eglot
      :ensure t
-     :pin elpa-gnu
      :config
      (add-to-list 'eglot-server-programs
                   '(python-mode . ("pyright-langserver" "--stdio")))
@@ -493,6 +486,7 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
       (python-mode .eglot-ensure)
       (typescript-mode . eglot-ensure)))
 #+end_src
+
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit

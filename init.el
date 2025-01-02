@@ -34,11 +34,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(css-indent-offset 2)
- '(js-indent-level 2 t)
+ '(custom-safe-themes
+   '("2ade04230c5a9a82729a33be6e942441942b8532311274b4f8155edcded5b0ca" default))
+ '(js-indent-level 2)
  '(package-selected-packages
-   '(svelte-mode eglot eslint-rc eslint-rc-emacs writegood-mode yaml-mode typescript-mode cider centered-cursor-mode citar pomm ess ob-http ol-notmuch vertico which-key web-mode use-package smex restclient rainbow-mode rainbow-delimiters projectile paredit org-super-agenda org-roam org-pomodoro org-gcal olivetti notmuch modus-themes markdown-mode magit ledger-mode indium helm gnuplot expand-region exec-path-from-shell emojify elfeed-org docker csv-mode counsel avy))
- '(sgml-basic-offset 2)
- '(warning-suppress-types '((use-package) (lsp-mode) (lsp-mode) (lsp-mode))))
+   '(0blayout nix-mode dockerfile-mode writegood-mode yaml-mode which-key web-mode tide typescript-mode svelte-mode smex restclient rainbow-delimiters projectile smartparens org-roam emacsql-libsqlite3 sqlite3 pomm ox-gfm org-journal use-package org-contrib olivetti ol-notmuch ob-typescript ob-http markdown-mode magit ledger-mode gnuplot focus expand-region exec-path-from-shell eslint-rc emojify elfeed-org docker csv-mode counsel company cider avy))
+ '(sgml-basic-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
