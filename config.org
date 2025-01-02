@@ -869,7 +869,9 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
 #+BEGIN_SRC emacs-lisp
   (use-package python
     :ensure nil
+    :mode ("\\.py\\'" . python-mode)
     :config
+    (setq python-indent-offset 2)
     (setq python-shell-interpreter "python3")
     (setenv "PYTHONIOENCODING" "utf-8")
     (setenv "LANG" "en_US.UTF-8"))
