@@ -8,6 +8,12 @@
   (setq user-full-name full-name
         user-mail-address email-address)
 #+END_SRC
+** Paths
+Define base directory for all org files.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-directory "~/Library/Mobile Documents/com~apple~CloudDocs/org/")
+#+END_SRC
 ** Package archives
 #+BEGIN_SRC emacs-lisp
   (require 'package)
@@ -550,12 +556,6 @@ Minor mode for a nice writing environment that keeps the text in the middle of t
 #+END_SRC
 
 * Org
-Define base directory for all org files.
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-directory "~/Dropbox (Personal)/org/")
-#+END_SRC
-
 Org files for capturing.
 
 #+BEGIN_SRC emacs-lisp
