@@ -533,24 +533,13 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 | `m`     | New message.                                                          |
 | `s`     | Search interface                                                      |
 | `c i`   | Stash message ID                                                      |
-* Ol-Notmuch
-Mode that links to notmuch messages and "searches".
-
+* Nix
 #+begin_src emacs-lisp
-  (use-package ol-notmuch
+  (use-package nix-mode
     :ensure t
-    :pin melpa-stable
-    :bind
-    ("C-c l" . org-store-link))
+    :pin melpa
+    :mode "\\.nix\\'")
 #+end_src
-
-** To link to a notmuch message from org document
-- Open message buffer.
-- Press `c i` to stash (copy) message id.
-- Open org buffer to link from.
-- Press `C-c l` to insert link.
-- Select `notmuch:` and yank (paste) the message id.
-- Enter the link description and confirm.
 
 * Olivetti
 Minor mode for a nice writing environment that keeps the text in the middle of the window.
