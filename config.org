@@ -723,6 +723,13 @@ To render todays time tracking stats recorded using clock-in and clock-out.
     :pin melpa)
 #+end_src
 
+* Org contrib
+#+begin_src emacs-lisp
+  (use-package org-contrib
+    :ensure t
+    :pin elpa-nongnu)
+#+end_src
+
 * ox-gfm
 Markdown exporter for org.
 #+begin_src emacs-lisp
