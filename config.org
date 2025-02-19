@@ -683,6 +683,8 @@ Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://or
 | `C-c C-,`     | Add structural block #+BEGIN_... #+END_...     |
 | `C-c o`       | Follow link at cursor position                 |
 | `C-c C-x C-a` | Archive subtree                                |
+| `C-c C-l`     | Insert a link                                  |
+| `C-c C-o`     | Open link at point                             |
 
 ** Snippets
 
@@ -724,6 +726,9 @@ To render todays time tracking stats recorded using clock-in and clock-out.
 #+end_src
 
 * Org contrib
+
+List of org-mode contributions such as `ob-ledger`.
+
 #+begin_src emacs-lisp
   (use-package org-contrib
     :ensure t
