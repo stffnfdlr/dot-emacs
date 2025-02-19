@@ -2,19 +2,25 @@
 #+AUTHOR: Steffen Fiedler
 
 * Installation
+
 ** Personal
+
 #+BEGIN_SRC emacs-lisp
   (load (concat user-emacs-directory "secrets.el"))
   (setq user-full-name full-name
         user-mail-address email-address)
 #+END_SRC
+
 ** Paths
+
 Define base directory for all org files.
 
 #+BEGIN_SRC emacs-lisp
   (setq org-directory "~/Library/Mobile Documents/com~apple~CloudDocs/org/")
 #+END_SRC
+
 ** Package archives
+
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (setq package-enable-at-startup nil)
@@ -41,27 +47,39 @@ Define base directory for all org files.
     (package-refresh-contents))
 #+END_SRC
 * Sane defaults
+
 ** Hide warnings
+
 *** Package cl is deprecated
+
 Emacs > 27 displays warning when `cl` is required. (see [issue](https://github.com/kiwanami/emacs-epc/issues/35))
 #+BEGIN_SRC emacs-lisp
   (setq byte-compile-warnings '(cl-functions))
 #+END_SRC
+
 ** Default directory
+
 Defines user root as default directory.
+
 #+BEGIN_SRC emacs-lisp
   (setq default-directory "~/")
 #+END_SRC
+
 ** ZSH configuration
+
 https://github.com/Wilfred/ag.el/issues/93
+
 #+BEGIN_SRC emacs-lisp
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 #+END_SRC
+
 ** Auto revert
+
 When something changes a file, automatically refresh the buffer containing that file so they can’t get out of sync.
 #+BEGIN_SRC emacs-lisp
   (global-auto-revert-mode t)
 #+END_SRC
+
 ** Regions
 
 #+BEGIN_SRC emacs-lisp
@@ -78,11 +96,15 @@ When something changes a file, automatically refresh the buffer containing that 
 #+END_SRC
 
 ** Stop creating backup files
+
 Save and commit often instead of relying on emacs' automatic backup~ files.
+
 #+BEGIN_SRC emacs-lisp
   (setq make-backup-files nil)
 #+END_SRC
+
 And disable emacs' #auto-save# files.
+
 #+BEGIN_SRC emacs-lisp
   (setq auto-save-default nil)
 #+END_SRC
@@ -99,11 +121,15 @@ And disable emacs' #auto-save# files.
 #+END_SRC
 
 ** Indentation and tabs
+
 Make indentation commands use space only, never tab characters
+
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
 #+END_SRC
+
 Set default tab char's display width to 4 spaces.
+
 #+BEGIN_SRC emacs-lisp
   (setq-default
    tab-width 2
@@ -111,9 +137,11 @@ Set default tab char's display width to 4 spaces.
 #+END_SRC
 
 ** 'y' or 'n' short handles will do
+
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+
 ** Replace selected with any kind of input
 #+BEGIN_SRC emacs-lisp
   (delete-selection-mode 1)
@@ -787,7 +815,9 @@ List of org-mode contributions such as `ob-ledger`.
 | `C-c n f` | Find node                |
 
 * ox-gfm
+
 Markdown exporter for org.
+
 #+begin_src emacs-lisp
   (use-package ox-gfm
     :ensure t
