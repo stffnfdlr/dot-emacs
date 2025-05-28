@@ -511,7 +511,7 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
      :hook
      ((css-mode . eglot-ensure)
       (js-mode . eglot-ensure)
-      (python-mode .eglot-ensure)
+      (python-mode . eglot-ensure)
       (typescript-mode . eglot-ensure)))
 #+end_src
 
