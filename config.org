@@ -500,7 +500,7 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 
 #+begin_src emacs-lisp
   (use-package eglot
-     :ensure t
+     :ensure nil
      :config
      (add-to-list 'eglot-server-programs
                   '(python-mode . ("pyright-langserver" "--stdio")))
