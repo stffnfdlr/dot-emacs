@@ -768,7 +768,7 @@ List of org-mode contributions such as `ob-ledger`.
 #+begin_src emacs-lisp
   (use-package org-roam
     :ensure t
-    :pin melpa-stable
+    :pin melpa
     :hook
     (after-init . org-roam-mode)
     :init
