@@ -65,6 +65,14 @@ Defines user root as default directory.
   (setq default-directory "~/")
 #+END_SRC
 
+** Remember recent files
+
+`(M-x) recentf-open-file` select a recently opened file from list.
+
+#+begin_src emacs-lisp
+  (recentf-mode 1)
+#+end_src
+
 ** ZSH configuration
 
 https://github.com/Wilfred/ag.el/issues/93
