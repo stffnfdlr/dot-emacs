@@ -81,12 +81,25 @@ https://github.com/Wilfred/ag.el/issues/93
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 #+END_SRC
 
+** Don't pop up UI dialogs
+
+#+begin_src emacs-lisp
+  (setq use-dialog-box nil)
+#+end_src
+
 ** Auto revert
 
 When something changes a file, automatically refresh the buffer containing that file so they can’t get out of sync.
+
 #+BEGIN_SRC emacs-lisp
   (global-auto-revert-mode t)
 #+END_SRC
+
+Apply the same behavior to non-file buffers, such as dired.
+
+#+begin_src emacs-lisp
+  (setq global-auto-revert-non-file-buffers t)
+#+end_src
 
 ** Regions
 
