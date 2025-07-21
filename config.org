@@ -936,6 +936,28 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
     (("C-c p" . projectile-command-map)))
 #+END_SRC
 
+* Spell checking
+
+There is an issue with emacs accessing nix-managed aspell dictionaries. Therefore, we've to set the following env variable manually.
+
+#+begin_src emacs-lisp
+  (setenv "ASPELL_CONF"
+          "dict-dir /nix/store/08nk2825349p9kwpznffh46dqvjlay8w-aspell-dict-en-2020.12.07-0/lib/aspell")
+#+end_src
+
+Run the following cmd to locate it.
+
+#+begin_src shell
+  find /nix/store -type f -name "en_US.multi" 2>/dev/null
+#+end_src
+
+Finally, config ispell with aspell.
+
+#+begin_src emacs-lisp
+  (setq ispell-program-name "aspell")
+  (setq ispell-dictionary "en_US")
+#+end_src
+
 ** Keys
 
 | Binding   | Description            |
