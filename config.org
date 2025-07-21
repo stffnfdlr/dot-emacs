@@ -735,6 +735,10 @@ Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://or
 | `C-c C-x C-a` | Archive subtree                                |
 | `C-c C-l`     | Insert a link                                  |
 | `C-c C-o`     | Open link at point                             |
+| `C-c C-t`     | Change status                                  |
+| `C-c C-d`     | Toggle status                                  |
+| `C-x n s`     | Narrow to task entry at cursor                 |
+| `C-x n w`     | Return from narrow view (widen)                |
 
 ** Snippets
 
@@ -919,6 +923,7 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 #+END_SRC
+
 * Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
@@ -948,6 +953,7 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
     (setenv "PYTHONIOENCODING" "utf-8")
     (setenv "LANG" "en_US.UTF-8"))
 #+END_SRC
+
 * Rainbow delimiters
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
