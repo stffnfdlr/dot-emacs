@@ -651,7 +651,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-startup-indented t
      org-startup-truncated t
      ;; Turn off manual indentation
-     org-adapt-indentation nil
+     org-adapt-indentation t
      org-indent-indentation-per-level 1
      ;; Deactivate ‘^’ and ‘_’ to be used to indicate super- and subscripts
      org-use-sub-superscripts nil
