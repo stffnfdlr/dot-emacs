@@ -458,6 +458,19 @@ Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] bloc
 | `C-C C-c` | Compile buffer |
 | `C-c C-b` | Run buffer     |
 | `C-c C-r` | Run region     |
+* Git changes indicator (diff-hl)
+
+Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommitted git changes.
+
+#+begin_src emacs-lisp
+  (use-package diff-hl
+    :ensure t
+    :pin melpa
+    :config
+    (global-diff-hl-mode)
+    ;; Optional configuration, e.g., for dired
+    (add-hook 'dired-mode-hook 'diff-hl-dired-mode))
+#+end_src
 
 * Ivy
 #+BEGIN_SRC emacs-lisp
