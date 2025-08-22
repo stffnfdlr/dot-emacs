@@ -650,6 +650,12 @@ Changing todo states will invoke the option to take notes and track timestamps d
         (kill-new (org-link-unescape (org-match-string-no-properties 1)))))
     :init
     (setq
+     ;; Never split heading on RET
+     org-M-RET-may-split-line '((default . nil))
+     ;; Insert a new heading at the end of the current subtree.
+     org-insert-heading-respect-content t
+     ;; basic logging when a certain TODO item was marked as done
+     org-log-done 'time
      ;; Enable syntax highlighting in #+BEGIN_SRC sections.
      org-src-fontify-natively t
      ;; Add log/notebook entries into :LOGBOOK: drawer.
@@ -685,7 +691,7 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (setq org-capture-templates
           '(("t" "Todo" entry
              (file+headline todo-file "Inbox")
-             "* TODO %^{Title}\n:LOGBOOK:\n- Added: %U\n:END:\n%?")
+             "* TODO %^{Title}\n:LOGBOOK:\n- Added: %U\n:END:\n:PROPERTIES:\n:URL: %^{URL}\n:END:\n%?")
             ("f" "Todo from file" entry
              (file+headline todo-file "Inbox")
              "* TODO %^{Title}\n:PROPERTIES:\n- File: [[%F][%f]]\n:END:\n:LOGBOOK:\n- Added: %U\n:END:\n%?")
