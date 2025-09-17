@@ -554,8 +554,29 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
   (use-package magit
     :ensure t
     :pin melpa-stable
+    :config
+    (setq magit-status-sections-hook
+          '(magit-insert-status-headers
+            magit-insert-merge-log
+            magit-insert-rebase-sequence
+            magit-insert-am-sequence
+            magit-insert-sequencer-sequence
+            magit-insert-bisect-output
+            magit-insert-bisect-rest
+            magit-insert-bisect-log
+            magit-insert-untracked-files
+            magit-insert-unstaged-changes
+            magit-insert-staged-changes
+            magit-insert-stashes
+            magit-insert-unpulled-from-upstream
+            magit-insert-unpulled-from-pushremote
+            magit-insert-unpushed-to-upstream
+            magit-insert-unpushed-to-pushremote
+            magit-insert-recent-commits))
+    (setq magit-log-section-commit-count 20)
     :bind ("C-x g" . magit-status))
 #+END_SRC
+
 * Markdown mode
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
