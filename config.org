@@ -466,6 +466,11 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
   (use-package diff-hl
     :ensure t
     :pin melpa
+    :init
+    (add-hook 'prog-mode-hook #'diff-hl-mode)
+    (add-hook 'org-mode-hook #'diff-hl-mode)
+    (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
     :config
     (global-diff-hl-mode)
     ;; Optional configuration, e.g., for dired
