@@ -717,22 +717,22 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (setq org-capture-templates
           '(("t" "Todo" entry
              (file+headline todo-file "Inbox")
-             "* TODO %^{Title}\n:LOGBOOK:\n- Added: %U\n:END:\n:PROPERTIES:\n:URL: %^{URL}\n:END:\n%?")
+             "* TODO %^{Title}\n:LOGBOOK:\n- Added: %U\n:END:\n:PROPERTIES:\n:ID: %(org-id-new)\n:URL: %^{URL}\n:END:\n%?")
             ("f" "Todo from file" entry
              (file+headline todo-file "Inbox")
-             "* TODO %^{Title}\n:PROPERTIES:\n- File: [[%F][%f]]\n:END:\n:LOGBOOK:\n- Added: %U\n:END:\n%?")
+             "* TODO %^{Title}\n:PROPERTIES:\n:ID: %(org-id-new)\n- File: [[%F][%f]]\n:END:\n:LOGBOOK:\n- Added: %U\n:END:\n%?")
             ("r" "Toread article" entry
              (file+headline media-file "Reading")
-             "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
+             "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:ID: %(org-id-new)\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
             ("b" "Toread book" entry
              (file+headline media-file "Reading")
-             "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:AUTHOR: %^{Author}\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
+             "* SOMEDAY %^{Title} :READING:\n:PROPERTIES:\n:ID: %(org-id-new)\n:AUTHOR: %^{Author}\n:SOURCE: %^{Source}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
             ("m" "Memex" entry
              (file memex-file)
              "* %^{Title}\n%?")
             ("q" "Quote" entry
              (file quote-file)
-             "* %^{Quote}\n:PROPERTIES:\:AUTHOR: %^{Author}\:SOURCE: %^{Source}\:PAGE: %^{Page}\:END:\:LOGBOOK:\n- Added: %U\n:END:")
+             "* %^{Quote}\n:PROPERTIES:\n:ID: %(org-id-new)\n:AUTHOR: %^{Author}\n:SOURCE: %^{Source}\n:PAGE: %^{Page}\n:END:\n:LOGBOOK:\n- Added: %U\n:END:")
             )
           )
     (setq org-todo-keywords
