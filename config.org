@@ -834,6 +834,27 @@ List of org-mode contributions such as `ob-ledger`.
     :pin elpa-nongnu)
 #+end_src
 
+* Org jounral
+
+#+begin_src emacs-lisp
+      (use-package org-journal
+        :ensure t
+        :defer t
+        :pin melpa-stable
+        :init
+        (setq org-journal-prefix-key "C-c j ")
+        :config
+        (setq
+         org-journal-dir (expand-file-name "journal/" org-directory)
+         org-journal-date-format "%A, %d.%m.%Y"
+         org-journal-file-format "%Y-%m-%d.org"
+         org-journal-file-header "#+title: Week %W, %Y\n#+category: journal\n\n"
+         org-journal-find-file 'find-file
+         org-journal-enable-agenda-integration nil)
+        :custom
+        (add-to-list 'org-agenda-files (expand-file-name "journal/" org-directory)))
+#+end_src
+
 * Org roam
 #+begin_src emacs-lisp
   (use-package org-roam
