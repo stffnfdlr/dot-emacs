@@ -1002,6 +1002,12 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
     (("C-c p" . projectile-command-map)))
 #+END_SRC
 
+** Keys
+
+| Binding   | Description            |
+|-----------+------------------------|
+| `C-c p p` | Jump to/select project |
+
 * Spell checking
 
 There is an issue with emacs accessing nix-managed aspell dictionaries. Therefore, we've to set the following env variable manually.
@@ -1023,12 +1029,6 @@ Finally, config ispell with aspell.
   (setq ispell-program-name "aspell")
   (setq ispell-dictionary "en_US")
 #+end_src
-
-** Keys
-
-| Binding   | Description            |
-|-----------+------------------------|
-| `C-c p p` | Jump to/select project |
 
 * Python
 #+BEGIN_SRC emacs-lisp
