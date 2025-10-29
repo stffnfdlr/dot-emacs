@@ -1023,11 +1023,24 @@ Run the following cmd to locate it.
   find /nix/store -type f -name "en_US.multi" 2>/dev/null
 #+end_src
 
-Finally, config ispell with aspell.
+Set up on-the-fly spellchecking with flyspell and configure ispell.
 
 #+begin_src emacs-lisp
-  (setq ispell-program-name "aspell")
-  (setq ispell-dictionary "en_US")
+  (use-package flyspell
+    :ensure t
+    :init
+    (setq
+     ispell-program-name "aspell"
+     ispell-dictionary "en_US"
+     ispell-extra-args '("--sug-mode=ultra")
+     flyspell-issue-welcome-flag nil
+     flyspell-use-meta-buffer t
+     flyspell-delay 0.3)
+    :hook
+    ((text-mode . flyspell-mode)
+     (org-mode . flyspell-mode))
+    :config
+    (define-key flyspell-mouse-map [mouse-1] 'flyspell-correct-word))
 #+end_src
 
 * Python
