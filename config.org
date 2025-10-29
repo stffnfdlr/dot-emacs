@@ -937,8 +937,17 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
   (use-package smartparens
     :ensure t
     :pin melpa-stable
+    :init
+    ;; make sure strict isn't global
+    (smartparens-global-strict-mode -1)
     :config
-    (progn (show-smartparens-global-mode t))
+    (require 'smartparens-config)
+    (show-smartparens-global-mode t)
+    :hook
+    ((prog-mode . turn-on-smartparens-mode)
+     (prog-mode . turn-on-smartparens-strict-mode)
+     ;; just in case, explicitly off in text modes:
+     (text-mode . turn-off-smartparens-strict-mode))
     :bind
     (("C-M-a" . sp-beginning-of-sexp)
      ("C-M-e" . sp-end-of-sexp)
@@ -984,10 +993,6 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
      ("C-c \"" . wrap-with-double-quotes)
      ("C-c _"  . wrap-with-underscores)
      ("C-c `"  . wrap-with-back-quotes)))
-
-  (add-hook 'org-mode-hook 'turn-on-smartparens-strict-mode)
-  (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-  (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 #+END_SRC
 
 * Projectile
