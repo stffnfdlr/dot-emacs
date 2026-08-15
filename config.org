@@ -470,13 +470,6 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
           ("<return>" . ivy-alt-done)))
 #+END_SRC
 
-* JavaScript
-#+begin_src emacs-lisp
-  (use-package js-mode
-    :ensure nil
-    :mode "\\.js\\'")
-#+end_src
-
 * ESLint
 #+begin_src emacs-lisp
     (use-package eslint-rc
@@ -561,10 +554,8 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
   (use-package markdown-mode
     :ensure t
     :pin melpa-stable
-    :init
-    (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-    (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+    ;; .md and .markdown are registered by the package autoloads already
+    :mode "\\.text\\'")
 #+END_SRC
 * Notmuch
 #+BEGIN_SRC emacs-lisp
@@ -583,9 +574,6 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
     )
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-  (autoload 'notmuch "notmuch" "notmuch mail" t)
-#+END_SRC
 ** Keys
 | Binding | Description                                                           |
 |---------+-----------------------------------------------------------------------|
@@ -1089,7 +1077,7 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
 #+BEGIN_SRC emacs-lisp
   (use-package python
     :ensure nil
-    :mode ("\\.py\\'" . python-mode)
+    :defer t
     :config
     (setq python-indent-offset 2)
     (setq python-shell-interpreter "python3")
