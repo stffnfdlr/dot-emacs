@@ -319,15 +319,19 @@ Load custom themes from `themes/` folder.
   (use-package modus-themes
     :ensure nil
     :init
-    ;; All customizations go here
-    (setq modus-themes-mixed-fonts nil
-          modus-themes-syntax '(green-strings)
-          modus-themes-mode-line '(borderless)
-          modus-themes-org-blocks 'gray-background
-          modus-themes-paren-match '(bold intense))
-    (setq modus-themes-vivendi-color-overrides
-          '((bg-main . "#111212")
-            (fg-main . "#c2c2c2")))
+    ;; All customizations go here. Options from before version 4 are
+    ;; expressed as palette overrides now: green strings, borderless
+    ;; mode line, intense matching parens. Org blocks already get a
+    ;; gray background (bg-dim) by default.
+    (setq modus-themes-mixed-fonts nil)
+    (setq modus-themes-common-palette-overrides
+          '((string green-cooler)
+            (border-mode-line-active unspecified)
+            (border-mode-line-inactive unspecified)
+            (bg-paren-match bg-magenta-intense)))
+    (setq modus-vivendi-palette-overrides
+          '((bg-main "#111212")
+            (fg-main "#c2c2c2")))
     ;; Load theme of choice
     (load-theme 'modus-vivendi)
     :bind ("<f5>" . modus-themes-toggle))
