@@ -334,7 +334,7 @@ Package for jumping to visible text using a char-based decision tree.
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
-    :defer t
+    :hook (after-init . global-company-mode)
     :config
     (setq
      company-tooltip-limit 10
@@ -343,8 +343,7 @@ Package for jumping to visible text using a char-based decision tree.
      company-minimum-prefix-length 1
      company-require-match nil
      company-tooltip-flip-when-above t
-     company-transformers '(company-sort-by-occurrence))
-    :init (global-company-mode))
+     company-transformers '(company-sort-by-occurrence)))
 #+END_SRC
 
 * Counsel
@@ -933,6 +932,8 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
   (use-package smartparens
     :ensure t
     :pin melpa-stable
+    ;; Strict mode is scoped by the :hook entries below: on in
+    ;; prog-mode, explicitly off in text modes, never global.
     :preface
     (defun wrap-with-parens ()
       "Wrap the following sexp or active region in parentheses."
@@ -962,9 +963,6 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
       "Wrap the following sexp or active region in back quotes."
       (interactive)
       (sp-wrap-with-pair "`"))
-    :init
-    ;; make sure strict isn't global
-    (smartparens-global-strict-mode -1)
     :config
     (require 'smartparens-config)
     (show-smartparens-global-mode t)
