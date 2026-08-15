@@ -213,8 +213,8 @@ Disable the default delay.
     ;; Use Command-` to switch between Emacs windows (not frames)
     (bind-key "s-`" 'other-window)
 
-    ;; Use Command-Shift-` to switch Emacs frames in reverse
-    (bind-key "s-~" (lambda() () (interactive) (other-window -1)))
+    ;; Use Command-Shift-` to switch Emacs windows in reverse
+    (bind-key "s-~" (lambda () (interactive) (other-window -1)))
 
     ;; Because of the keybindings above, set one for `other-frame'
     (bind-key "s-1" 'other-frame)
