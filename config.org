@@ -1175,16 +1175,6 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     :config
     (setq typescript-indent-level 2))
 #+end_src
-* Tide
-#+begin_src emacs-lisp
-  (use-package tide
-    :ensure t
-    :pin melpa
-    :after (typescript-mode company flycheck)
-    :hook ((typescript-mode . tide-setup)
-           (typescript-mode . tide-hl-identifier-mode)
-           (before-save . tide-format-before-save)))
-#+end_src
 * vterm
 #+begin_src emacs-lisp
   (use-package vterm

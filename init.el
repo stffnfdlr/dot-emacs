@@ -46,7 +46,7 @@
          ledger-mode magit markdown-mode nix-mode notmuch ob-http
          ob-typescript olivetti org-contrib org-journal org-roam
          ox-gfm plantuml-mode projectile rainbow-delimiters restclient
-         smartparens smex svelte-mode tide typescript-mode web-mode
+         smartparens smex svelte-mode typescript-mode web-mode
          writegood-mode yaml-mode ztree))
  '(sgml-basic-offset 2))
 (custom-set-faces
