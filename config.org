@@ -672,8 +672,10 @@ Changing todo states will invoke the option to take notes and track timestamps d
     (defun org-copy-link-at-point ()
       "Extract the link location at point and put it on the killring."
       (interactive)
-      (when (org-in-regexp org-bracket-link-regexp 1)
-        (kill-new (org-link-unescape (org-match-string-no-properties 1)))))
+      (let ((context (org-element-context)))
+        (if (eq (org-element-type context) 'link)
+            (kill-new (org-element-property :raw-link context))
+          (user-error "No link at point"))))
     :init
     (setq
      ;; Never split heading on RET
