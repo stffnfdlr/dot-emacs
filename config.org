@@ -867,11 +867,19 @@ List of org-mode contributions such as `ob-ledger`.
   (use-package org-roam
     :ensure t
     :pin melpa
+    :preface
+    (defun org-roam-node-insert-immediate (arg &rest args)
+      "Insert a link to a node, creating it without opening a capture buffer."
+      (interactive "P")
+      (let ((args (cons arg args))
+            (org-roam-capture-templates
+             (list (append (car org-roam-capture-templates)
+                           '(:immediate-finish t)))))
+        (apply #'org-roam-node-insert args)))
     :hook
-    (after-init . org-roam-mode)
+    (after-init . org-roam-db-autosync-mode)
     :init
     (setq
-     org-roam-v2-ack t
      find-file-visit-truename t
      org-roam-directory (expand-file-name "roam/" org-directory)
      org-roam-dailies-directory (expand-file-name "roam/daily/" org-directory)
@@ -914,8 +922,7 @@ List of org-mode contributions such as `ob-ledger`.
      '(("d" "default" entry
         "* %?"
         :target (file+head "%<%Y-%m-%d>.org"
-                           "#+title: %<%Y-%m-%d>\n"))))
-    (org-roam-db-autosync-mode))
+                           "#+title: %<%Y-%m-%d>\n")))))
 #+end_src
 
 ** Keys
