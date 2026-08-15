@@ -1052,18 +1052,16 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
 
 #+begin_src emacs-lisp
   (use-package flyspell
-    :ensure t
+    :ensure nil
     :init
     (setq
      ispell-program-name "aspell"
      ispell-dictionary "en_US"
      ispell-extra-args '("--sug-mode=ultra")
      flyspell-issue-welcome-flag nil
-     flyspell-use-meta-buffer t
      flyspell-delay 0.3)
-    :hook
-    ((text-mode . flyspell-mode)
-     (org-mode . flyspell-mode))
+    ;; org-mode derives from text-mode, so one hook covers both
+    :hook (text-mode . flyspell-mode)
     :config
     (define-key flyspell-mouse-map [mouse-1] 'flyspell-correct-word))
 #+end_src
