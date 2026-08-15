@@ -711,9 +711,6 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-src-tab-acts-natively t
      ;; enable rendering of pretty symbols in org buffers by default
      org-pretty-entities t)
-    ;; Sync Google Calendar
-    ;;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch) ))
-    ;;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-fetch) ))
     (setq org-capture-templates
           '(("t" "Todo" entry
              (file+headline todo-file "Inbox")
