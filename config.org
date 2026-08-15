@@ -5,8 +5,18 @@
 
 ** Personal
 
+Private values live in `secrets.el`, which is gitignored. On a fresh machine the file is created with template values, so startup never fails on it — replace the placeholders with real values afterwards.
+
 #+BEGIN_SRC emacs-lisp
-  (load (concat user-emacs-directory "secrets.el"))
+  (let ((secrets-file (concat user-emacs-directory "secrets.el")))
+    (unless (file-exists-p secrets-file)
+      (with-temp-file secrets-file
+        (insert ";;; secrets.el --- private values loaded by config.org\n\n"
+                ";; Replace the template values with your own.\n"
+                "(setq full-name \"Your Name\"\n"
+                "      email-address \"you@example.com\")\n"))
+      (message "Created %s with template values -- please edit it" secrets-file))
+    (load secrets-file))
   (setq user-full-name full-name
         user-mail-address email-address)
 #+END_SRC
