@@ -723,11 +723,10 @@ Changing todo states will invoke the option to take notes and track timestamps d
      ("C-c C-;" . org-copy-link-at-point)))
 #+END_SRC
 
-Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://orgmode.org/manual/Structure-Templates.html#FOOT148). The following fix is taken from an issue [disussion](https://github.com/syl20bnr/spacemacs/issues/11798#issuecomment-456754071).
+Since version 9.2 `<s TAB` does not trigger the `#+BEGIN_SRC` [block](https://orgmode.org/manual/Structure-Templates.html#FOOT148) unless `org-tempo` is loaded. (Fix taken from an issue [disussion](https://github.com/syl20bnr/spacemacs/issues/11798#issuecomment-456754071); the version guard is unnecessary on any Org from the last several years.)
 
 #+BEGIN_SRC emacs-lisp
-  (when (version<= "9.2" (org-version))
-    (require 'org-tempo))
+  (require 'org-tempo)
 #+END_SRC
 
 ** Keys
