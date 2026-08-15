@@ -162,12 +162,12 @@ Make the cursor the full width of the character it is under – e.g. the full wi
   (setq x-stretch-cursor t)
 #+END_SRC
 ** Highlight matching pairs of parentheses
-#+begin_src emacs-lisp
-  (show-paren-mode 1)
-#+end_src
-Disable the default delay.
+
+The mode is on by default since Emacs 28, but re-enable it after zeroing the delay: the idle timer only picks up `show-paren-delay` when the mode is turned on.
+
 #+begin_src emacs-lisp
   (setq show-paren-delay 0)
+  (show-paren-mode 1)
 #+end_src
 * Mac defaults
 #+BEGIN_SRC emacs-lisp
