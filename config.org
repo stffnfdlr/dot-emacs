@@ -802,6 +802,7 @@ To render todays time tracking stats recorded using clock-in and clock-out.
      (latex . t)
      (ledger . t)
      (js . t)
+     (plantuml . t)
      (python . t)
      (shell . t)
      (typescript . t)))
@@ -812,6 +813,15 @@ To render todays time tracking stats recorded using clock-in and clock-out.
     :after (org)
     :ensure t
     :pin melpa)
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package ob-plantuml
+    :ensure nil          ;; it’s part of Org
+    :after org
+    :custom
+    (org-plantuml-exec-mode 'plantuml)
+    (org-plantuml-executable-path "/Users/stffn/.nix-profile/bin/plantuml"))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -926,14 +936,63 @@ Markdown exporter for org.
     :pin melpa)
 #+end_src
 
+* Plantuml
+
+For straightforward creation of a wide array of diagrams.
+
+> Make sure to have the ~plantuml~ executable installed (e.g [[https://search.nixos.org/packages?channel=25.11&show=plantuml&query=plantuml][via nix]]).
+
+#+begin_src emacs-lisp
+  (use-package plantuml-mode
+    :ensure t
+    :pin melpa
+    :mode (("\\.puml\\'" . plantuml-mode)
+           ("\\.plantuml\\'" . plantuml-mode))
+    :custom
+    (plantuml-executable-path "/Users/stffn/.nix-profile/bin/plantuml")
+    (plantuml-default-exec-mode 'executable)
+    :config
+    (with-eval-after-load 'org
+      (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))))
+#+end_src
+
 * Smartparens
 
-Key mapping taken from https://ebzzry.com/en/emacs-pairs/.
+Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` commands bound below are not part of smartparens, so define them here on top of `sp-wrap-with-pair`.
 
 #+BEGIN_SRC emacs-lisp
   (use-package smartparens
     :ensure t
     :pin melpa-stable
+    :preface
+    (defun wrap-with-parens ()
+      "Wrap the following sexp or active region in parentheses."
+      (interactive)
+      (sp-wrap-with-pair "("))
+    (defun wrap-with-brackets ()
+      "Wrap the following sexp or active region in brackets."
+      (interactive)
+      (sp-wrap-with-pair "["))
+    (defun wrap-with-braces ()
+      "Wrap the following sexp or active region in braces."
+      (interactive)
+      (sp-wrap-with-pair "{"))
+    (defun wrap-with-single-quotes ()
+      "Wrap the following sexp or active region in single quotes."
+      (interactive)
+      (sp-wrap-with-pair "'"))
+    (defun wrap-with-double-quotes ()
+      "Wrap the following sexp or active region in double quotes."
+      (interactive)
+      (sp-wrap-with-pair "\""))
+    (defun wrap-with-underscores ()
+      "Wrap the following sexp or active region in underscores."
+      (interactive)
+      (sp-wrap-with-pair "_"))
+    (defun wrap-with-back-quotes ()
+      "Wrap the following sexp or active region in back quotes."
+      (interactive)
+      (sp-wrap-with-pair "`"))
     :init
     ;; make sure strict isn't global
     (smartparens-global-strict-mode -1)
