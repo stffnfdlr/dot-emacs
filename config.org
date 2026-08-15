@@ -416,12 +416,13 @@ For editing 'Dockerfile' formats.
 | `C-- C-=` | retract     |
 * Gnuplot
 Mainly to enable org-babel to execute [[http://www.gnuplot.info/][gnuplot]] blocks.
+
+> Make sure to have the ~gnuplot~ executable installed (e.g. via nix); the default `gnuplot-program` finds it on the PATH.
+
 #+begin_src emacs-lisp
   (use-package gnuplot
     :ensure t
-    :pin melpa-stable
-    :config
-    (setq gnuplot-progam "/usr/local/bin/gnuplot"))
+    :pin melpa-stable)
 #+end_src
 
 | Binding   | Description    |
