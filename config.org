@@ -1198,11 +1198,11 @@ Avoid common mistakes:
     :ensure t
     :pin melpa
     :bind
-    ("C-c g" . writegood-mode)
+    ("C-c C-g w" . writegood-mode)
     ("C-c C-g g" . writegood-grade-level)
     ("C-c C-g e" . writegood-reading-ease))
 #+end_src
 
-| Binding | Description           |
-|---------+-----------------------|
-| `C-c g` | Toggle writegood-mode |
+| Binding     | Description           |
+|-------------+-----------------------|
+| `C-c C-g w` | Toggle writegood-mode |
