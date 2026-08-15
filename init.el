@@ -38,8 +38,6 @@
    '("2ade04230c5a9a82729a33be6e942441942b8532311274b4f8155edcded5b0ca"
      default))
  '(js-indent-level 2 t)
- '(org-agenda-files
-   '("/Users/stffn/Library/Mobile Documents/com~apple~CloudDocs/org/gtd.org"))
  '(package-selected-packages
    '(avy cider company counsel csv-mode diff-hl docker dockerfile-mode
          eslint-rc exec-path-from-shell expand-region gnuplot

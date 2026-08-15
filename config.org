@@ -852,6 +852,9 @@ List of org-mode contributions such as `ob-ledger`.
         :pin melpa-stable
         :init
         (setq org-journal-prefix-key "C-c j ")
+        ;; Include journal entries in the agenda. Done here (not in
+        ;; :config) so it applies at startup, before the package loads.
+        (add-to-list 'org-agenda-files (expand-file-name "journal/" org-directory))
         :config
         (setq
          org-journal-dir (expand-file-name "journal/" org-directory)
@@ -859,9 +862,7 @@ List of org-mode contributions such as `ob-ledger`.
          org-journal-file-format "%Y-%m-%d.org"
          org-journal-file-header "#+title: Week %W, %Y\n#+category: journal\n\n"
          org-journal-find-file 'find-file
-         org-journal-enable-agenda-integration nil)
-        :custom
-        (add-to-list 'org-agenda-files (expand-file-name "journal/" org-directory)))
+         org-journal-enable-agenda-integration nil))
 #+end_src
 
 * Org roam
