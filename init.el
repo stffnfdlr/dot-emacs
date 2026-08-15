@@ -35,10 +35,19 @@
  ;; If there is more than one, they won't work right.
  '(css-indent-offset 2)
  '(custom-safe-themes
-   '("2ade04230c5a9a82729a33be6e942441942b8532311274b4f8155edcded5b0ca" default))
+   '("2ade04230c5a9a82729a33be6e942441942b8532311274b4f8155edcded5b0ca"
+     default))
  '(js-indent-level 2 t)
+ '(org-agenda-files
+   '("/Users/stffn/Library/Mobile Documents/com~apple~CloudDocs/org/gtd.org"))
  '(package-selected-packages
-   '(0blayout nix-mode dockerfile-mode writegood-mode yaml-mode which-key web-mode tide typescript-mode svelte-mode smex restclient rainbow-delimiters projectile smartparens org-roam emacsql-libsqlite3 sqlite3 pomm ox-gfm org-journal use-package org-contrib olivetti ol-notmuch ob-typescript ob-http markdown-mode magit ledger-mode gnuplot focus expand-region exec-path-from-shell eslint-rc emojify elfeed-org docker csv-mode counsel company cider avy))
+   '(avy cider company counsel csv-mode diff-hl docker dockerfile-mode
+         eslint-rc exec-path-from-shell expand-region gnuplot
+         ledger-mode magit markdown-mode nix-mode notmuch ob-http
+         ob-typescript olivetti org-contrib org-journal org-roam
+         ox-gfm plantuml-mode projectile rainbow-delimiters restclient
+         smartparens smex svelte-mode tide typescript-mode web-mode
+         writegood-mode yaml-mode ztree))
  '(sgml-basic-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

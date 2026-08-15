@@ -1176,6 +1176,18 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
            (typescript-mode . tide-hl-identifier-mode)
            (before-save . tide-format-before-save)))
 #+end_src
+* vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :commands (vterm vterm-other-window)
+    :bind (("C-c t" . vterm)
+           ("C-c T" . vterm-other-window))
+    :custom
+    ;; Automatically compile the native module if missing (no prompt):
+    (vterm-always-compile-module t)
+    ;; Increase scrollback if you like:
+    (vterm-max-scrollback 10000))
+#+end_src
 * Web mode
 Prefere `web-mode` over `js-mode`.
 #+begin_src emacs-lisp
