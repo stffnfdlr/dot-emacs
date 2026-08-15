@@ -669,7 +669,6 @@ Changing todo states will invoke the option to take notes and track timestamps d
      org-default-notes-file todo-file
      org-agenda-files (list todo-file)
      calendar-week-start-day 1
-     org-completion-use-ido t
      ;; Indent text lines that are not headlines are prefixed with
      ;; spaces to vertically align with the headline text.
      org-startup-indented t
