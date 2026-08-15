@@ -172,8 +172,6 @@ Disable the default delay.
 * Mac defaults
 #+BEGIN_SRC emacs-lisp
   (when (string-equal system-type "darwin")
-    ;; Non-native fullscreen
-    (setq ns-use-native-fullscreen nil)
     ;; delete files by moving them to the trash
     (setq delete-by-moving-to-trash t)
     (setq trash-directory "~/.Trash")
@@ -439,15 +437,13 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
   (use-package diff-hl
     :ensure t
     :pin melpa
-    :init
-    (add-hook 'prog-mode-hook #'diff-hl-mode)
-    (add-hook 'org-mode-hook #'diff-hl-mode)
-    (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
     :config
+    ;; Covers all file-visiting buffers; dired needs its own mode.
     (global-diff-hl-mode)
-    ;; Optional configuration, e.g., for dired
-    (add-hook 'dired-mode-hook 'diff-hl-dired-mode))
+    (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+    ;; Keep the indicators in sync around magit refreshes.
+    (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 #+end_src
 
 * Ivy
