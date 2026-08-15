@@ -52,9 +52,9 @@ Define base directory for all org files.
 
 *** Package cl is deprecated
 
-Emacs > 27 displays warning when `cl` is required. (see [issue](https://github.com/kiwanami/emacs-epc/issues/35))
+Emacs > 27 displays warning when `cl` is required. (see [issue](https://github.com/kiwanami/emacs-epc/issues/35)) The `not` keeps every other warning enabled and suppresses only this one.
 #+BEGIN_SRC emacs-lisp
-  (setq byte-compile-warnings '(cl-functions))
+  (setq byte-compile-warnings '(not cl-functions))
 #+END_SRC
 
 ** Default directory
