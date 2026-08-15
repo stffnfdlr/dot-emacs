@@ -1139,8 +1139,11 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     :ensure t
     :pin melpa
     :mode (("\\.http\\'" . restclient-mode))
+    :config
+    ;; json-pretty-print-buffer is not autoloaded
+    (require 'json)
     :bind (:map restclient-mode-map
-                ("C-c C-f" . json-mode-beautify)))
+                ("C-c C-f" . json-pretty-print-buffer)))
 #+END_SRC
 * SMEX
 #+BEGIN_SRC emacs-lisp
