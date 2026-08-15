@@ -223,18 +223,14 @@ Switch to next window with `M-o` instead of `C-x o`.
     :ensure nil
     :config
     (setq
-     epa-file-enable t
      epa-file-encrypt-to email-address
-     epa-file-select-keys nil
+     epa-file-select-keys 'silent
      epa-file-cache-passphrase-for-symmetric-encryption t
-     epa-pinentry-mode 'loopback
-     epg-gpg-program "gpg"
-     epg-debug t)
-    :custom
-    (epa-file-select-keys 'silent))
+     epg-pinentry-mode 'loopback
+     epg-gpg-program "gpg"))
 #+END_SRC
 
-Defining `epa-pinentry-mode 'loopback` enables the passphrase entering through minibuffer as pointed out by [[https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html][colinxy]].
+Defining `epg-pinentry-mode 'loopback` enables the passphrase entering through minibuffer as pointed out by [[https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html][colinxy]].
 
 To encrypt any file with a public key associated for a receiver address, add the following line to the beginning of the file.
 
