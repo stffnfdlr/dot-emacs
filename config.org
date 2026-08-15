@@ -247,26 +247,27 @@ max-cache-ttl 7200
 #+END_SRC
 * Fonts
 
-Store the [[https://berkeleygraphics.com/typefaces/berkeley-mono/][Berkeley Mono]] Typeface in size 14 as symbol to use for any typeface decisions.
+Store the [[https://berkeleygraphics.com/typefaces/berkeley-mono/][Berkeley Mono]] Typeface in size 16 as symbol to use for any typeface decisions.
 
 #+begin_src emacs-lisp
   (setq
    global-font "Berkeley Mono-16")
 #+end_src
 
-Set the overall font as general frame font.
+Set the overall font as general frame font and explicitly use it in orgmode's blocks and tables (`fixed-pitch`). Guarded by `find-font` so startup survives when the font is not installed (or the session has no graphical display, as in a terminal or daemon start).
 
 #+BEGIN_SRC emacs-lisp
-  (when (eq system-type 'darwin)
+  (when (find-font (font-spec :name global-font))
     (set-frame-font global-font)
-    ;; Use Spotlight to search with M-x locate
-    (setq locate-command "mdfind"))
+    (set-face-attribute 'fixed-pitch nil :font global-font))
 #+END_SRC
 
-And explicitly use the overall font in orgmode's blocks and tables.
+`M-x locate` searches the system's file index. macOS has no `locate` database, so use Spotlight (`mdfind`) there; every other system keeps Emacs' default `locate` command (provided by e.g. mlocate/plocate on Linux).
 
 #+begin_src emacs-lisp
-  (set-face-attribute 'fixed-pitch nil :font global-font)
+  (when (and (eq system-type 'darwin)
+             (executable-find "mdfind"))
+    (setq locate-command "mdfind"))
 #+end_src
 
 Avoid goofy serif fonts when rendering web content (shr, eww).
