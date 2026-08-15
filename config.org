@@ -21,31 +21,8 @@ Define base directory for all org files.
 
 ** Package archives
 
-#+BEGIN_SRC emacs-lisp
-  (require 'package)
-  (setq package-enable-at-startup nil)
-  (setq package-archives '(("elpa-gnu" . "http://elpa.gnu.org/packages/")
-                           ("elpa-nongnu" . "https://elpa.nongnu.org/nongnu/")
-                           ("melpa-stable" . "http://stable.melpa.org/packages/")
-                           ("melpa" . "http://melpa.org/packages/")))
+Package archives, their priorities, and the `use-package` bootstrap live in `init.el`, since they must be set up before this file is tangled and loaded.
 
-  (setq package-archive-priorities '(("melpa-stable" . 50)
-                                     ("elpa-gnu" . 10)
-                                     ("marmalade" . 10)
-                                     ("melpa" . 0)))
-  (unless package--initialized (package-initialize t))
-  ;; bootstrap use-package (http://www.lunaryorn.com/)
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  ;; and call it?
-  (eval-when-compile (require 'use-package))
-  (when (not package-archive-contents)
-    (package-refresh-contents))
-#+END_SRC
 * Sane defaults
 
 ** Hide warnings

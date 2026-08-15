@@ -9,9 +9,15 @@
 (setq initial-scratch-message "")
 
 ;;; Set up package
+;; Archive names are referenced by the :pin properties in config.org.
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa-stable" . "http://stable.melpa.org/packages/")))
+(setq package-archives '(("elpa-gnu" . "https://elpa.gnu.org/packages/")
+                         ("elpa-nongnu" . "https://elpa.nongnu.org/nongnu/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(setq package-archive-priorities '(("melpa-stable" . 50)
+                                   ("elpa-gnu" . 10)
+                                   ("melpa" . 0)))
 (package-initialize)
 
 ;;; Bootstrap use-package
@@ -20,6 +26,10 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;; On a fresh install, fetch archive contents so :ensure can install packages.
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
 ;; From use-package README
 (eval-when-compile
