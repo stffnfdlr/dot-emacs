@@ -102,6 +102,14 @@ Apply the same behavior to non-file buffers, such as dired.
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 
+** Resize frames pixelwise
+
+By default Emacs resizes frames in whole character-cell steps, which leaves gaps around a maximized window (visible between the frame and the macOS menu bar). Resize by pixels instead.
+
+#+BEGIN_SRC emacs-lisp
+  (setq frame-resize-pixelwise t)
+#+END_SRC
+
 ** Delete by moving to trash
 
 Deleted files go to the system trash instead of vanishing permanently — on every OS. macOS' trash folder is set in [[*Mac defaults]]; elsewhere Emacs follows the freedesktop.org trash specification.
