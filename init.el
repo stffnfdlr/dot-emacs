@@ -1,9 +1,10 @@
-;; Hide UI elements
-(when window-system
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tooltip-mode -1))
+;; Hide UI elements. Unconditional on purpose: under a daemon start
+;; window-system is nil during init, but these global modes also
+;; govern GUI frames created later by emacsclient.
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(tooltip-mode -1)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
