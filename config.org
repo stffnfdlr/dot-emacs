@@ -23,10 +23,17 @@ Private values live in `secrets.el`, which is gitignored. On a fresh machine the
 
 ** Paths
 
-Define base directory for all org files.
+Define the base directory for all org files — the single machine-specific data root; every other org path derives from it. Resolution is by existence, not by OS: take the first candidate directory that exists (iCloud on a synced Mac, `~/org/` elsewhere), and on a fresh machine create `~/org/` so startup always succeeds.
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-directory "~/Library/Mobile Documents/com~apple~CloudDocs/org/")
+  (setq org-directory
+        (or (seq-find #'file-directory-p
+                      (list (expand-file-name "~/Library/Mobile Documents/com~apple~CloudDocs/org/")
+                            (expand-file-name "~/org/")))
+            (let ((dir (expand-file-name "~/org/")))
+              (make-directory dir t)
+              (message "Created %s as org-directory" dir)
+              dir)))
 #+END_SRC
 
 ** Package archives
@@ -59,14 +66,6 @@ Defines user root as default directory.
 #+begin_src emacs-lisp
   (recentf-mode 1)
 #+end_src
-
-** ZSH configuration
-
-https://github.com/Wilfred/ag.el/issues/93
-
-#+BEGIN_SRC emacs-lisp
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-#+END_SRC
 
 ** Don't pop up UI dialogs
 
@@ -290,7 +289,7 @@ Avoid goofy serif fonts when rendering web content (shr, eww).
 Load custom themes from `themes/` folder.
 
 #+begin_src emacs-lisp
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+  (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 #+end_src
 
 ** Modus
@@ -409,7 +408,15 @@ For editing 'Dockerfile' formats.
     :ensure t
     :pin melpa-stable)
 
-  (when (memq window-system '(mac ns x))
+  ;; Besides PATH, import NIX_PROFILES: nix-patched tools rely on it,
+  ;; e.g. aspell locates its dictionaries through it. GUI-launched
+  ;; Emacs doesn't inherit it from launchd.
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "NIX_PROFILES"))
+
+  ;; pgtk covers Wayland builds; daemonp covers daemon starts, where
+  ;; window-system is nil during init.
+  (when (or (memq window-system '(mac ns x pgtk))
+            (daemonp))
     (exec-path-from-shell-initialize))
 #+END_SRC
 * Expand region
@@ -789,7 +796,7 @@ To render todays time tracking stats recorded using clock-in and clock-out.
     :after org
     :custom
     (org-plantuml-exec-mode 'plantuml)
-    (org-plantuml-executable-path "/Users/stffn/.nix-profile/bin/plantuml"))
+    (org-plantuml-executable-path (executable-find "plantuml")))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -820,7 +827,10 @@ List of org-mode contributions such as `ob-ledger`.
         (setq org-journal-prefix-key "C-c j ")
         ;; Include journal entries in the agenda. Done here (not in
         ;; :config) so it applies at startup, before the package loads.
-        (add-to-list 'org-agenda-files (expand-file-name "journal/" org-directory))
+        ;; Created if missing: the agenda errors on nonexistent entries.
+        (let ((dir (expand-file-name "journal/" org-directory)))
+          (make-directory dir t)
+          (add-to-list 'org-agenda-files dir))
         :config
         (setq
          org-journal-dir (expand-file-name "journal/" org-directory)
@@ -853,6 +863,9 @@ List of org-mode contributions such as `ob-ledger`.
      org-roam-directory (expand-file-name "roam/" org-directory)
      org-roam-dailies-directory (expand-file-name "roam/daily/" org-directory)
      org-roam-db-location (expand-file-name "roam/roam.sqlite" org-directory))
+    ;; Self-provision the note directories: db autosync at startup
+    ;; errors when org-roam-directory does not exist.
+    (make-directory org-roam-dailies-directory t)
     :bind
     (("C-c n g" . org-roam-graph)
      ("C-c n t" . org-roam-tag-add)
@@ -925,7 +938,7 @@ For straightforward creation of a wide array of diagrams.
     :mode (("\\.puml\\'" . plantuml-mode)
            ("\\.plantuml\\'" . plantuml-mode))
     :custom
-    (plantuml-executable-path "/Users/stffn/.nix-profile/bin/plantuml")
+    (plantuml-executable-path (executable-find "plantuml"))
     (plantuml-default-exec-mode 'executable)
     :config
     (with-eval-after-load 'org
@@ -1046,17 +1059,13 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
 
 * Spell checking
 
-There is an issue with emacs accessing nix-managed aspell dictionaries. Therefore, we've to set the following env variable manually.
+Nix installs the dictionaries into the profile, but aspell resolves an explicitly named dictionary (ispell calls it with `-d en_US`) only against its built-in `dict-dir`, which points into aspell's own store path. Point it at the profile's dictionary directory instead — a stable symlink that survives store garbage collection, unlike hardcoded `/nix/store/...` hashes. Guarded by existence so non-nix machines are untouched, and an `ASPELL_CONF` provided by the environment always wins.
 
 #+begin_src emacs-lisp
-  (setenv "ASPELL_CONF"
-          "dict-dir /nix/store/08nk2825349p9kwpznffh46dqvjlay8w-aspell-dict-en-2020.12.07-0/lib/aspell")
-#+end_src
-
-Run the following cmd to locate it.
-
-#+begin_src shell
-  find /nix/store -type f -name "en_US.multi" 2>/dev/null
+  (let ((dict-dir (expand-file-name "~/.nix-profile/lib/aspell")))
+    (when (and (file-directory-p dict-dir)
+               (not (getenv "ASPELL_CONF")))
+      (setenv "ASPELL_CONF" (concat "dict-dir " dict-dir))))
 #+end_src
 
 Set up on-the-fly spellchecking with flyspell and configure ispell.
