@@ -102,6 +102,14 @@ Apply the same behavior to non-file buffers, such as dired.
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 
+** Delete by moving to trash
+
+Deleted files go to the system trash instead of vanishing permanently — on every OS. macOS' trash folder is set in [[*Mac defaults]]; elsewhere Emacs follows the freedesktop.org trash specification.
+
+#+BEGIN_SRC emacs-lisp
+  (setq delete-by-moving-to-trash t)
+#+END_SRC
+
 ** Stop creating backup files
 
 Save and commit often instead of relying on emacs' automatic backup~ files.
@@ -181,8 +189,8 @@ The mode is on by default since Emacs 28, but re-enable it after zeroing the del
 * Mac defaults
 #+BEGIN_SRC emacs-lisp
   (when (string-equal system-type "darwin")
-    ;; delete files by moving them to the trash
-    (setq delete-by-moving-to-trash t)
+    ;; macOS' own trash folder; other systems follow the
+    ;; freedesktop.org spec when this stays nil
     (setq trash-directory "~/.Trash")
 
     ;; Don't make new frames when opening a new file with Emacs
