@@ -1158,7 +1158,7 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
   (use-package typescript-mode
     :ensure t
     :pin melpa-stable
-    :mode (".ts$")
+    :mode "\\.ts\\'"
     :config
     (setq typescript-indent-level 2))
 #+end_src
@@ -1169,9 +1169,9 @@ Prefere `web-mode` over `js-mode`.
     :ensure t
     :pin melpa-stable
     :mode
-    (".css$"
-     ".html$"
-     ".tsx$")
+    ("\\.css\\'"
+     "\\.html\\'"
+     "\\.tsx\\'")
     :config
     (setq
      web-mode-markup-indent-offset 2
@@ -1213,7 +1213,7 @@ When saving delete all trailing whitespaces.
   (use-package yaml-mode
     :ensure t
     :pin melpa
-    :mode ".yaml$")
+    :mode "\\.ya?ml\\'")
 #+end_src
 * Writegood
 Write clearly, easy to read, consice with the help of [[http://bnbeckwith.com/code/writegood-mode.html][writegood-mode]]. Inspired by [[https://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/][Matt Might's]] bash scripts.
