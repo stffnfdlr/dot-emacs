@@ -56,7 +56,7 @@
          ob-typescript olivetti org-contrib org-journal org-roam
          ox-gfm plantuml-mode projectile rainbow-delimiters restclient
          smartparens smex svelte-mode typescript-mode web-mode
-         writegood-mode yaml-mode ztree))
+         writegood-mode yaml-mode))
  '(sgml-basic-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
