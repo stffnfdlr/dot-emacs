@@ -159,9 +159,12 @@ Set default tab char's display width to 4 spaces.
   (delete-selection-mode 1)
 #+END_SRC
 ** Enable systems clipboard manager interactions
+
+Kills fill the system clipboard, and the X primary selection (mouse-selected text on Linux) is honored too.
+
 #+BEGIN_SRC emacs-lisp
-  (setq x-select-enable-clipboard t
-        x-select-enable-primary t)
+  (setq select-enable-clipboard t
+        select-enable-primary t)
 #+END_SRC
 ** Stop 'donking
 No negative speaker feedback.
