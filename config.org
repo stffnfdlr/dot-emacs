@@ -447,6 +447,11 @@ For editing 'Dockerfile' formats.
   ;; Emacs doesn't inherit it from launchd.
   (setq exec-path-from-shell-variables '("PATH" "MANPATH" "NIX_PROFILES"))
 
+  ;; A non-interactive login shell suffices for reading environment
+  ;; variables. The default adds -i for some shells (zsh, bash), whose
+  ;; interactive init makes the call many times slower.
+  (setq exec-path-from-shell-arguments '("-l"))
+
   ;; pgtk covers Wayland builds; daemonp covers daemon starts, where
   ;; window-system is nil during init.
   (when (or (memq window-system '(mac ns x pgtk))
