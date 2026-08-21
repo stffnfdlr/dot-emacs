@@ -1200,15 +1200,13 @@ Prefere `web-mode` over `js-mode`.
      web-mode-enable-current-element-highlight t))
 #+end_src
 * Which key
-[Which key](https://github.com/justbur/emacs-which-key) displays the key bindings following the currently entered incomplete command in a popup.
+Which key displays the key bindings following the currently entered incomplete command in a popup. Built into Emacs since version 30.
 #+begin_src emacs-lisp
   (use-package which-key
-    :ensure t
-    :pin melpa-stable
-    :defer 0
+    :ensure nil
     :diminish which-key-mode
+    :hook (after-init . which-key-mode)
     :config
-    (which-key-mode)
     (setq which-key-idle-delay 1))
 #+end_src
 * Writing
