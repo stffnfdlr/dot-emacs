@@ -50,7 +50,7 @@
      default))
  '(js-indent-level 2 t)
  '(package-selected-packages
-   '(avy cider company counsel csv-mode diff-hl docker dockerfile-mode
+   '(avy cider company counsel csv-mode diff-hl diminish docker dockerfile-mode
          eslint-rc exec-path-from-shell expand-region gnuplot
          ledger-mode magit markdown-mode nix-mode notmuch ob-http
          ob-typescript olivetti org-contrib org-journal org-roam

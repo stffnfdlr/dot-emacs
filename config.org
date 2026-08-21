@@ -402,6 +402,16 @@ Package for jumping to visible text using a char-based decision tree.
 |-----------+--------------------------------------|
 | `C-c C-a` | Aligns column width to maximum width |
 | `C-c C-u` | Undoes alignment, to source          |
+* Diminish
+
+Hide minor-mode lighters from the mode line; consumed by the `:diminish` keyword in use-package blocks (projectile, which-key).
+
+#+begin_src emacs-lisp
+  (use-package diminish
+    :ensure t
+    :pin melpa-stable)
+#+end_src
+
 * Docker
 
 [docker.el](https://github.com/Silex/docker.el) supports docker containers, images, volumes, networks and docker-compose.
