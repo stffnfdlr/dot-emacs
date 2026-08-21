@@ -530,6 +530,8 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
       :pin melpa
       :hook
       ((typescript-mode . eslint-rc-mode)
+       (typescript-ts-mode . eslint-rc-mode)
+       (tsx-ts-mode . eslint-rc-mode)
        (js-mode . eslint-rc-mode)
        (web-mode . eslint-rc-mode)
        (svelte-mode . eslint-rc-mode))
@@ -571,7 +573,9 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
      ((css-mode . eglot-ensure)
       (js-mode . eglot-ensure)
       (python-mode . eglot-ensure)
-      (typescript-mode . eglot-ensure)))
+      (typescript-mode . eglot-ensure)
+      (typescript-ts-mode . eglot-ensure)
+      (tsx-ts-mode . eglot-ensure)))
 #+end_src
 
 * Magit
@@ -1164,9 +1168,10 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     :bind (:map restclient-mode-map
                 ("C-c C-f" . json-pretty-print-buffer)))
 #+END_SRC
-* SMEX
+* Amx
+Frecency ranking for `M-x`; counsel picks it up automatically. Successor of the unmaintained smex.
 #+BEGIN_SRC emacs-lisp
-  (use-package smex
+  (use-package amx
     :ensure t
     :pin melpa-stable)
 #+END_SRC
@@ -1196,6 +1201,30 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     :mode "\\.ts\\'"
     :config
     (setq typescript-indent-level 2))
+#+end_src
+* Tree-sitter
+
+Emacs 30 ships tree-sitter major modes for several languages. Use them whenever the corresponding grammar library is installed, falling back to the classic modes otherwise. Grammars install with `M-x treesit-install-language-grammar` (needs git and a C compiler); the source list below makes that work out of the box.
+
+#+begin_src emacs-lisp
+  (when (and (fboundp 'treesit-available-p)
+             (treesit-available-p))
+    (setq treesit-language-source-alist
+          '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+            (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+            (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+            (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")))
+    ;; Remap a classic mode to its ts counterpart only when the
+    ;; grammar is actually available.
+    (dolist (spec '((typescript typescript-mode typescript-ts-mode)
+                    (yaml yaml-mode yaml-ts-mode)
+                    (dockerfile dockerfile-mode dockerfile-ts-mode)))
+      (when (treesit-language-available-p (car spec))
+        (add-to-list 'major-mode-remap-alist (cons (nth 1 spec) (nth 2 spec)))))
+    ;; .tsx is owned by web-mode, which must not be remapped wholesale
+    ;; (it also serves .html); claim the extension directly instead.
+    (when (treesit-language-available-p 'tsx)
+      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))))
 #+end_src
 * Web mode
 For mixed-content templates and JSX/TSX. Plain `.css` files open in the built-in `css-mode` instead, where the eglot hook (see [[*Langauge server (Eglot)]]) provides LSP support.
