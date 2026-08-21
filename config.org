@@ -275,12 +275,20 @@ Store the [[https://berkeleygraphics.com/typefaces/berkeley-mono/][Berkeley Mono
    global-font "Berkeley Mono-16")
 #+end_src
 
-Set the overall font as general frame font and explicitly use it in orgmode's blocks and tables (`fixed-pitch`). Guarded by `find-font` so startup survives when the font is not installed (or the session has no graphical display, as in a terminal or daemon start).
+Set the overall font as general frame font and explicitly use it in orgmode's blocks and tables (`fixed-pitch`). Guarded by `find-font` so startup survives when the font is not installed. Under a daemon start no display exists during init and `find-font` cannot see any fonts, so the application is deferred to the first GUI frame; from there `set-frame-font` with `FRAMES` = t covers all future frames and the hook removes itself.
 
 #+BEGIN_SRC emacs-lisp
-  (when (find-font (font-spec :name global-font))
-    (set-frame-font global-font)
-    (set-face-attribute 'fixed-pitch nil :font global-font))
+  (defun global-font-apply ()
+    "Apply `global-font' frame-wide once a graphical display can verify it."
+    (when (and (display-graphic-p)
+               (find-font (font-spec :name global-font)))
+      (set-frame-font global-font nil t)
+      (set-face-attribute 'fixed-pitch nil :font global-font)
+      (remove-hook 'server-after-make-frame-hook #'global-font-apply)))
+
+  (if (daemonp)
+      (add-hook 'server-after-make-frame-hook #'global-font-apply)
+    (global-font-apply))
 #+END_SRC
 
 `M-x locate` searches the system's file index. macOS has no `locate` database, so use Spotlight (`mdfind`) there; every other system keeps Emacs' default `locate` command (provided by e.g. mlocate/plocate on Linux).
