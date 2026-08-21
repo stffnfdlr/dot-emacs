@@ -42,15 +42,6 @@ Package archives, their priorities, and the `use-package` bootstrap live in `ini
 
 * Sane defaults
 
-** Hide warnings
-
-*** Package cl is deprecated
-
-Emacs > 27 displays warning when `cl` is required. (see [issue](https://github.com/kiwanami/emacs-epc/issues/35)) The `not` keeps every other warning enabled and suppresses only this one.
-#+BEGIN_SRC emacs-lisp
-  (setq byte-compile-warnings '(not cl-functions))
-#+END_SRC
-
 ** Default directory
 
 Defines user root as default directory.
@@ -1224,7 +1215,7 @@ Which key displays the key bindings following the currently entered incomplete c
 ** Remove dangling whitespaces
 When saving delete all trailing whitespaces.
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'write-file-hooks 'delete-trailing-whitespace)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+END_SRC
 * Yaml
 #+begin_src emacs-lisp
