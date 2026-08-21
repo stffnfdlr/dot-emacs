@@ -21,21 +21,13 @@
                                    ("melpa" . 0)))
 (package-initialize)
 
-;;; Bootstrap use-package
-;; Install use-package if it's not already installed.
-;; use-package is used to configure the rest of the packages.
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;;; use-package and bind-key are built into Emacs since version 29.
+(require 'use-package)
+(require 'bind-key)
 
 ;; On a fresh install, fetch archive contents so :ensure can install packages.
 (when (not package-archive-contents)
   (package-refresh-contents))
-
-;; From use-package README
-(eval-when-compile
-  (require 'use-package))
-(require 'bind-key)
 
 ;;; Load config
 (org-babel-load-file (concat user-emacs-directory "config.org"))
