@@ -1067,7 +1067,7 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
     :ensure t
     :pin melpa-stable
     :config
-    (projectile-global-mode)
+    (projectile-mode +1)
     :bind-keymap
     (("C-c p" . projectile-command-map)))
 #+END_SRC
