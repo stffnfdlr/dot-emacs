@@ -93,6 +93,15 @@ Apply the same behavior to non-file buffers, such as dired.
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 
+** Don't minimize frames
+
+`C-z` iconifies GUI frames (to the dock on macOS, the taskbar on Linux) — never wanted. Disabling `suspend-frame` also covers its `C-x C-z` binding with a confirmation prompt. On a tty, `M-x suspend-emacs` remains available for shell job control.
+
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-z"))
+  (put 'suspend-frame 'disabled t)
+#+END_SRC
+
 ** Resize frames pixelwise
 
 By default Emacs resizes frames in whole character-cell steps, which leaves gaps around a maximized window (visible between the frame and the macOS menu bar). Resize by pixels instead.
@@ -220,13 +229,8 @@ The mode is on by default since Emacs 28, but re-enable it after zeroing the del
     (bind-key "s-{" 'previous-buffer)
     (bind-key "s-}" 'next-buffer)
 
-    ;; disable the key that minimizes emacs to the dock because I don't
-    ;; minimize my windows
-    (global-unset-key (kbd "C-z"))
-
-    ;; Not going to use these commands
-    (put 'ns-print-buffer 'disabled t)
-    (put 'suspend-frame 'disabled t))
+    ;; Not going to use this command
+    (put 'ns-print-buffer 'disabled t))
 #+END_SRC
 * Navigating buffers
 Switch to next window with `M-o` instead of `C-x o`.
