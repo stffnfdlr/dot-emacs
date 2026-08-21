@@ -158,8 +158,10 @@ Set default tab char's display width to 4 spaces.
 
 ** 'y' or 'n' short handles will do
 
+The supported switch since Emacs 28, replacing the old `(defalias 'yes-or-no-p 'y-or-n-p)` hack.
+
 #+BEGIN_SRC emacs-lisp
-  (defalias 'yes-or-no-p 'y-or-n-p)
+  (setq use-short-answers t)
 #+END_SRC
 
 ** Replace selected with any kind of input
