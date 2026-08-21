@@ -1037,7 +1037,10 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
      ;; just in case, explicitly off in text modes:
      (text-mode . turn-off-smartparens-strict-mode))
     :bind
-    (("C-M-a" . sp-beginning-of-sexp)
+    ;; Scoped to smartparens buffers (prog-mode via the hooks above):
+    ;; in all other buffers C-k, C-M-f etc. keep their vanilla meaning.
+    (:map smartparens-mode-map
+     ("C-M-a" . sp-beginning-of-sexp)
      ("C-M-e" . sp-end-of-sexp)
 
      ("C-<down>" . sp-down-sexp)
