@@ -821,15 +821,9 @@ To render todays time tracking stats recorded using clock-in and clock-out.
      (plantuml . t)
      (python . t)
      (shell . t)
-     (typescript . t)))
+     (typescript . t)
+     (verb . t)))
 #+END_SRC
-
-#+begin_src emacs-lisp
-  (use-package ob-http
-    :after (org)
-    :ensure t
-    :pin melpa)
-#+end_src
 
 #+begin_src emacs-lisp
   (use-package ob-plantuml
@@ -1156,18 +1150,26 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
-* Restclient
+* Verb
+
+HTTP requests from org files, replacing the unmaintained restclient and ob-http: headings tagged `:verb:` hold request specs (method, URL, headers, body), and responses arrive pretty-printed in their own buffer. Request chaining and variables are covered in the [[https://github.com/federicotdn/verb][manual]].
+
 #+BEGIN_SRC emacs-lisp
-  (use-package restclient
+  (use-package verb
     :ensure t
-    :pin melpa
-    :mode (("\\.http\\'" . restclient-mode))
+    :pin melpa-stable
+    :after org
     :config
-    ;; json-pretty-print-buffer is not autoloaded
-    (require 'json)
-    :bind (:map restclient-mode-map
-                ("C-c C-f" . json-pretty-print-buffer)))
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 #+END_SRC
+
+** Keys
+
+| Binding       | Description                            |
+|---------------+----------------------------------------|
+| `C-c C-r C-r` | Send request at point                  |
+| `C-c C-r C-s` | Send request, other window, stay       |
+| `C-c C-r C-f` | Send request, show response body only  |
 * Amx
 Frecency ranking for `M-x`; counsel picks it up automatically. Successor of the unmaintained smex.
 #+BEGIN_SRC emacs-lisp

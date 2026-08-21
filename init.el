@@ -43,10 +43,10 @@
  '(package-selected-packages
    '(amx avy cider company counsel csv-mode diff-hl diminish docker dockerfile-mode
          eslint-rc exec-path-from-shell expand-region gnuplot
-         ledger-mode magit markdown-mode nix-mode notmuch ob-http
+         ledger-mode magit markdown-mode nix-mode notmuch
          ob-typescript olivetti org-contrib org-journal org-roam
-         ox-gfm plantuml-mode projectile rainbow-delimiters restclient
-         smartparens svelte-mode typescript-mode web-mode
+         ox-gfm plantuml-mode projectile rainbow-delimiters
+         smartparens svelte-mode typescript-mode verb web-mode
          writegood-mode yaml-mode))
  '(sgml-basic-offset 2))
 (custom-set-faces
