@@ -1183,14 +1183,13 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     (setq typescript-indent-level 2))
 #+end_src
 * Web mode
-Prefere `web-mode` over `js-mode`.
+For mixed-content templates and JSX/TSX. Plain `.css` files open in the built-in `css-mode` instead, where the eglot hook (see [[*Langauge server (Eglot)]]) provides LSP support.
 #+begin_src emacs-lisp
   (use-package web-mode
     :ensure t
     :pin melpa-stable
     :mode
-    ("\\.css\\'"
-     "\\.html\\'"
+    ("\\.html\\'"
      "\\.tsx\\'")
     :config
     (setq
