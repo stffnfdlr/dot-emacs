@@ -700,7 +700,6 @@ Changing todo states will invoke the option to take notes and track timestamps d
      ;; Indent text lines that are not headlines are prefixed with
      ;; spaces to vertically align with the headline text.
      org-startup-indented t
-     org-startup-truncated t
      ;; Turn off manual indentation: org-indent-mode (above) indents
      ;; virtually; adapting would additionally write real spaces into
      ;; the files.
