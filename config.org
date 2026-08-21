@@ -606,10 +606,14 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
     :mode "\\.text\\'")
 #+END_SRC
 * Notmuch
+
+Wired up only when the ~notmuch~ CLI is installed — the elisp is useless without it. Mind the version lock: `notmuch.el` refuses to talk to a CLI of a different version, so when installing the CLI (e.g. via nix), keep the pinned package in step or use the lisp bundled with the CLI package.
+
 #+BEGIN_SRC emacs-lisp
   (use-package notmuch
     :ensure t
     :pin melpa-stable
+    :if (executable-find "notmuch")
     :bind ("C-c m" . notmuch)
     :init
     (setq notmuch-saved-searches
