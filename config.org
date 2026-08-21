@@ -1125,8 +1125,14 @@ Set up on-the-fly spellchecking with flyspell and configure ispell.
     :config
     (setq python-indent-offset 2)
     (setq python-shell-interpreter "python3")
-    (setenv "PYTHONIOENCODING" "utf-8")
-    (setenv "LANG" "en_US.UTF-8"))
+    ;; GUI-launched Emacs has no locale in its environment (launchd),
+    ;; which trips Python's encoding detection. Fill the gap only when
+    ;; the environment provides no value -- a properly configured
+    ;; session (e.g. a Linux desktop with its own locale) is untouched.
+    (unless (getenv "PYTHONIOENCODING")
+      (setenv "PYTHONIOENCODING" "utf-8"))
+    (unless (getenv "LANG")
+      (setenv "LANG" "en_US.UTF-8")))
 #+END_SRC
 
 * Rainbow delimiters
