@@ -42,7 +42,7 @@
      default))
  '(package-selected-packages
    '(amx apheleia avy cider company counsel csv-mode diff-hl diminish docker
-         dockerfile-mode exec-path-from-shell expand-region gnuplot
+         dockerfile-mode exec-path-from-shell expand-region gnuplot jinx
          ledger-mode magit markdown-mode nix-mode notmuch
          ob-typescript olivetti org-contrib org-journal org-roam
          ox-gfm plantuml-mode projectile rainbow-delimiters

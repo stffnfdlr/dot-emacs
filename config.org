@@ -1111,11 +1111,34 @@ Nix installs the dictionaries into the profile, but aspell resolves an explicitl
       (setenv "ASPELL_CONF" (concat "dict-dir " dict-dir))))
 #+end_src
 
-Set up on-the-fly spellchecking with flyspell and configure ispell.
+On-the-fly spellchecking with [[https://github.com/minad/jinx][jinx]] where libenchant is available: it checks only the visible text through a native module, which makes it much faster than flyspell, and enchant's aspell backend reads the same dictionaries (honoring `ASPELL_CONF` above). The module compiles itself on first activation (needs a C compiler). Install the dependencies with:
+
+#+begin_src shell
+  nix profile install nixpkgs#enchant nixpkgs#pkg-config
+#+end_src
+
+#+begin_src emacs-lisp
+  (defun enchant-available-p ()
+    "Whether libenchant is installed, as required by jinx."
+    (and (executable-find "pkg-config")
+         (eq 0 (call-process "pkg-config" nil nil nil "--exists" "enchant-2"))))
+
+  (use-package jinx
+    :ensure t
+    :pin elpa-gnu
+    :if (enchant-available-p)
+    :hook (emacs-startup . global-jinx-mode)
+    :custom (jinx-languages "en_US")
+    :bind (("M-$" . jinx-correct)
+           ("C-M-$" . jinx-languages)))
+#+end_src
+
+Without libenchant, flyspell serves as the fallback so spellchecking never silently disappears.
 
 #+begin_src emacs-lisp
   (use-package flyspell
     :ensure nil
+    :if (not (enchant-available-p))
     :init
     (setq
      ispell-program-name "aspell"
