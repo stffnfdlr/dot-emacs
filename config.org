@@ -523,23 +523,28 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
           ("<return>" . ivy-alt-done)))
 #+END_SRC
 
-* ESLint
+* Apheleia
+
+Asynchronous format-on-save, replacing the unmaintained eslint-rc: the buffer is formatted by the project's own formatter (prettier through `node_modules/.bin` when present, via `apheleia-npx`) and the result is applied without moving point or blocking the save. Scoped to web-stack modes instead of `apheleia-global-mode` so other languages only format when explicitly opted in — see `apheleia-mode-alist` for the mode → formatter mapping.
+
 #+begin_src emacs-lisp
-    (use-package eslint-rc
-      :ensure t
-      :pin melpa
-      :hook
-      ((typescript-mode . eslint-rc-mode)
-       (typescript-ts-mode . eslint-rc-mode)
-       (tsx-ts-mode . eslint-rc-mode)
-       (js-mode . eslint-rc-mode)
-       (web-mode . eslint-rc-mode)
-       (svelte-mode . eslint-rc-mode))
-      :config
-      (setq
-       eslint-rc-use-node-modules-bin t
-       eslint-rc-use-eslintignore t
-       eslint-rc-use-package-json t))
+  (use-package apheleia
+    :ensure t
+    :pin melpa-stable
+    :init
+    ;; The mode line entry references this variable dynamically, so
+    ;; hiding works without loading the package (its autoloaded
+    ;; apheleia-mode defers loading until the first save, which is
+    ;; also why :diminish would not apply here).
+    (setq apheleia-mode-lighter nil)
+    :hook
+    ((typescript-mode . apheleia-mode)
+     (typescript-ts-mode . apheleia-mode)
+     (tsx-ts-mode . apheleia-mode)
+     (js-mode . apheleia-mode)
+     (web-mode . apheleia-mode)
+     (css-mode . apheleia-mode)
+     (svelte-mode . apheleia-mode)))
 #+end_src
 * Ledger
 #+BEGIN_SRC emacs-lisp
