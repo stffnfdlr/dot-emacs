@@ -10,7 +10,9 @@
 backup/
 
 # Packages and subfolders
+eln-cache/
 elpa/
+tree-sitter/
 elfeed*
 emojis/
 history
@@ -28,6 +30,7 @@ custom.el
 .org-*
 config.el
 ac-comphist.dat
+amx-items
 auto-save-last/
 bookmarks
 eshell
@@ -39,6 +42,7 @@ nov-places
 org-roam.db
 pomm
 projectile-bookmarks.eld
+projectile-frecency.eld
 recentf
 tramp
 url
