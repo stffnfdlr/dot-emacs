@@ -362,35 +362,133 @@ Package for jumping to visible text using a char-based decision tree.
     :config
     (setq nrepl-use-ssh-fallback-for-remote-hosts t))
 #+END_SRC
-* Company
+* Corfu
+
+In-buffer completion popup, the `completion-at-point`-native successor to company: capf backends (eglot, elisp, …) plug in without adapters. Settings mirror the previous company behavior (popup after 0.3s from the first character, ten candidates).
+
 #+BEGIN_SRC emacs-lisp
-  (use-package company
+  (use-package corfu
     :ensure t
-    :hook (after-init . global-company-mode)
-    :config
-    (setq
-     company-tooltip-limit 10
-     company-idle-delay 0.3
-     company-echo-delay 0
-     company-minimum-prefix-length 1
-     company-require-match nil
-     company-tooltip-flip-when-above t
-     company-transformers '(company-sort-by-occurrence)))
+    :pin elpa-gnu
+    :custom
+    (corfu-auto t)
+    (corfu-auto-delay 0.3)
+    (corfu-auto-prefix 1)
+    (corfu-count 10)
+    (corfu-cycle t)
+    :init
+    (global-corfu-mode))
 #+END_SRC
 
-* Counsel
-#+BEGIN_SRC emacs-lisp
-  (use-package counsel
+* Minibuffer completion
+
+The vertico family replaces ivy, counsel, swiper and amx. It builds on the standard `completing-read` API, so every package — magit, projectile, org, whatever comes next — gets the same UI without per-package glue commands or settings.
+
+** Vertico
+
+Vertical minibuffer UI. `savehist-mode` persists minibuffer histories across sessions; vertico sorts by recency from it, which covers the command ranking amx used to provide for `M-x`.
+
+#+begin_src emacs-lisp
+  (use-package vertico
     :ensure t
-    :pin melpa-stable
+    :pin elpa-gnu
+    :init
+    (setq enable-recursive-minibuffers t)
+    (savehist-mode 1)
+    (vertico-mode 1))
+#+end_src
+
+Directory-wise editing in file prompts: `RET` enters a directory instead of finishing, `DEL` deletes whole path components — the old `ivy-alt-done` feel.
+
+#+begin_src emacs-lisp
+  (use-package vertico-directory
+    :ensure nil ;; ships with vertico
+    :after vertico
+    :bind (:map vertico-map
+                ("RET" . vertico-directory-enter)
+                ("DEL" . vertico-directory-delete-char)
+                ("M-DEL" . vertico-directory-delete-word)))
+#+end_src
+
+Resume the last minibuffer session, replacing `ivy-resume` on its old binding.
+
+#+begin_src emacs-lisp
+  (use-package vertico-repeat
+    :ensure nil ;; ships with vertico
+    :after vertico
+    :hook (minibuffer-setup . vertico-repeat-save)
+    :bind ("C-c C-r" . vertico-repeat))
+#+end_src
+
+** Orderless
+
+Completion style matching space-separated patterns in any order: `bu swi` finds `consult-buffer-switch` and friends. Files keep `partial-completion` so `/u/l/b` still expands to `/usr/local/bin`.
+
+#+begin_src emacs-lisp
+  (use-package orderless
+    :ensure t
+    :pin elpa-gnu
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-defaults nil)
+    (completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
+
+** Marginalia
+
+Annotations next to candidates: docstrings for commands, file sizes and dates, buffer modes.
+
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :ensure t
+    :pin elpa-gnu
+    :init
+    (marginalia-mode 1))
+#+end_src
+
+** Consult
+
+Search and navigation commands on the standard completion API, replacing their counsel/swiper counterparts. `consult-buffer` includes recent files and bookmarks, covering `ivy-use-virtual-buffers`.
+
+#+begin_src emacs-lisp
+  (use-package consult
+    :ensure t
+    :pin elpa-gnu
     :bind
-    ("M-x" . counsel-M-x)
-    ("C-x C-f" . counsel-find-file)
-    ("C-c g" . counsel-git)
-    ("C-x l" . counsel-locate)
+    (("C-s" . consult-line)                 ;; was swiper
+     ("C-x b" . consult-buffer)
+     ("C-x l" . consult-locate)             ;; was counsel-locate
+     ("C-c g" . project-find-file)          ;; was counsel-git
+     :map minibuffer-local-map
+     ("C-r" . consult-history))             ;; was counsel-minibuffer-history
     :config
-    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
-#+END_SRC
+    ;; macOS has no locate database; Spotlight serves consult-locate
+    ;; like it serves M-x locate (see the Fonts section).
+    (when (eq system-type 'darwin)
+      (setq consult-locate-args "mdfind")))
+#+end_src
+
+** Embark
+
+Context actions on the candidate at point: `C-.` on a file offers delete/rename/copy path, on a buffer kill/rename, on a command its keybinding — and `embark-export` turns any completion set into an editable buffer. Note: in flyspell buffers `C-.` is shadowed by `flyspell-auto-correct-word` (not under jinx).
+
+#+begin_src emacs-lisp
+  (use-package embark
+    :ensure t
+    :pin elpa-gnu
+    :bind
+    (("C-." . embark-act)
+     ("C-h B" . embark-bindings))
+    :init
+    ;; Show keybinding help through embark, filterable and actionable.
+    (setq prefix-help-command #'embark-prefix-help-command))
+
+  (use-package embark-consult
+    :ensure t
+    :pin elpa-gnu
+    :after (embark consult)
+    :hook (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
 * Csv
 
 [csv-mode](https://elpa.gnu.org/packages/csv-mode.html)
@@ -503,25 +601,6 @@ Package [[https://github.com/dgutov/diff-hl][diff-hl]] for highlighting uncommit
     (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
     (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 #+end_src
-
-* Ivy
-#+BEGIN_SRC emacs-lisp
-  (use-package ivy
-    :ensure t
-    :pin melpa-stable
-    :config
-    (ivy-mode 1)
-    (setq
-     ivy-count-format " %d/%d "
-     ivy-use-virtual-buffers t
-     ivy-use-selectable-prompt t
-     enable-recursive-minibuffers t
-     projectile-completion-system 'ivy
-     magit-completing-read-function 'ivy-completing-read)
-    :bind
-    (:map ivy-minibuffer-map
-          ("<return>" . ivy-alt-done)))
-#+END_SRC
 
 * Apheleia
 
@@ -1198,13 +1277,6 @@ HTTP requests from org files, replacing the unmaintained restclient and ob-http:
 | `C-c C-r C-r` | Send request at point                  |
 | `C-c C-r C-s` | Send request, other window, stay       |
 | `C-c C-r C-f` | Send request, show response body only  |
-* Amx
-Frecency ranking for `M-x`; counsel picks it up automatically. Successor of the unmaintained smex.
-#+BEGIN_SRC emacs-lisp
-  (use-package amx
-    :ensure t
-    :pin melpa-stable)
-#+END_SRC
 * Svelte
 #+BEGIN_SRC emacs-lisp
   (use-package svelte-mode
@@ -1213,15 +1285,6 @@ Frecency ranking for `M-x`; counsel picks it up automatically. Successor of the 
     :mode "\\.svelte\\'"
     :config
     (add-hook 'svelte-mode-hook 'eglot-ensure))
-#+END_SRC
-* Swiper
-#+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :ensure t
-    :pin melpa-stable
-    :bind
-    ("\C-s" . swiper)
-    ("C-c C-r" . ivy-resume))
 #+END_SRC
 * Typescript
 #+begin_src emacs-lisp
