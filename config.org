@@ -223,7 +223,57 @@ The mode is on by default since Emacs 28, but re-enable it after zeroing the del
 
     ;; Fullscreen!
     (setq ns-use-native-fullscreen nil) ; Not Lion style
-    (bind-key "<s-return>" 'toggle-frame-fullscreen)
+
+    ;; Non-native fullscreen claims the display's full rect, including the band
+    ;; macOS reserves below a MacBook Pro's camera housing -- cropping the top
+    ;; line of text. Fill the monitor by hand instead, offset by that band's
+    ;; height. It is zero on displays without a housing, where the frame falls
+    ;; back to real fullscreen.
+    (defvar my/notched-displays '((301 195))
+      "`mm-size' values of displays whose top edge a camera housing covers.")
+
+    (defvar my/fullscreen-restore nil
+      "Alist mapping a frame to the geometry it had before pseudo-fullscreen.")
+
+    (defun my/notch-height (frame)
+      "Pixels at the top of FRAME's monitor that a camera housing covers."
+      (if (member (frame-monitor-attribute 'mm-size frame) my/notched-displays)
+          (- (nth 1 (frame-monitor-attribute 'workarea frame))
+             (nth 1 (frame-monitor-attribute 'geometry frame)))
+        0))
+
+    (defun my/toggle-frame-fullscreen ()
+      "Toggle fullscreen on the selected frame, clear of a camera housing."
+      (interactive)
+      (let* ((frame (selected-frame))
+             (saved (assq frame my/fullscreen-restore))
+             (notch (my/notch-height frame)))
+        (cond
+         (saved
+          (pcase-let ((`(,x ,y ,w ,h) (cdr saved)))
+            (modify-frame-parameters frame `((left + ,x) (top + ,y)))
+            (set-frame-size frame w h t))
+          (setq my/fullscreen-restore
+                (assq-delete-all frame my/fullscreen-restore)))
+         ((zerop notch)
+          (toggle-frame-fullscreen))
+         (t
+          (set-frame-parameter frame 'fullscreen nil)
+          (push (cons frame (list (car (frame-position frame))
+                                  (cdr (frame-position frame))
+                                  (frame-text-width frame)
+                                  (frame-text-height frame)))
+                my/fullscreen-restore)
+          (pcase-let ((`(,x ,y ,w ,h) (frame-monitor-attribute 'geometry frame)))
+            (modify-frame-parameters frame `((left + ,x) (top + ,(+ y notch))))
+            (set-frame-size frame
+                            (- w (- (frame-outer-width frame)
+                                    (frame-text-width frame)))
+                            (- h notch (- (frame-outer-height frame)
+                                          (frame-text-height frame)))
+                            t))))))
+
+    (bind-key "<s-return>" 'my/toggle-frame-fullscreen)
 
     ;; buffer switching
     (bind-key "s-{" 'previous-buffer)
@@ -232,14 +282,6 @@ The mode is on by default since Emacs 28, but re-enable it after zeroing the del
     ;; Not going to use this command
     (put 'ns-print-buffer 'disabled t))
 #+END_SRC
-
-Non-native fullscreen claims the display's full rect, including the safe area macOS reserves below a MacBook Pro's camera housing — which crops the top line of text. Fix it per app, outside of Emacs, by ticking "Scale to fit below built-in camera" in Finder's Get Info for `Emacs.app`, or:
-
-#+BEGIN_SRC sh
-  defaults write org.gnu.Emacs NSPrefersDisplaySafeAreaCompatibilityMode -int 1
-#+END_SRC
-
-Quit Emacs, daemon included, and relaunch afterwards. External displays have no safe area, so they keep using the whole screen.
 * Navigating buffers
 Switch to next window with `M-o` instead of `C-x o`.
 #+BEGIN_SRC emacs-lisp
