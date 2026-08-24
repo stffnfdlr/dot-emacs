@@ -232,6 +232,14 @@ The mode is on by default since Emacs 28, but re-enable it after zeroing the del
     ;; Not going to use this command
     (put 'ns-print-buffer 'disabled t))
 #+END_SRC
+
+Non-native fullscreen claims the display's full rect, including the safe area macOS reserves below a MacBook Pro's camera housing — which crops the top line of text. Fix it per app, outside of Emacs, by ticking "Scale to fit below built-in camera" in Finder's Get Info for `Emacs.app`, or:
+
+#+BEGIN_SRC sh
+  defaults write org.gnu.Emacs NSPrefersDisplaySafeAreaCompatibilityMode -int 1
+#+END_SRC
+
+Quit Emacs, daemon included, and relaunch afterwards. External displays have no safe area, so they keep using the whole screen.
 * Navigating buffers
 Switch to next window with `M-o` instead of `C-x o`.
 #+BEGIN_SRC emacs-lisp
