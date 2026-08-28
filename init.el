@@ -1,3 +1,5 @@
+;;; init.el --- -*- lexical-binding: t; -*-
+
 ;; Hide UI elements. Unconditional on purpose: under a daemon start
 ;; window-system is nil during init, but these global modes also
 ;; govern GUI frames created later by emacsclient.

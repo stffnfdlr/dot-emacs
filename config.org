@@ -1,6 +1,12 @@
 #+TITLE: Emacs configuration
 #+AUTHOR: Steffen Fiedler
 
+This block must stay first so the cookie lands on line 1 of the tangled =config.el=.
+
+#+BEGIN_SRC emacs-lisp
+  ;;; config.el --- tangled from config.org -*- lexical-binding: t; -*-
+#+END_SRC
+
 * Installation
 
 ** Personal
@@ -11,7 +17,7 @@ Private values live in `secrets.el`, which is gitignored. On a fresh machine the
   (let ((secrets-file (concat user-emacs-directory "secrets.el")))
     (unless (file-exists-p secrets-file)
       (with-temp-file secrets-file
-        (insert ";;; secrets.el --- private values loaded by config.org\n\n"
+        (insert ";;; secrets.el --- private values loaded by config.org -*- lexical-binding: t; -*-\n\n"
                 ";; Replace the template values with your own.\n"
                 "(setq full-name \"Your Name\"\n"
                 "      email-address \"you@example.com\")\n"))
