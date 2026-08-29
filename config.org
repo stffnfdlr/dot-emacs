@@ -1353,7 +1353,7 @@ HTTP requests from org files, replacing the unmaintained restclient and ob-http:
 #+end_src
 * Tree-sitter
 
-Emacs 30 ships tree-sitter major modes for several languages. Use them whenever the corresponding grammar library is installed, falling back to the classic modes otherwise. Grammars install with `M-x treesit-install-language-grammar` (needs git and a C compiler); the source list below makes that work out of the box.
+Emacs 31 activates tree-sitter major modes through `treesit-enabled-modes` and installs missing grammars on demand (`treesit-auto-install-grammar` defaults to =ask=, prompting on first use; needs git and a C compiler). The source list below tells it where to fetch grammars from.
 
 #+begin_src emacs-lisp
   (when (and (fboundp 'treesit-available-p)
@@ -1363,17 +1363,13 @@ Emacs 30 ships tree-sitter major modes for several languages. Use them whenever 
             (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
             (yaml "https://github.com/ikatyang/tree-sitter-yaml")
             (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")))
-    ;; Remap a classic mode to its ts counterpart only when the
-    ;; grammar is actually available.
-    (dolist (spec '((typescript typescript-mode typescript-ts-mode)
-                    (yaml yaml-mode yaml-ts-mode)
-                    (dockerfile dockerfile-mode dockerfile-ts-mode)))
-      (when (treesit-language-available-p (car spec))
-        (add-to-list 'major-mode-remap-alist (cons (nth 1 spec) (nth 2 spec)))))
+    ;; `setopt', not `setq': the option's :set function performs the
+    ;; major-mode remapping.
+    (setopt treesit-enabled-modes
+            '(typescript-ts-mode tsx-ts-mode yaml-ts-mode dockerfile-ts-mode))
     ;; .tsx is owned by web-mode, which must not be remapped wholesale
     ;; (it also serves .html); claim the extension directly instead.
-    (when (treesit-language-available-p 'tsx)
-      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))))
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode)))
 #+end_src
 * Web mode
 For mixed-content templates and JSX/TSX. Plain `.css` files open in the built-in `css-mode` instead, where the eglot hook (see [[*Langauge server (Eglot)]]) provides LSP support.
