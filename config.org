@@ -116,6 +116,14 @@ By default Emacs resizes frames in whole character-cell steps, which leaves gaps
   (setq frame-resize-pixelwise t)
 #+END_SRC
 
+** No native compilation on battery power
+
+Async native compilation keeps CPU cores busy in the background; don't start new compilations while the laptop runs on battery. Compilations skipped this way are retried after the next restart.
+
+#+BEGIN_SRC emacs-lisp
+  (setq native-comp-async-on-battery-power nil)
+#+END_SRC
+
 ** Delete by moving to trash
 
 Deleted files go to the system trash instead of vanishing permanently — on every OS. macOS' trash folder is set in [[*Mac defaults]]; elsewhere Emacs follows the freedesktop.org trash specification.
