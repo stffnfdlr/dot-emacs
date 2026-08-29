@@ -47,7 +47,7 @@
          dockerfile-mode embark embark-consult exec-path-from-shell
          expand-region gnuplot jinx ledger-mode magit marginalia
          markdown-mode nix-mode notmuch ob-typescript olivetti orderless
-         org-contrib org-journal org-roam ox-gfm plantuml-mode projectile
+         org-contrib org-journal org-roam ox-gfm plantuml-mode
          rainbow-delimiters smartparens svelte-mode typescript-mode verb
          vertico web-mode writegood-mode yaml-mode))
  '(sgml-basic-offset 2))

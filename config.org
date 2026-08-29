@@ -446,7 +446,7 @@ In-buffer completion popup, the `completion-at-point`-native successor to compan
 
 * Minibuffer completion
 
-The vertico family replaces ivy, counsel, swiper and amx. It builds on the standard `completing-read` API, so every package — magit, projectile, org, whatever comes next — gets the same UI without per-package glue commands or settings.
+The vertico family replaces ivy, counsel, swiper and amx. It builds on the standard `completing-read` API, so every package — magit, project.el, org, whatever comes next — gets the same UI without per-package glue commands or settings.
 
 ** Vertico
 
@@ -571,7 +571,7 @@ Context actions on the candidate at point: `C-.` on a file offers delete/rename/
 | `C-c C-u` | Undoes alignment, to source          |
 * Diminish
 
-Hide minor-mode lighters from the mode line; consumed by the `:diminish` keyword in use-package blocks (projectile, which-key).
+Hide minor-mode lighters from the mode line; consumed by the `:diminish` keyword in use-package blocks (which-key).
 
 #+begin_src emacs-lisp
   (use-package diminish
@@ -1225,16 +1225,15 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
      ("C-c `"  . wrap-with-back-quotes)))
 #+END_SRC
 
-* Projectile
+* Project
+
+The built-in project.el replaces projectile. Its commands live on the standard `C-x p` prefix; `C-c p` stays bound to the same map for projectile-era muscle memory. Known projects were migrated from projectile's bookmarks into `project-list-file`.
+
 #+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :diminish projectile-mode
-    :ensure t
-    :pin melpa-stable
-    :config
-    (projectile-mode +1)
+  (use-package project
+    :ensure nil
     :bind-keymap
-    (("C-c p" . projectile-command-map)))
+    (("C-c p" . project-prefix-map)))
 #+END_SRC
 
 ** Keys
@@ -1242,6 +1241,8 @@ Key mapping taken from https://ebzzry.com/en/emacs-pairs/. The `wrap-with-*` com
 | Binding   | Description            |
 |-----------+------------------------|
 | `C-c p p` | Jump to/select project |
+| `C-c p f` | Find file in project   |
+| `C-c p b` | Switch project buffer  |
 
 * Spell checking
 
